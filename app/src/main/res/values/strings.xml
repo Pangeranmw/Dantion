@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Dantion</string>
+
+    <string name="onboarding_titles_1">Robbery and Accident Detection</string>
+    <string name="onboarding_desc_1">Dantion is a fast response application that can detect robbers and accidents through voice recordings.</string>
+    <string name="onboarding_titles_2">How Thief\nDetection Works</string>
+    <string name="onboarding_desc_2">When there is a robbery, press your motorcycle horn and adjust it to the horn sound pattern that we have provided. If the horn pattern matches, the application will send a notification of the thief along with the location of the incident to the nearest authorities.</string>
+    <string name="onboarding_titles_3">How Accident Detection Works</string>
+    <string name="onboarding_desc_3">When a collision sound is detected and also a collision between motorbikes or cars, the application will send an accident notification along with its location to all nearby application users.</string>
+    <string name="skip">Skip</string>
+    <string name="start">Start</string>
+</resources>
