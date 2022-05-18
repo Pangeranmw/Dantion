@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Dantion</string>
 
+    <string name="cd_onboarding_1">onboarding Ilustrasi deteksi begal dan kecelakaan</string>
+    <string name="cd_onboarding_2">onboarding Ilustrasi begal</string>
+    <string name="cd_onboarding_3">onboarding Ilustrasi kecelakaan</string>
+
+    <string name="cd_indicator_1_active">indikator onboarding  1 aktif</string>
+    <string name="cd_indicator_2_active">indikator onboarding  2 aktif</string>
+    <string name="cd_indicator_3_active">indikator onboarding  3 aktif</string>
+    <string name="cd_indicator_1_disable">indikator onboarding  1 tidak aktif</string>
+    <string name="cd_indicator_2_disable">indikator onboarding  2 tidak aktif</string>
+    <string name="cd_indicator_3_disable">indikator onboarding  3 tidak aktif</string>
+
     <string name="onboarding_titles_1">Deteksi Begal\ndan Kecelakaan</string>
     <string name="onboarding_desc_1">Dantion merupakan aplikasi cepat tanggap yang dapat mendeteksi begal dan kecelakaan melalui rekaman suara.</string>
     <string name="onboarding_titles_2">Cara kerja\nDeteksi Begal</string>
@@ -9,5 +20,6 @@
     <string name="onboarding_desc_3">Ketika terdeteksi suara tabrakan dan juga benturan antar motor maupun mobil, maka aplikasi akan mengirimkan notifikasi kecelakaan beserta lokasinya ke seluruh pengguna aplikasi terdekat.</string>
 
     <string name="skip">Lewati</string>
+    <string name="next">Selanjutnya</string>
     <string name="start">Mulai</string>
 </resources>

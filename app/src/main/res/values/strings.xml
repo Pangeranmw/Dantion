@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Dantion</string>
 
+    <string name="cd_onboarding_1">Onboarding Robbery and Accident Detection Illustration</string>
+    <string name="cd_onboarding_2">Onboarding Robbery Illustration</string>
+    <string name="cd_onboarding_3">Onboarding Accident Illustration</string>
+
+    <string name="cd_indicator_1_active">onboarding indicator 1 active</string>
+    <string name="cd_indicator_2_active">onboarding indicator 2 active</string>
+    <string name="cd_indicator_3_active">onboarding indicator 3 active</string>
+    <string name="cd_indicator_1_disable">onboarding indicator 1 disable</string>
+    <string name="cd_indicator_2_disable">onboarding indicator 2 disable</string>
+    <string name="cd_indicator_3_disable">onboarding indicator 3 disable</string>
+
     <string name="onboarding_titles_1">Robbery and Accident Detection</string>
     <string name="onboarding_desc_1">Dantion is a fast response application that can detect robbers and accidents through voice recordings.</string>
     <string name="onboarding_titles_2">How Thief\nDetection Works</string>
@@ -8,5 +19,6 @@
     <string name="onboarding_titles_3">How Accident Detection Works</string>
     <string name="onboarding_desc_3">When a collision sound is detected and also a collision between motorbikes or cars, the application will send an accident notification along with its location to all nearby application users.</string>
     <string name="skip">Skip</string>
+    <string name="next">Next</string>
     <string name="start">Start</string>
 </resources>

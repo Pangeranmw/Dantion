@@ -15,15 +15,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:src="@drawable/img_onboarding_2" />
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/img_onboarding_2"
+        android:contentDescription="@string/cd_onboarding_2"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="420dp"
+        android:layout_height="430dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/onboarding_desc_bg"
         android:padding="30dp">
@@ -34,7 +35,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/onboarding_disable_indicator"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/cd_indicator_1_disable"/>
 
         <ImageView
             android:id="@+id/iv_indicator_2"
@@ -43,7 +45,8 @@
             android:layout_marginStart="5dp"
             android:src="@drawable/onboarding_active_indicator"
             app:layout_constraintStart_toEndOf="@id/iv_indicator_1"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/cd_indicator_2_active"/>
 
         <ImageView
             android:id="@+id/iv_indicator_3"
@@ -52,7 +55,8 @@
             android:layout_marginStart="5dp"
             android:src="@drawable/onboarding_disable_indicator"
             app:layout_constraintStart_toEndOf="@id/iv_indicator_2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/cd_indicator_3_disable"/>
 
         <TextView
             android:id="@+id/tv_title"
@@ -103,7 +107,8 @@
             android:src="@drawable/ic_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc"
+            android:contentDescription="@string/next"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
