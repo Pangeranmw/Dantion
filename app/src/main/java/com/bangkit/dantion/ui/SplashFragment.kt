@@ -27,12 +27,22 @@ class SplashFragment : Fragment() {
             userPreferences = UserPreference(requireContext())
             userPreferences.onBoarding.asLiveData().observe(requireActivity()){ onBoarding->
                 userPreferences.login.asLiveData().observe(requireActivity()) { login ->
-                    if (!onBoardingFinished() && login == null) {
+                    if (onBoarding==null &&
+//                        !onBoardingFinished() &&
+                        login == null) {
                         findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
-                    } else if (onBoardingFinished() && login == null) {
-                        findNavController().navigate(R.id.action_splashFragment_to_loginActivity)
+//                        findNavController().popBackStack()
+                        requireActivity().overridePendingTransition(0, 0);
+                    } else if (onBoarding!=null &&
+                        //onBoardingFinished()
+                        login == null) {
+                        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+//                        findNavController().popBackStack()
+                        requireActivity().overridePendingTransition(0, 0);
                     } else {
                         findNavController().navigate(R.id.action_splashFragment_to_homeActivity)
+//                        findNavController().popBackStack()
+                        requireActivity().overridePendingTransition(0, 0);
                     }
                 }
             }

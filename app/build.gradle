@@ -4,13 +4,13 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
     compileSdk 32
 
     defaultConfig {
-        buildConfigField("String", "BASE_URL", '"https://story-api.dicoding.dev/v1/"')
 
         applicationId "com.bangkit.dantion"
         minSdk 21
@@ -78,6 +78,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
+
+    // Maps
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'

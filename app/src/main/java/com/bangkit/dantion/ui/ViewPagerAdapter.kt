@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.onboarding
+package com.bangkit.dantion.ui
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -26,17 +26,20 @@
     <string name="login">Masuk</string>
     <string name="register">Daftar</string>
     <string name="email">Email</string>
+    <string name="full_name">Nama Lengkap</string>
     <string name="password">Kata Sandi</string>
+    <string name="address">Alamat</string>
     <string name="confirm_password">Konfirmasi Kata Sandi</string>
     <string name="number">Nomor Ponsel</string>
     <string name="parentNumber">Nomor yang Dapat Dihubungi</string>
     <string name="individual_data">Data Diri</string>
     <string name="account_data">Informasi Akun</string>
+    <string name="placeholder_name">Masukkan nama lengkap anda</string>
+    <string name="placeholder_address">Masukkan alamat anda</string>
     <string name="placeholder_pw">Masukkan kata sandi anda</string>
     <string name="placeholder_confirm_pw">Masukkan ulang kata sandi anda</string>
     <string name="placeholder_email">Masukkan email anda</string>
-    <string name="placeholder_number">831xxxxxxxx</string>
-    <string name="number_code">+62</string>
+    <string name="placeholder_number">8xxxxxxxxxx</string>
     <string name="no_account">Belum punya akun? </string>
     <string name="have_account">Sudah punya akun? </string>
     <string name="cd_logo">Logo Dantion</string>
@@ -63,5 +66,12 @@
     <string name="victim">Korban</string>
     <string name="reporter">Pelapor</string>
     <string name="occurance_time">%1$d\n%2$d</string>
+
+    <string name="password_same">Patikan password yang anda masukkan sesuai</string>
+    <string name="register_success">Registrasi Berhasil</string>
+    <string name="register_success_congrate">Selamat, akunmu telah terdaftar!</string>
+
+    <string name="empty_personal_data">Harap isi semua data pribadi, sebelum ke tahap selanjutnya</string>
+    <string name="empty_information_account">Harap isi semua informasi akun</string>
 
 </resources>

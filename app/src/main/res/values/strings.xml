@@ -25,17 +25,20 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="email">Email</string>
+    <string name="full_name">Full Name</string>
+    <string name="address">Address</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="number">Phone Number</string>
     <string name="parentNumber">Parent Number</string>
     <string name="individual_data">Personal Data</string>
     <string name="account_data">Account Information</string>
+    <string name="placeholder_name">Insert full name</string>
+    <string name="placeholder_address">Insert address</string>
     <string name="placeholder_pw">Insert password</string>
     <string name="placeholder_confirm_pw">Re-enter password</string>
     <string name="placeholder_email">Insert email</string>
-    <string name="placeholder_number">831xxxxxxxx</string>
-    <string name="number_code">+62</string>
+    <string name="placeholder_number">8xxxxxxxxxx</string>
     <string name="no_account">Don\'t have Account? </string>
     <string name="have_account">Already have Account? </string>
     <string name="cd_logo">Dantion Logo</string>
@@ -61,4 +64,12 @@
     <string name="victim">Victim</string>
     <string name="reporter">Reporter</string>
     <string name="occurance_time">%1$d\n%2$d</string>
+
+    <string name="password_same">Make sure the password you enter is correct</string>
+    <string name="register_success">Registration Successful</string>
+    <string name="register_success_congrate">Congratulations, your account has been registered!</string>
+
+    <string name="empty_personal_data">Please fill in all personal data, before going to the next step</string>
+    <string name="empty_information_account">Please fill in all information account</string>
+
 </resources>
