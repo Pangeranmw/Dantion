@@ -1,4 +1,4 @@
-package com.bangkit.dantion.onboarding
+package com.bangkit.dantion.ui.onboarding
 
 import android.os.Bundle
 import android.transition.TransitionInflater
@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentViewPagerBinding
-import com.bangkit.dantion.onboarding.screens.FirstOnboardingFragment
-import com.bangkit.dantion.onboarding.screens.SecondOnboardingFragment
-import com.bangkit.dantion.onboarding.screens.ThirdOnboardingFragment
+import com.bangkit.dantion.ui.onboarding.screens.FirstOnboardingFragment
+import com.bangkit.dantion.ui.onboarding.screens.SecondOnboardingFragment
+import com.bangkit.dantion.ui.onboarding.screens.ThirdOnboardingFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ViewPagerFragment : Fragment() {
     private var _binding: FragmentViewPagerBinding? = null
     private val binding get() = _binding!!
@@ -23,10 +25,7 @@ class ViewPagerFragment : Fragment() {
         _binding = FragmentViewPagerBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_view_pager, container, false)
-
-        val fragmentList = arrayListOf<Fragment>(
+        val fragmentList = arrayListOf(
             FirstOnboardingFragment(),
             SecondOnboardingFragment(),
             ThirdOnboardingFragment(),

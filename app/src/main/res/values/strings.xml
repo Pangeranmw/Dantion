@@ -21,4 +21,44 @@
     <string name="skip">Skip</string>
     <string name="next">Next</string>
     <string name="start">Start</string>
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="number">Phone Number</string>
+    <string name="parentNumber">Parent Number</string>
+    <string name="individual_data">Personal Data</string>
+    <string name="account_data">Account Information</string>
+    <string name="placeholder_pw">Insert password</string>
+    <string name="placeholder_confirm_pw">Re-enter password</string>
+    <string name="placeholder_email">Insert email</string>
+    <string name="placeholder_number">831xxxxxxxx</string>
+    <string name="number_code">+62</string>
+    <string name="no_account">Don\'t have Account? </string>
+    <string name="have_account">Already have Account? </string>
+    <string name="cd_logo">Dantion Logo</string>
+
+    <string name="welcome">Welcome, %1$s</string>
+    <string name="cd_photo_profile">Profile Photo</string>
+    <string name="cd_photo_acc">Accident Illustration</string>
+    <string name="cd_photo_rob">Robber Illustration</string>
+    <string name="horn">Horn</string>
+    <string name="listen_pattern">Listen\nPattern</string>
+    <string name="sound_record">Record\nSound</string>
+    <string name="rob_accident_stat">Rob &amp; Accident Statistic</string>
+    <string name="rob_accident_stat_sub">Number of detected robberies and accidents</string>
+    <string name="rob">Robber</string>
+    <string name="accident">Accident</string>
+    <string name="stat_number">28.0000</string>
+    <string name="case_detected">Case</string>
+    <string name="emergency_button">Emergency\nButton</string>
+    <string name="latest_accident">Latest Accident Case</string>
+    <string name="latest_rob">Latest Robbery Case</string>
+    <string name="location_address">St. street number anything anything anything anything</string>
+    <string name="victim_name">Victim\'s Name</string>
+    <string name="victim">Victim</string>
+    <string name="reporter">Reporter</string>
+    <string name="occurance_time">%1$d\n%2$d</string>
 </resources>

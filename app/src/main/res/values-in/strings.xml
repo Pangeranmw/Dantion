@@ -22,4 +22,46 @@
     <string name="skip">Lewati</string>
     <string name="next">Selanjutnya</string>
     <string name="start">Mulai</string>
+
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="number">Nomor Ponsel</string>
+    <string name="parentNumber">Nomor yang Dapat Dihubungi</string>
+    <string name="individual_data">Data Diri</string>
+    <string name="account_data">Informasi Akun</string>
+    <string name="placeholder_pw">Masukkan kata sandi anda</string>
+    <string name="placeholder_confirm_pw">Masukkan ulang kata sandi anda</string>
+    <string name="placeholder_email">Masukkan email anda</string>
+    <string name="placeholder_number">831xxxxxxxx</string>
+    <string name="number_code">+62</string>
+    <string name="no_account">Belum punya akun? </string>
+    <string name="have_account">Sudah punya akun? </string>
+    <string name="cd_logo">Logo Dantion</string>
+
+
+    <string name="welcome">Selamat Datang, %1$s</string>
+    <string name="cd_photo_profile">Foto Profil</string>
+    <string name="cd_photo_acc">Ilustrasi Kecelakaan</string>
+    <string name="cd_photo_rob">Ilustrasi Begal</string>
+    <string name="horn">Klakson</string>
+    <string name="listen_pattern">Dengar\nPola</string>
+    <string name="sound_record">Rekam\nSuara</string>
+    <string name="rob_accident_stat">Statistik Begal &amp; Kecelakaan</string>
+    <string name="rob_accident_stat_sub">Jumlah begal dan kecelakaan yang terdeteksi</string>
+    <string name="rob">Begal</string>
+    <string name="accident">Kecelakaan</string>
+    <string name="stat_number">28.0000</string>
+    <string name="case_detected">Kasus</string>
+    <string name="emergency_button">Tombol\nDarurat</string>
+    <string name="latest_accident">Kasus Kecelaakan Terkini</string>
+    <string name="latest_rob">Kasus Begal Terkini</string>
+    <string name="location_address">Jl. jalan nomor gak tau gak tau gak tau</string>
+    <string name="victim_name">Nama Korban</string>
+    <string name="victim">Korban</string>
+    <string name="reporter">Pelapor</string>
+    <string name="occurance_time">%1$d\n%2$d</string>
+
 </resources>

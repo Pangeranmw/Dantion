@@ -1,4 +1,4 @@
-package com.bangkit.dantion.onboarding.screens
+package com.bangkit.dantion.ui.onboarding.screens
 
 import android.os.Bundle
 import android.transition.TransitionInflater
@@ -10,18 +10,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentFirstOnboardingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FirstOnboardingFragment : Fragment() {
     private var _binding: FragmentFirstOnboardingBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val transaction = activity?.supportFragmentManager?.beginTransaction()
-        transaction?.setCustomAnimations(0,0)
-        val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.fade)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -10,6 +10,8 @@ android {
     compileSdk 32
 
     defaultConfig {
+        buildConfigField("String", "BASE_URL", '"https://story-api.dicoding.dev/v1/"')
+
         applicationId "com.bangkit.dantion"
         minSdk 21
         targetSdk 32
@@ -57,8 +59,11 @@ dependencies {
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
 
     //Lifecycle
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+
+    implementation 'androidx.room:room-ktx:2.4.2'
     implementation 'androidx.room:room-runtime:2.4.2'
     kapt 'androidx.room:room-compiler:2.4.2'
 
