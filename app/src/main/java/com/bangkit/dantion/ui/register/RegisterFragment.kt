@@ -1,11 +1,11 @@
 package com.bangkit.dantion.ui.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.fragment.app.Fragment
 import com.bangkit.dantion.databinding.FragmentRegisterBinding
 import com.bangkit.dantion.ui.ViewPagerAdapter
 import com.bangkit.dantion.ui.register.screens.FirstRegisterFragment

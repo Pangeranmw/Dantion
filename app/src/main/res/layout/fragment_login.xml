@@ -8,7 +8,8 @@
     android:paddingTop="30dp"
     android:paddingEnd="20dp"
     android:paddingBottom="30dp"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.login.LoginFragment"
+    >
     <TextView
         android:id="@+id/tv_login"
         style="@style/HeadingCenter"

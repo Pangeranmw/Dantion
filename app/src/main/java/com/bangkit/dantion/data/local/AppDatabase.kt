@@ -4,7 +4,6 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.bangkit.dantion.data.local.entity.DangerDetectionEntity
 import com.bangkit.dantion.data.local.entity.DangerPlaceEntity
-import com.bangkit.dantion.data.local.entity.UserAndDangerDetectionEntity
 import com.bangkit.dantion.data.local.entity.UserEntity
 
 /**

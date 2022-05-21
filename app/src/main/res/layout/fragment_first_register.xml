@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.register.screens.FirstRegisterFragment">
+    tools:context=".ui.register.screens.FirstRegisterFragment"
+    android:windowSoftInputMode="adjustResize"
+    >
 
     <TextView
         android:id="@+id/tv_register"
@@ -67,7 +69,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_name"
             style="@style/CustomEditText"
-            android:hint="@string/placeholder_name"/>
+            android:hint="@string/placeholder_name"
+            />
     </com.bangkit.dantion.ui.custom.CustomTextInputLayout>
 
     <TextView
@@ -85,6 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_address"
+        android:transitionGroup="true"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_address"

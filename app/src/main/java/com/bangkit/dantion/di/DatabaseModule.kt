@@ -2,8 +2,8 @@ package com.bangkit.dantion.di
 
 import android.content.Context
 import androidx.room.Room
-import com.bangkit.dantion.data.local.AppDatabase
 import com.bangkit.dantion.data.local.AppDao
+import com.bangkit.dantion.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
