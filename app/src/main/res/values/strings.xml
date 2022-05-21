@@ -1,75 +1,82 @@
+
 <resources>
     <string name="app_name">Dantion</string>
 
-    <string name="cd_onboarding_1">Onboarding Robbery and Accident Detection Illustration</string>
-    <string name="cd_onboarding_2">Onboarding Robbery Illustration</string>
-    <string name="cd_onboarding_3">Onboarding Accident Illustration</string>
+    <string name="cd_onboarding_1">onboarding Ilustrasi deteksi begal dan kecelakaan</string>
+    <string name="cd_onboarding_2">onboarding Ilustrasi begal</string>
+    <string name="cd_onboarding_3">onboarding Ilustrasi kecelakaan</string>
 
-    <string name="cd_indicator_1_active">onboarding indicator 1 active</string>
-    <string name="cd_indicator_2_active">onboarding indicator 2 active</string>
-    <string name="cd_indicator_3_active">onboarding indicator 3 active</string>
-    <string name="cd_indicator_1_disable">onboarding indicator 1 disable</string>
-    <string name="cd_indicator_2_disable">onboarding indicator 2 disable</string>
-    <string name="cd_indicator_3_disable">onboarding indicator 3 disable</string>
+    <string name="cd_indicator_1_active">indikator onboarding  1 aktif</string>
+    <string name="cd_indicator_2_active">indikator onboarding  2 aktif</string>
+    <string name="cd_indicator_3_active">indikator onboarding  3 aktif</string>
+    <string name="cd_indicator_1_disable">indikator onboarding  1 tidak aktif</string>
+    <string name="cd_indicator_2_disable">indikator onboarding  2 tidak aktif</string>
+    <string name="cd_indicator_3_disable">indikator onboarding  3 tidak aktif</string>
 
-    <string name="onboarding_titles_1">Robbery and Accident Detection</string>
-    <string name="onboarding_desc_1">Dantion is a fast response application that can detect robbers and accidents through voice recordings.</string>
-    <string name="onboarding_titles_2">How Thief\nDetection Works</string>
-    <string name="onboarding_desc_2">When there is a robbery, press your motorcycle horn and adjust it to the horn sound pattern that we have provided. If the horn pattern matches, the application will send a notification of the thief along with the location of the incident to the nearest authorities.</string>
-    <string name="onboarding_titles_3">How Accident Detection Works</string>
-    <string name="onboarding_desc_3">When a collision sound is detected and also a collision between motorbikes or cars, the application will send an accident notification along with its location to all nearby application users.</string>
-    <string name="skip">Skip</string>
-    <string name="next">Next</string>
-    <string name="start">Start</string>
+    <string name="onboarding_titles_1">Deteksi Begal\ndan Kecelakaan</string>
+    <string name="onboarding_desc_1">Dantion merupakan aplikasi cepat tanggap yang dapat mendeteksi begal dan kecelakaan melalui rekaman suara.</string>
+    <string name="onboarding_titles_2">Cara kerja\nDeteksi Begal</string>
+    <string name="onboarding_desc_2">Ketika ada begal, tekan klakson motor anda dan sesuaikan dengan pola suara klakson yang telah kami berikan. Jika pola klakson sesuai, maka aplikasi akan mengirimkan notifikasi begal beserta lokasi kejadian kepada pihak berwenang terdekat.</string>
+    <string name="onboarding_titles_3">Cara kerja Deteksi Kecelakaan</string>
+    <string name="onboarding_desc_3">Ketika terdeteksi suara tabrakan dan juga benturan antar motor maupun mobil, maka aplikasi akan mengirimkan notifikasi kecelakaan beserta lokasinya ke seluruh pengguna aplikasi terdekat.</string>
 
-    <string name="login">Login</string>
-    <string name="register">Register</string>
+    <string name="skip">Lewati</string>
+    <string name="next">Selanjutnya</string>
+    <string name="start">Mulai</string>
+
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
     <string name="email">Email</string>
-    <string name="full_name">Full Name</string>
-    <string name="address">Address</string>
-    <string name="password">Password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="number">Phone Number</string>
-    <string name="parentNumber">Parent Number</string>
-    <string name="individual_data">Personal Data</string>
-    <string name="account_data">Account Information</string>
-    <string name="placeholder_name">Insert full name</string>
-    <string name="placeholder_address">Insert address</string>
-    <string name="placeholder_pw">Insert password</string>
-    <string name="placeholder_confirm_pw">Re-enter password</string>
-    <string name="placeholder_email">Insert email</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="password">Kata Sandi</string>
+    <string name="address">Alamat</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="number">Nomor Ponsel</string>
+    <string name="parentNumber">Nomor yang Dapat Dihubungi</string>
+    <string name="individual_data">Data Diri</string>
+    <string name="account_data">Informasi Akun</string>
+    <string name="placeholder_name">Masukkan nama lengkap anda</string>
+    <string name="placeholder_address">Masukkan alamat anda</string>
+    <string name="placeholder_pw">Masukkan kata sandi anda</string>
+    <string name="placeholder_confirm_pw">Masukkan ulang kata sandi anda</string>
+    <string name="placeholder_email">Masukkan email anda</string>
     <string name="placeholder_number">8xxxxxxxxxx</string>
-    <string name="no_account">Don\'t have Account? </string>
-    <string name="have_account">Already have Account? </string>
-    <string name="cd_logo">Dantion Logo</string>
+    <string name="no_account">Belum punya akun? </string>
+    <string name="have_account">Sudah punya akun? </string>
+    <string name="cd_logo">Logo Dantion</string>
 
-    <string name="welcome">Welcome, %1$s</string>
-    <string name="cd_photo_profile">Profile Photo</string>
-    <string name="cd_photo_acc">Accident Illustration</string>
-    <string name="cd_photo_rob">Robber Illustration</string>
-    <string name="horn">Horn</string>
-    <string name="listen_pattern">Listen\nPattern</string>
-    <string name="sound_record">Record\nSound</string>
-    <string name="rob_accident_stat">Rob &amp; Accident Statistic</string>
-    <string name="rob_accident_stat_sub">Number of detected robberies and accidents</string>
-    <string name="rob">Robber</string>
-    <string name="accident">Accident</string>
+
+    <string name="welcome">Selamat Datang, %1$s</string>
+    <string name="cd_photo_profile">Foto Profil</string>
+    <string name="cd_photo_acc">Ilustrasi Kecelakaan</string>
+    <string name="cd_photo_rob">Ilustrasi Begal</string>
+    <string name="horn">Klakson</string>
+    <string name="listen_pattern">Dengar\nPola</string>
+    <string name="sound_record">Rekam\nSuara</string>
+    <string name="rob_accident_stat">Statistik Begal &amp; Kecelakaan</string>
+    <string name="rob_accident_stat_sub">Jumlah begal dan kecelakaan yang terdeteksi</string>
+    <string name="rob">Begal</string>
+    <string name="accident">Kecelakaan</string>
     <string name="stat_number">28.0000</string>
-    <string name="case_detected">Case</string>
-    <string name="emergency_button">Emergency\nButton</string>
-    <string name="latest_accident">Latest Accident Case</string>
-    <string name="latest_rob">Latest Robbery Case</string>
-    <string name="location_address">St. street number anything anything anything anything</string>
-    <string name="victim_name">Victim\'s Name</string>
-    <string name="victim">Victim</string>
-    <string name="reporter">Reporter</string>
+    <string name="case_detected">Kasus</string>
+    <string name="emergency_button">Tombol\nDarurat</string>
+    <string name="latest_accident">Kasus Kecelaakan Terkini</string>
+    <string name="latest_rob">Kasus Begal Terkini</string>
+    <string name="location_address">Jl. jalan nomor gak tau gak tau gak tau</string>
+    <string name="victim_name">Nama Korban</string>
+    <string name="victim">Korban</string>
+    <string name="reporter">Pelapor</string>
     <string name="occurance_time">%1$d\n%2$d</string>
 
-    <string name="password_same">Make sure the password you enter is correct</string>
-    <string name="register_success">Registration Successful</string>
-    <string name="register_success_congrate">Congratulations, your account has been registered!</string>
+    <string name="password_same">Patikan password yang anda masukkan sesuai</string>
+    <string name="register_success">Registrasi Berhasil</string>
+    <string name="register_success_congrate">Selamat, akunmu telah terdaftar!</string>
 
-    <string name="empty_personal_data">Please fill in all personal data, before going to the next step</string>
-    <string name="empty_information_account">Please fill in all information account</string>
+    <string name="empty_personal_data">Harap isi semua data pribadi, sebelum ke tahap selanjutnya</string>
+    <string name="email_incorrect">Email belum sesuai</string>
+    <string name="password_less_6">Password kurang dari 6 karakter</string>
+    <string name="number_less_10">Nomor belum sesuai</string>
+    <string name="empty_form">Data tidak boleh kosong</string>
+    <string name="empty_information_account">Harap isi semua informasi akun</string>
 
 </resources>

@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.bangkit.dantion.data.repository.DataStoreRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,20 +20,10 @@ import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
 
-private const val USER_PREFERENCES_NAME = "user_preferences"
 @InstallIn(SingletonComponent::class)
 @Module
 object DataStoreModule {
     @Singleton
     @Provides
-    fun providePreferencesDataStore(@ApplicationContext context: Context): DataStore<Preferences>{
-        return PreferenceDataStoreFactory.create(
-            corruptionHandler = ReplaceFileCorruptionHandler (
-                produceNewData = { emptyPreferences()}
-            ),
-            migrations = listOf(SharedPreferencesMigration(context, USER_PREFERENCES_NAME)),
-            scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
-            produceFile = { context.preferencesDataStoreFile(USER_PREFERENCES_NAME)}
-        )
-    }
+    fun provideDataStoreRepository(@ApplicationContext context: Context) = DataStoreRepository(context)
 }

@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import com.bangkit.dantion.R
+import com.bangkit.dantion.checkEmail
+import com.bangkit.dantion.checkPassword
 import com.bangkit.dantion.databinding.FragmentLoginBinding
-import com.bangkit.dantion.databinding.FragmentThirdOnboardingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +27,14 @@ class LoginFragment : Fragment() {
 
         binding.tvRegister.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+        binding.etEmail.doAfterTextChanged { text->
+            val txt = text.toString()
+            checkEmail(txt, binding.etEmailLayout, requireContext())
+        }
+        binding.etPassword.doAfterTextChanged { text->
+            val txt = text.toString()
+            checkPassword(txt, binding.etPasswordLayout, requireContext())
         }
         return view
     }

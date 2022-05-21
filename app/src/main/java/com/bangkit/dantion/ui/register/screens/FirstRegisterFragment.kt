@@ -2,23 +2,34 @@ package com.bangkit.dantion.ui.register.screens
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.R
+import com.bangkit.dantion.checkEmail
+import com.bangkit.dantion.checkNumber
 import com.bangkit.dantion.data.model.User
 import com.bangkit.dantion.databinding.FragmentFirstOnboardingBinding
 import com.bangkit.dantion.databinding.FragmentFirstRegisterBinding
+import com.bangkit.dantion.emptyData
+import com.bangkit.dantion.ui.register.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FirstRegisterFragment : Fragment() {
     private lateinit var _binding: FragmentFirstRegisterBinding
     private val binding get() = _binding!!
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +38,17 @@ class FirstRegisterFragment : Fragment() {
         _binding = FragmentFirstRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_register)
+
+        binding.etNumber.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
 
         binding.btnNext.setOnClickListener {
             nextStepAction(viewPager)
@@ -37,14 +59,38 @@ class FirstRegisterFragment : Fragment() {
         binding.tvLogin.setOnClickListener{
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
+        binding.etName.doAfterTextChanged { text ->
+            val txt = text.toString()
+            emptyData(txt, binding.etNameLayout, requireContext())
+        }
+        binding.etAddress.doAfterTextChanged { text ->
+            val txt = text.toString()
+            emptyData(txt, binding.etAddressLayout, requireContext())
+        }
+        binding.etNumber.doAfterTextChanged { text ->
+            val txt = text.toString()
+            checkNumber(txt, binding.etNumberLayout, requireContext())
+        }
+        binding.etParentNumber.doAfterTextChanged { text ->
+            val txt = text.toString()
+            checkNumber(txt, binding.etParentNumberLayout, requireContext())
+        }
         return view
     }
 
     private fun isFilled(): Boolean{
-        return binding.etName.text.isNotEmpty() &&
-                binding.etAddress.text.isNotEmpty() &&
-                binding.etNumber.text.isNotEmpty() &&
-                binding.etParentNumber.text.isNotEmpty()
+        return binding.etName.text.toString().isNotEmpty() &&
+                binding.etAddress.text.toString().isNotEmpty() &&
+                binding.etNumber.text.toString().isNotEmpty() &&
+                binding.etParentNumber.text.toString().isNotEmpty()
+    }
+    private fun checkNumber(number: String): Boolean{
+        if(number.length<10){
+            binding.etNumber.error = getString(R.string.number_less_10)
+        }else{
+            return true
+        }
+        return false
     }
     private fun nextStepAction(viewPager2: ViewPager2?){
         if(isFilled()) {
@@ -54,12 +100,13 @@ class FirstRegisterFragment : Fragment() {
         else Toast.makeText(requireContext(), getString(R.string.empty_personal_data), Toast.LENGTH_LONG).show()
     }
     private fun savePersonalData(){
-        val sharedPref = requireActivity().getSharedPreferences("register", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putString("name", binding.etName.text.toString())
-        editor.putString("address", binding.etAddress.text.toString())
-        editor.putString("number", binding.etNumber.text.toString())
-        editor.putString("parentNumber", binding.etParentNumber.text.toString())
-        editor.apply()
+        authViewModel.saveUser(
+            User(
+                name = binding.etName.text.toString(),
+                address = binding.etAddress.text.toString(),
+                number = binding.etNumber.text.toString(),
+                parentNumber = binding.etParentNumber.text.toString()
+            )
+        )
     }
 }

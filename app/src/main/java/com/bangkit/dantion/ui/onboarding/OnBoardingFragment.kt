@@ -36,7 +36,7 @@ class OnBoardingFragment : Fragment() {
         )
 
         binding.viewPagerOnBoarding.adapter = adapter
-//        binding.viewPagerOnBoarding.isUserInputEnabled = false
+        binding.viewPagerOnBoarding.isUserInputEnabled = false
 
         return view
     }

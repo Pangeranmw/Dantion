@@ -17,8 +17,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AuthRepository @Inject constructor (
-    private val authDataSource: AuthDataSource,
-    private val preferences: UserPreference
+    private val authDataSource: AuthDataSource
 ) {
     suspend fun registerUser(authBody: AuthBody): Flow<Result<Response<AuthResponse>>> {
         return authDataSource.registerUser(authBody).flowOn(Dispatchers.IO)
@@ -26,12 +25,5 @@ class AuthRepository @Inject constructor (
 
     suspend fun loginUser(loginBody: LoginBody): Flow<Result<AuthResponse>> {
         return authDataSource.loginUser(loginBody).flowOn(Dispatchers.IO)
-    }
-
-    suspend fun saveLogin(){
-        preferences.saveLogin()
-    }
-    suspend fun saveOnBoarding(){
-        preferences.saveOnBoarding()
     }
 }

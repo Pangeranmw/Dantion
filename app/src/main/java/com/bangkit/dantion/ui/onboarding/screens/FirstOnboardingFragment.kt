@@ -1,13 +1,10 @@
 package com.bangkit.dantion.ui.onboarding.screens
 
-import android.content.Context
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -32,26 +29,13 @@ class FirstOnboardingFragment : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_on_boarding)
 
         binding.tvSkip.setOnClickListener{
-//            viewModel.saveOnBoarding()
-            onBoardingFinished()
+            viewModel.saveOnBoarding()
             requireActivity().overridePendingTransition(0, 0)
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
         }
-        binding.btnNext.setOnClickListener{
-            viewPager?.setCurrentItem(1,false)
-        }
-        binding.ivIndicator2.setOnClickListener{
-            viewPager?.setCurrentItem(1,false)
-        }
-        binding.ivIndicator3.setOnClickListener{
-            viewPager?.setCurrentItem(2,false)
-        }
+        binding.btnNext.setOnClickListener{ viewPager?.setCurrentItem(1,false) }
+        binding.ivIndicator2.setOnClickListener{ viewPager?.setCurrentItem(1,false) }
+        binding.ivIndicator3.setOnClickListener{ viewPager?.setCurrentItem(2,false) }
         return view
-    }
-    private fun onBoardingFinished(){
-        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putBoolean("Finished", true)
-        editor.apply()
     }
 }
