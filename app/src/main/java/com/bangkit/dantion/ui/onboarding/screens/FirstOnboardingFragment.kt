@@ -18,12 +18,10 @@ class FirstOnboardingFragment : Fragment() {
     private var _binding: FragmentFirstOnboardingBinding? = null
     private val binding get() = _binding!!
     private val viewModel: OnBoardingViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         _binding = FragmentFirstOnboardingBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_on_boarding)

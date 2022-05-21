@@ -23,11 +23,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
-        android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/onboarding_desc_bg"
-        android:padding="30dp">
+        style="@style/OnBoardingDescBG">
 
         <ImageView
             android:id="@+id/iv_indicator_1"

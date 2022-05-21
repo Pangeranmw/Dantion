@@ -13,6 +13,8 @@
         <entry key="app/src/main/res/drawable/hide_show_password.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/ic_logo_splash_screen.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/ic_pause_onboarding.xml" value="0.2165" />
+        <entry key="app/src/main/res/drawable/ic_play_onboarding.xml" value="0.2165" />
         <entry key="app/src/main/res/drawable/onboarding_active_indicator.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/onboarding_desc_bg.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/onboarding_disable_indicator.xml" value="0.249" />
@@ -27,7 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5216702361605061" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.21614583333333334" />
-        <entry key="app/src/main/res/layout/fragment_second_onboarding.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_second_onboarding.xml" value="0.24143981933593742" />
         <entry key="app/src/main/res/layout/fragment_second_register.xml" value="0.2609441121419271" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_third_onboarding.xml" value="0.25" />

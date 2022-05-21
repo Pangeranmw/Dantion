@@ -30,6 +30,7 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
     override suspend fun saveUser(user: User) {
         context.datastore.edit { pref ->
             pref[NAME] = user.name?:""
+            pref[EMAIL] = user.email?:""
             pref[ADDRESS] = user.address?:""
             pref[NUMBER] = user.number?:""
             pref[PARENT_NUMBER] = user.parentNumber?:""
@@ -46,10 +47,11 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
     override fun getLogin() = context.datastore.data.map{ it[LOGIN] }
     override fun getUser() = context.datastore.data.map{ pref ->
         User(
-            name = pref[NAME],
-            address = pref[ADDRESS],
-            number = pref[NUMBER],
-            parentNumber = pref[PARENT_NUMBER],
+            name = pref[NAME]?:"",
+            email = pref[EMAIL]?:"",
+            address = pref[ADDRESS]?:"",
+            number = pref[NUMBER]?:"",
+            parentNumber = pref[PARENT_NUMBER]?:"",
         )
     }
 
@@ -61,6 +63,7 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
         val LOGIN = booleanPreferencesKey("login")
         val ADDRESS = stringPreferencesKey("address")
         val NAME = stringPreferencesKey("name")
+        val EMAIL = stringPreferencesKey("email")
         val NUMBER = stringPreferencesKey("number")
         val PARENT_NUMBER = stringPreferencesKey("parentNumber")
         val LATITUDE = doublePreferencesKey("latitude")

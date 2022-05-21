@@ -14,6 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="OnBoardingDescBG">
+        <item name="android:layout_height">435dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/onboarding_desc_bg</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:padding">30dp</item>
+    </style>
     <style name="ButtonFullWidth">
         <item name="backgroundTint">@null</item>
         <item name="android:layout_width">match_parent</item>

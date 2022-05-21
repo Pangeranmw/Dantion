@@ -79,14 +79,6 @@ class FirstRegisterFragment : Fragment() {
                 binding.etNumber.text.toString().isNotEmpty() &&
                 binding.etParentNumber.text.toString().isNotEmpty()
     }
-    private fun checkNumber(number: String): Boolean{
-        if(number.length<10){
-            binding.etNumber.error = getString(R.string.number_less_10)
-        }else{
-            return true
-        }
-        return false
-    }
     private fun nextStepAction(viewPager2: ViewPager2?){
         if(isFilled()) {
             savePersonalData()

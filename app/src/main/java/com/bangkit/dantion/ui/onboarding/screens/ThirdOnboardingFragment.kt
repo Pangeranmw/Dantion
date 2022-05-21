@@ -22,7 +22,7 @@ class ThirdOnboardingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentThirdOnboardingBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_on_boarding)

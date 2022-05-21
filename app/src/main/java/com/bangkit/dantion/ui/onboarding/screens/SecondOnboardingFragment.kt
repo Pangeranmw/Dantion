@@ -1,54 +1,59 @@
 package com.bangkit.dantion.ui.onboarding.screens
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentSecondOnboardingBinding
+import com.bangkit.dantion.ui.onboarding.OnBoardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 
 @AndroidEntryPoint
 class SecondOnboardingFragment : Fragment() {
     private var _binding: FragmentSecondOnboardingBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: OnBoardingViewModel by viewModels()
+    private var mediaState: Boolean = false
 
-//    private val viewModel: OnBoardingViewModel by viewModels()
-    private lateinit var job: Job
-//    override val coroutineContext: CoroutineContext
-//        get() = Dispatchers.Main + job
+    private lateinit var mediaPlayer: MediaPlayer
 
-    override fun onDestroy() {
-        super.onDestroy()
-        job.cancel()
-        _binding = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mediaPlayer = MediaPlayer.create(context, R.raw.horn_pitchup)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         _binding = FragmentSecondOnboardingBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_on_boarding)
-        job = Job()
 
-
+        binding.btnHorn.setOnClickListener{
+            if(!mediaState) {
+                mediaState=true
+                binding.btnHorn.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_pause_onboarding)
+                mediaPlayer.start()
+            }
+            else {
+                binding.btnHorn.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_play_onboarding)
+                mediaState=false
+                mediaPlayer.stop()
+                mediaPlayer = MediaPlayer.create(context, R.raw.horn_pitchup)
+            }
+        }
         binding.tvSkip.setOnClickListener {
-//            viewModel.saveOnBoarding()
-//            coroutineScope {
-//                launch {
-//                    onBoardingFinished()
-//                    findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
-//                }
-//            }
+            viewModel.saveOnBoarding()
             requireActivity().overridePendingTransition(0, 0)
-            onBoardingFinished()
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
         }
         binding.btnNext.setOnClickListener{
@@ -62,10 +67,13 @@ class SecondOnboardingFragment : Fragment() {
         }
         return view
     }
-    private fun onBoardingFinished(){
-        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putBoolean("Finished", true)
-        editor.apply()
+    override fun onResume() {
+        super.onResume()
+        mediaPlayer = MediaPlayer.create(context, R.raw.horn_pitchup)
+        binding.btnHorn.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_play_onboarding)
+    }
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer.stop()
     }
 }

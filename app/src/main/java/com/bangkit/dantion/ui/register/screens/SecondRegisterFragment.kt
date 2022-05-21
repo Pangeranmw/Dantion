@@ -29,7 +29,7 @@ class SecondRegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSecondRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_register)
@@ -37,21 +37,13 @@ class SecondRegisterFragment : Fragment() {
         binding.btnRegister.setOnClickListener {
             if(isFilled()) {
                 if(isPasswordSame()){
-                    authViewModel.getUser().observe(viewLifecycleOwner){
-                        registerUser = User(
-                            name = it.name,
-                            address = it.address,
-                            number = it.number,
-                            parentNumber = it.parentNumber,
-                            email = binding.etEmail.text.toString(),
-                            password = binding.etPassword.text.toString()
-                        )
-                    }
+                    saveData()
                     Toast.makeText(requireContext(), getString(R.string.register_success), Toast.LENGTH_LONG).show()
                 }
                 else Toast.makeText(requireContext(), getString(R.string.password_same), Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
-            else Toast.makeText(requireContext(), getString(R.string.empty_personal_data), Toast.LENGTH_LONG).show()
+            else Toast.makeText(requireContext(), getString(R.string.empty_information_account), Toast.LENGTH_LONG).show()
         }
         binding.tabPersonalData.setOnClickListener {
             backStepAction(viewPager)
@@ -83,7 +75,19 @@ class SecondRegisterFragment : Fragment() {
     private fun isPasswordSame(): Boolean{
         return binding.etConfirmPassword.text.toString() == binding.etPassword.text.toString()
     }
-    fun backStepAction(viewPager2: ViewPager2?){
+    private fun backStepAction(viewPager2: ViewPager2?){
         viewPager2?.setCurrentItem(0, false)
+    }
+    private fun saveData(){
+        authViewModel.getUser().observe(viewLifecycleOwner){
+            registerUser = User(
+                name = it.name,
+                email = binding.etEmail.text.toString(),
+                address = it.address,
+                number = it.number,
+                parentNumber = it.parentNumber
+            )
+            authViewModel.saveUser(registerUser)
+        }
     }
 }
