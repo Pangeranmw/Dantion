@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.register.screens
+package com.bangkit.dantion.ui.auth.register.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -15,7 +16,7 @@ import com.bangkit.dantion.checkEmail
 import com.bangkit.dantion.checkPassword
 import com.bangkit.dantion.data.model.User
 import com.bangkit.dantion.databinding.FragmentSecondRegisterBinding
-import com.bangkit.dantion.ui.register.AuthViewModel
+import com.bangkit.dantion.ui.auth.register.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

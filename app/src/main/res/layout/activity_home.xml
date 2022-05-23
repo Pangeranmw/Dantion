@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_dantion"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/cd_logo"/>
+
+        <ImageButton
+            android:id="@+id/btn_notification"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_notification"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_logo"
+            android:contentDescription="@string/cd_notification"/>
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/cd_photo_profile"
+            android:src="@drawable/img_profile"
+            app:layout_constraintStart_toStartOf="@+id/iv_logo"
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/full_name"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+        <TextView
+            android:id="@+id/tv_horn"
+            style="@style/HomeHeading"
+            android:text="@string/horn"
+            app:layout_constraintStart_toStartOf="@+id/iv_profile"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile"/>
+        <LinearLayout
+            android:id="@+id/btn_horn_layout"
+            style="@style/LinearButtonHalf"
+            app:layout_constraintEnd_toEndOf="@+id/btn_notification"
+            app:layout_constraintStart_toStartOf="@+id/tv_horn"
+            app:layout_constraintTop_toBottomOf="@+id/tv_horn">
+            <Button
+                android:id="@+id/tab_personal_data"
+                style="@style/ButtonHalfWidthIcon"
+                app:icon="@drawable/ic_play"
+                android:layout_marginRight="10dp"
+                android:text="@string/listen_pattern"/>
+            <Button
+                android:id="@+id/tab_account_info"
+                style="@style/ButtonHalfWidthIcon"
+                app:icon="@drawable/ic_record"
+                android:text="@string/sound_record"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_emergency"
+            style="@style/ButtonFullWidthIcon"
+            android:text="@string/emergency_button"
+            app:icon="@drawable/ic_megaphone"
+            app:layout_constraintEnd_toEndOf="@+id/btn_horn_layout"
+            app:layout_constraintStart_toStartOf="@+id/card_layout_acc"
+            app:layout_constraintTop_toBottomOf="@+id/card_layout_acc" />
+
+        <TextView
+            android:id="@+id/tv_stat"
+            style="@style/HomeHeading"
+            android:text="@string/rob_accident_stat"
+            app:layout_constraintStart_toStartOf="@+id/btn_horn_layout"
+            app:layout_constraintTop_toBottomOf="@+id/btn_horn_layout" />
+
+        <TextView
+            android:id="@+id/tv_sub_stat"
+            style="@style/HomeSubHeading"
+            android:layout_marginTop="10dp"
+            android:text="@string/rob_accident_stat_sub"
+            app:layout_constraintStart_toStartOf="@+id/tv_stat"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stat" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_layout_rob"
+            style="@style/CardLayout"
+            app:layout_constraintEnd_toEndOf="@+id/btn_horn_layout"
+            app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
+            <LinearLayout
+                android:id="@+id/stat_rob_card"
+                style="@style/StatLinearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
+                <ImageView
+                    android:id="@+id/iv_ride"
+                    android:layout_width="72dp"
+                    android:layout_height="73.04dp"
+                    android:src="@drawable/img_ride" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_rob"
+                        style="@style/StatNameSmall"
+                        android:text="@string/rob" />
+
+                    <TextView
+                        android:id="@+id/tv_stat_rob_number"
+                        style="@style/StatNameBig"
+                        android:layout_below="@+id/tv_rob"
+                        android:text="@string/stat_number" />
+
+                    <TextView
+                        android:id="@+id/tv_case_rob"
+                        style="@style/StatNameSmall"
+                        android:layout_below="@+id/tv_stat_rob_number"
+                        android:text="@string/case_detected" />
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_layout_acc"
+            style="@style/CardLayout"
+            app:layout_constraintEnd_toEndOf="@+id/btn_horn_layout"
+            app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
+            app:layout_constraintTop_toBottomOf="@+id/card_layout_rob">
+
+            <LinearLayout
+                android:id="@+id/stat_acc_card"
+                style="@style/StatLinearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
+
+                <ImageView
+                    android:id="@+id/iv_acc"
+                    android:layout_width="72dp"
+                    android:layout_height="73.04dp"
+                    android:src="@drawable/img_fall" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_acc"
+                        style="@style/StatNameSmall"
+                        android:text="@string/accident" />
+
+                    <TextView
+                        android:id="@+id/tv_stat_acc_number"
+                        style="@style/StatNameBig"
+                        android:layout_below="@+id/tv_acc"
+                        android:text="@string/stat_number" />
+
+                    <TextView
+                        android:id="@+id/tv_case_acc"
+                        style="@style/StatNameSmall"
+                        android:layout_below="@+id/tv_stat_acc_number"
+                        android:text="@string/case_detected" />
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_latest_rob"
+            style="@style/HomeHeading"
+            android:text="@string/latest_rob"
+            app:layout_constraintStart_toStartOf="@+id/btn_emergency"
+            app:layout_constraintTop_toBottomOf="@+id/btn_emergency" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_latest_rob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_emergency"
+            app:layout_constraintStart_toStartOf="@+id/tv_latest_rob"
+            app:layout_constraintTop_toBottomOf="@+id/tv_latest_rob"
+            tools:itemCount="3"
+            tools:listitem="@layout/latest_case_item" />
+
+        <TextView
+            android:id="@+id/tv_latest_acc"
+            style="@style/HomeHeading"
+            android:layout_marginTop="10dp"
+            android:text="@string/latest_accident"
+            app:layout_constraintStart_toStartOf="@+id/rv_latest_rob"
+            app:layout_constraintTop_toBottomOf="@+id/rv_latest_rob" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_latest_acc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/rv_latest_rob"
+            app:layout_constraintStart_toStartOf="@+id/tv_latest_acc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_latest_acc"
+            tools:itemCount="3"
+            tools:listitem="@layout/latest_case_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

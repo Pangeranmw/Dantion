@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.login
+package com.bangkit.dantion.ui.auth.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.bangkit.dantion.R
 import com.bangkit.dantion.checkEmail
 import com.bangkit.dantion.checkPassword
 import com.bangkit.dantion.databinding.FragmentLoginBinding
-import com.bangkit.dantion.ui.register.AuthViewModel
+import com.bangkit.dantion.ui.auth.register.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
         val view = binding.root
         authViewModel.getUser().observe(viewLifecycleOwner){
             val email = it.email.toString()
-            binding.etEmail.setText(email)
+            if(email!="") binding.etEmail.setText(email)
         }
         binding.tvRegister.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
@@ -41,6 +41,11 @@ class LoginFragment : Fragment() {
         binding.etPassword.doAfterTextChanged { text->
             val txt = text.toString()
             checkPassword(txt, binding.etPasswordLayout, requireContext())
+        }
+        binding.btnLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_homeActivity)
+            activity?.finish()
+            requireActivity().overridePendingTransition(0, 0)
         }
         return view
     }

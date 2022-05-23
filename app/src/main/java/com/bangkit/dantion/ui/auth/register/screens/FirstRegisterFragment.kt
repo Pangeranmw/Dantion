@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.register.screens
+package com.bangkit.dantion.ui.auth.register.screens
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -17,7 +19,7 @@ import com.bangkit.dantion.checkNumber
 import com.bangkit.dantion.data.model.User
 import com.bangkit.dantion.databinding.FragmentFirstRegisterBinding
 import com.bangkit.dantion.emptyData
-import com.bangkit.dantion.ui.register.AuthViewModel
+import com.bangkit.dantion.ui.auth.register.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,17 +35,6 @@ class FirstRegisterFragment : Fragment() {
         _binding = FragmentFirstRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_register)
-
-        binding.etNumber.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-        })
 
         binding.btnNext.setOnClickListener {
             nextStepAction(viewPager)

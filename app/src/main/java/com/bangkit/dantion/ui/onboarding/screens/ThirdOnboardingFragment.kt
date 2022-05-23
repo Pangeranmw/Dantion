@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -17,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ThirdOnboardingFragment : Fragment() {
     private var _binding: FragmentThirdOnboardingBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: OnBoardingViewModel by viewModels()
+    private val onBoardingViewModel: OnBoardingViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +28,7 @@ class ThirdOnboardingFragment : Fragment() {
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_on_boarding)
         binding.btnStart.setOnClickListener{
-            viewModel.saveOnBoarding()
+            onBoardingViewModel.saveOnBoarding()
             requireActivity().overridePendingTransition(0, 0)
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
         }

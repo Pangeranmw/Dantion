@@ -1,9 +1,10 @@
-package com.bangkit.dantion.ui.onboarding
+package com.bangkit.dantion.ui.auth.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.bangkit.dantion.data.model.User
 import com.bangkit.dantion.data.repository.DataStoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -11,13 +12,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OnBoardingViewModel @Inject constructor(private val dataStoreRepository: DataStoreRepository): ViewModel() {
-    fun saveOnBoarding(){
+class AuthViewModel @Inject constructor(private val dataStoreRepository: DataStoreRepository): ViewModel() {
+    fun saveUser(user: User){
         viewModelScope.launch(Dispatchers.IO){
-            dataStoreRepository.saveOnBoarding()
+            dataStoreRepository.saveUser(user)
         }
     }
-    fun getOnBoarding(): LiveData<Boolean?>{
-        return dataStoreRepository.getOnBoarding().asLiveData()
+    fun getUser(): LiveData<User>{
+        return dataStoreRepository.getUser().asLiveData()
     }
 }

@@ -1,10 +1,9 @@
-package com.bangkit.dantion.ui.register
+package com.bangkit.dantion.ui.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.bangkit.dantion.data.model.User
 import com.bangkit.dantion.data.repository.DataStoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,12 +12,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val dataStoreRepository: DataStoreRepository): ViewModel() {
-    fun saveUser(user: User){
+    fun saveLogin(){
         viewModelScope.launch(Dispatchers.IO){
-            dataStoreRepository.saveUser(user)
+            dataStoreRepository.saveLogin()
         }
     }
-    fun getUser(): LiveData<User>{
-        return dataStoreRepository.getUser().asLiveData()
+    fun getLogin(): LiveData<Boolean?> {
+        return dataStoreRepository.getLogin().asLiveData()
     }
 }
