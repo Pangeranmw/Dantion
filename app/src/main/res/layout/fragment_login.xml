@@ -107,4 +107,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:contentDescription="@string/cd_logo"
         />
+
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_white"
+        app:layout_constraintBottom_toBottomOf="@+id/et_password_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

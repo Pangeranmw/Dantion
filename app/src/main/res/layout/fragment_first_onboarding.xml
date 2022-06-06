@@ -54,6 +54,16 @@
             app:layout_constraintStart_toEndOf="@id/iv_indicator_2"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/iv_indicator_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/onboarding_disable_indicator"
+            app:layout_constraintStart_toEndOf="@id/iv_indicator_3"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/cd_indicator_4_disable"/>
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"

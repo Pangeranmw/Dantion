@@ -1,9 +1,9 @@
 package com.bangkit.dantion.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.bangkit.dantion.data.model.DangerDetection
+import com.bangkit.dantion.data.model.Detection
 
-class DangerDetectionDiffCallback(private val mOldFavList: ArrayList<DangerDetection>, private val mNewFavList: ArrayList<DangerDetection>) : DiffUtil.Callback() {
+class DangerDetectionDiffCallback(private val mOldFavList: ArrayList<Detection>, private val mNewFavList: ArrayList<Detection>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return mOldFavList.size
     }
@@ -13,12 +13,12 @@ class DangerDetectionDiffCallback(private val mOldFavList: ArrayList<DangerDetec
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return mOldFavList[oldItemPosition].dangerDetectionId == mNewFavList[newItemPosition].dangerDetectionId
+        return mOldFavList[oldItemPosition].recordUrl == mNewFavList[newItemPosition].recordUrl
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldFavorite = mOldFavList[oldItemPosition]
         val newFavorite = mNewFavList[newItemPosition]
-        return oldFavorite.latitude == newFavorite.latitude && oldFavorite.longitude == newFavorite.longitude
+        return oldFavorite.lat == newFavorite.lat && oldFavorite.lon == newFavorite.lon
     }
 }

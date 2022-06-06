@@ -5,20 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentFirstOnboardingBinding
-import com.bangkit.dantion.ui.onboarding.OnBoardingViewModel
+import com.bangkit.dantion.ui.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FirstOnboardingFragment : Fragment() {
     private var _binding: FragmentFirstOnboardingBinding? = null
     private val binding get() = _binding!!
-    private val onBoardingViewModel: OnBoardingViewModel by viewModels()
+    private val dataStoreViewModel: DataStoreViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +27,7 @@ class FirstOnboardingFragment : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_on_boarding)
 
         binding.tvSkip.setOnClickListener{
-            onBoardingViewModel.saveOnBoarding()
+            dataStoreViewModel.saveOnBoarding()
             requireActivity().overridePendingTransition(0, 0)
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
         }

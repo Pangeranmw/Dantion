@@ -1,30 +1,25 @@
 package com.bangkit.dantion.data.source
 
 import com.bangkit.dantion.data.Result
-import com.bangkit.dantion.data.remote.auth.AuthBody
-import com.bangkit.dantion.data.remote.auth.AuthResponse
-import com.bangkit.dantion.data.remote.auth.AuthService
-import com.bangkit.dantion.data.remote.auth.LoginBody
+import com.bangkit.dantion.data.remote.ErrorMessageResponse
+import com.bangkit.dantion.data.remote.user.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import org.json.JSONObject
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthDataSource @Inject constructor(private val authService: AuthService) {
+class AuthDataSource @Inject constructor(private val userService: UserService) {
 
-    suspend fun registerUser(authBody: AuthBody): Flow<Result<Response<AuthResponse>>> {
+    suspend fun registerUser(registerBody: RegisterBody): Flow<Result<ErrorMessageResponse>> {
         return flow {
             try {
                 emit(Result.Loading)
-                val response = authService.registerUser(authBody)
-                if (response.code() == 201) {
+                val response = userService.registerUser(registerBody)
+                if (!response.error) {
                     emit(Result.Success(response))
-                } else if (response.code() == 400) {
-                    val errorBody = JSONObject(response.errorBody()!!.string())
-                    emit(Result.Error(errorBody.getString("message")))
+                } else {
+                    emit(Result.Error(response.message))
                 }
             } catch (ex: Exception) {
                 emit(Result.Error(ex.message.toString()))
@@ -32,11 +27,11 @@ class AuthDataSource @Inject constructor(private val authService: AuthService) {
         }
     }
 
-    suspend fun loginUser(loginBody: LoginBody): Flow<Result<AuthResponse>> {
+    suspend fun loginUser(loginBody: LoginBody): Flow<Result<LoginResponse>> {
         return flow {
             try {
                 emit(Result.Loading)
-                val response = authService.loginUser(loginBody)
+                val response = userService.loginUser(loginBody)
                 if (!response.error) {
                     emit(Result.Success(response))
                 } else {

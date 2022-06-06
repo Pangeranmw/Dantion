@@ -1,23 +1,28 @@
 <resources>
     <string name="app_name">Dantion</string>
 
-    <string name="cd_onboarding_1">onboarding Ilustrasi deteksi begal dan kecelakaan</string>
-    <string name="cd_onboarding_2">onboarding Ilustrasi begal</string>
+    <string name="cd_onboarding_1">onboarding Ilustrasi deteksi bahaya</string>
+    <string name="cd_onboarding_2">onboarding Ilustrasi kejahatan</string>
     <string name="cd_onboarding_3">onboarding Ilustrasi kecelakaan</string>
+    <string name="cd_onboarding_4">onboarding Ilustrasi kebakaran</string>
 
     <string name="cd_indicator_1_active">indikator onboarding  1 aktif</string>
     <string name="cd_indicator_2_active">indikator onboarding  2 aktif</string>
     <string name="cd_indicator_3_active">indikator onboarding  3 aktif</string>
+    <string name="cd_indicator_4_active">indikator onboarding  4 aktif</string>
     <string name="cd_indicator_1_disable">indikator onboarding  1 tidak aktif</string>
     <string name="cd_indicator_2_disable">indikator onboarding  2 tidak aktif</string>
     <string name="cd_indicator_3_disable">indikator onboarding  3 tidak aktif</string>
+    <string name="cd_indicator_4_disable">indikator onboarding  4 tidak aktif</string>
 
-    <string name="onboarding_titles_1">Deteksi Begal\ndan Kecelakaan</string>
-    <string name="onboarding_desc_1">Dantion merupakan aplikasi cepat tanggap yang dapat mendeteksi begal dan kecelakaan melalui rekaman suara.</string>
-    <string name="onboarding_titles_2">Cara kerja\nDeteksi Begal</string>
-    <string name="onboarding_desc_2">Ketika ada begal, tekan klakson motor anda dan sesuaikan dengan pola suara klakson yang telah kami berikan. Jika pola klakson sesuai, maka aplikasi akan mengirimkan notifikasi begal beserta lokasi kejadian kepada pihak berwenang terdekat.</string>
-    <string name="onboarding_titles_3">Cara kerja Deteksi Kecelakaan</string>
-    <string name="onboarding_desc_3">Ketika terdeteksi suara tabrakan dan juga benturan antar motor maupun mobil, maka aplikasi akan mengirimkan notifikasi kecelakaan beserta lokasinya ke seluruh pengguna aplikasi terdekat.</string>
+    <string name="onboarding_titles_1">Deteksi Bahaya</string>
+    <string name="onboarding_desc_1">Dantion merupakan aplikasi cepat tanggap yang dapat mendeteksi situasi darurat (kejahatan, kecelakaan, atau kebakaran) melalui rekaman suara dan melaporkan lokasi kejadian ke pihak berwenang secara otomatis.</string>
+    <string name="onboarding_titles_2">Cara Melaporkan Kejahatan</string>
+    <string name="onboarding_desc_2">Tekan tombol darurat lalu ucapkan kalimat pertolongan yang mengandung kata “begal”, “maling”, “rampok”, atau “pencuri”.</string>
+    <string name="onboarding_titles_3">Cara Melaporkan Kecelakaan</string>
+    <string name="onboarding_desc_3">Tekan tombol darurat lalu ucapkan kalimat pertolongan yang mengandung kata “tabrakan” atau “kecelakaan”.</string>
+    <string name="onboarding_titles_4">Cara Melaporkan Kebakaran</string>
+    <string name="onboarding_desc_4">Tekan tombol darurat lalu ucapkan kalimat pertolongan yang mengandung kata “kebakaran”.</string>
 
     <string name="skip">Lewati</string>
     <string name="next">Selanjutnya</string>
@@ -51,23 +56,30 @@
     <string name="cd_photo_acc">Ilustrasi Kecelakaan</string>
     <string name="cd_photo_rob">Ilustrasi Begal</string>
     <string name="horn">Klakson</string>
+    <string name="how_to_use">Penggunaan Tombol Darurat</string>
     <string name="listen_pattern">Dengar\nPola</string>
     <string name="sound_record">Rekam\nSuara</string>
-    <string name="rob_accident_stat">Statistik Begal &amp; Kecelakaan</string>
-    <string name="rob_accident_stat_sub">Jumlah begal dan kecelakaan yang terdeteksi</string>
+    <string name="danger_stat">Statistik Bahaya</string>
+    <string name="danger_stat_sub">Jumlah kejahatan, kecelakaan &amp; kebakaran yang terdeteksi</string>
     <string name="rob">Begal</string>
+    <string name="crime">Kejahatan</string>
     <string name="accident">Kecelakaan</string>
+    <string name="fire">Kebakaran</string>
     <string name="stat_number">28.0000</string>
     <string name="case_detected">Kasus</string>
-    <string name="emergency_button">Tombol\nDarurat</string>
-    <string name="latest_accident">Kasus Kecelaakan Terkini</string>
-    <string name="latest_rob">Kasus Begal Terkini</string>
+    <string name="emergency_button">Tombol Darurat</string>
+    <string name="latest_case">Kasus Terkini</string>
     <string name="date">28 Mei 2022</string>
     <string name="location_address">Jl. jalan nomor gak tau gak tau gak taugak taugak taugak tau</string>
     <string name="victim_name">Nama Korban</string>
     <string name="victim">Korban</string>
     <string name="reporter">Pelapor</string>
-    <string name="occurance_time">%1$s\n%2$s</string>
+    <string name="occurance_time">20:00</string>
+
+    <string name="home">Beranda</string>
+    <string name="location">Lokasi</string>
+    <string name="location_not_found">Lokasi Tidak Ditemukan</string>
+    <string name="account">Akun</string>
 
     <string name="password_same">Patikan password yang anda masukkan sesuai</string>
     <string name="register_success">Registrasi Berhasil</string>
@@ -79,5 +91,8 @@
     <string name="number_less_10">Nomor belum sesuai</string>
     <string name="empty_form">Data tidak boleh kosong</string>
     <string name="empty_information_account">Harap isi semua informasi akun</string>
+    <string name="see_all">Lihat Semua</string>
+    <string name="time_record">00:00</string>
+    <string name="stop_record">Batalkan</string>
 
 </resources>

@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.bangkit.dantion.data.DataStoreAbstract
+import com.bangkit.dantion.data.model.LoginResult
 import com.bangkit.dantion.data.model.User
 import kotlinx.coroutines.flow.map
 
@@ -27,8 +28,10 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
             pref[LOGIN] = true
         }
     }
-    override suspend fun saveUser(user: User) {
+    override suspend fun saveUser(user: LoginResult) {
         context.datastore.edit { pref ->
+            pref[ID] = user.id?:""
+            pref[ID] = user.id?:""
             pref[NAME] = user.name?:""
             pref[EMAIL] = user.email?:""
             pref[ADDRESS] = user.address?:""
@@ -46,12 +49,16 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
 
     override fun getLogin() = context.datastore.data.map{ it[LOGIN] }
     override fun getUser() = context.datastore.data.map{ pref ->
-        User(
+        LoginResult(
+            id = pref[ID]?:"",
             name = pref[NAME]?:"",
             email = pref[EMAIL]?:"",
             address = pref[ADDRESS]?:"",
             number = pref[NUMBER]?:"",
             parentNumber = pref[PARENT_NUMBER]?:"",
+            role = pref[ROLE]?:"",
+            photo = pref[PHOTO]?:"",
+            token = pref[PARENT_NUMBER]?:"",
         )
     }
 
@@ -61,11 +68,16 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
     companion object{
         val ON_BOARDING = booleanPreferencesKey("onBoarding")
         val LOGIN = booleanPreferencesKey("login")
+
+        val ID = stringPreferencesKey("id")
         val ADDRESS = stringPreferencesKey("address")
         val NAME = stringPreferencesKey("name")
         val EMAIL = stringPreferencesKey("email")
         val NUMBER = stringPreferencesKey("number")
         val PARENT_NUMBER = stringPreferencesKey("parentNumber")
+        val ROLE = stringPreferencesKey("role")
+        val PHOTO = stringPreferencesKey("photo")
+
         val LATITUDE = doublePreferencesKey("latitude")
         val LONGITUDE = doublePreferencesKey("longitude")
     }

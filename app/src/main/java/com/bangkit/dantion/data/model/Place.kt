@@ -4,11 +4,11 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class DangerPlace(
-    val dangerPlaceId: String,
-    val radius: Double,
-    val latitude: Double,
-    val longitude: Double,
+data class Place(
+    val id: String,
+    val lat: Float,
+    val lon: Float,
+    val radius: Float,
     val type: String,
     val createdAt: String,
     val updatedAt: String,

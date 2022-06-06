@@ -8,33 +8,19 @@
     android:background="@color/onboarding_2"
     >
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/constraint"
+    <ImageView
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp"
-            android:contentDescription="@string/cd_onboarding_2"
-            android:layout_gravity="center"
-            android:src="@drawable/img_onboarding_2" />
-
-        <ImageButton
-            android:id="@+id/btn_horn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/ic_play_onboarding"
-            android:layout_gravity="center"
-            android:contentDescription="@string/horn"
-            />
-    </FrameLayout>
+        android:layout_above="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/cd_onboarding_2"
+        android:layout_gravity="center"
+        android:src="@drawable/img_crime" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
@@ -68,6 +54,16 @@
             app:layout_constraintStart_toEndOf="@id/iv_indicator_2"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/cd_indicator_3_disable"/>
+
+        <ImageView
+            android:id="@+id/iv_indicator_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/onboarding_disable_indicator"
+            app:layout_constraintStart_toEndOf="@id/iv_indicator_3"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/cd_indicator_4_disable"/>
 
         <TextView
             android:id="@+id/tv_title"

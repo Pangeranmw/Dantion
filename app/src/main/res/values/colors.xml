@@ -19,6 +19,7 @@
     <color name="onboarding_1">#DABFB0</color>
     <color name="onboarding_2">#DAC9B0</color>
     <color name="onboarding_3">#DAB0B0</color>
+    <color name="onboarding_4">#F4CFAC</color>
 
     <color name="primary_main">#FF4C4C</color>
     <color name="primary_second">#DD6363</color>
@@ -32,5 +33,8 @@
     <color name="secondary_light_half">#FFC7DB</color>
     <color name="secondary_dark_full">#6C203B</color>
     <color name="secondary_dark_half">#BE3164</color>
+
+    <color name="pink_light">#FFEEF4</color>
+
 
 </resources>
