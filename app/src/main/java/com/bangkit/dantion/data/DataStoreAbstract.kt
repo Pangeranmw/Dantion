@@ -1,17 +1,22 @@
 package com.bangkit.dantion.data
 
 import com.bangkit.dantion.data.model.LoginResult
-import com.bangkit.dantion.data.model.User
+import com.bangkit.dantion.data.remote.user.RegisterField
 import kotlinx.coroutines.flow.Flow
 
 interface DataStoreAbstract {
     suspend fun saveOnBoarding()
     fun getOnBoarding(): Flow<Boolean?>
     suspend fun saveLogin()
+    suspend fun logout()
     fun getLogin(): Flow<Boolean?>
+    fun getToken(): Flow<String>
+    suspend fun saveToken(token: String)
     suspend fun saveUser(user: LoginResult)
     fun getUser(): Flow<LoginResult>
+    suspend fun saveRegister(user: RegisterField)
+    fun getRegister(): Flow<RegisterField>
     suspend fun saveLocation(latitude: Double, longitude: Double)
-    fun getLatitude(): Flow<Double?>
-    fun getLongitude(): Flow<Double?>
+    fun getLatitude(): Flow<Double>
+    fun getLongitude(): Flow<Double>
 }

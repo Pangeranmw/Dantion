@@ -1,51 +1,106 @@
 package com.bangkit.dantion.ui.home
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
+import android.view.View
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.dantion.*
+import com.bangkit.dantion.data.Result
 import com.bangkit.dantion.data.model.Detection
+import com.bangkit.dantion.data.model.DetectionStat
 import com.bangkit.dantion.databinding.ActivityHomeBinding
+import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
+import com.bangkit.dantion.ui.viewModel.DetectionViewModel
+import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var latestDangerAdapter: LatestDangerAdapter
-    private var dummyDangerDetection= ArrayList<Detection>()
-    private var dummyAccDangerDetection= ArrayList<Detection>()
-    private var dummyRobDangerDetection= ArrayList<Detection>()
 
+    private val detectionViewModel: DetectionViewModel by viewModels()
+    private val dataStoreViewModel: DataStoreViewModel by viewModels()
+
+    private var latestDetection = ArrayList<Detection>()
+    private lateinit var stat: DetectionStat
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         supportActionBar?.hide()
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        dummyDangerDetection.addAll(
-//            listOf(
-//                Detection("202020",-47.94742,-143.28466,"adadad","Begal","Korban", true,"20 Mei 2022","20:00", "Gatau"),
-//                Detection("202020",4.61147,-0.15602,"adadad","Kecelakaan","Pelapor", true,"20 Mei 2022","19:50", "Bebas"),
-//                Detection("202020",53.48602,-119.94547,"adadad","Begal","Pelapor", true,"20 Mei 2022","07:00", "Ucup"),
-//                Detection("202020",43.99912,1.85398,"adadad","Kecelakaan","Korban", true,"20 Mei 2022","0", "Kakang"),
-//                Detection("202020",24.34958,-14.71747,"adadad","Begal","Korban", true,"20 Mei 2022","0", "Asep"),
-//                Detection("202020",50.76277,165.59837,"adadad","Begal","Pelapor", true,"20 Mei 2022","0", "Koki"),
-//                Detection("202020",20.23162,103.18623,"adadad","Kecelakaan","Pelapor", true,"20 Mei 2022","0", "Udin"),
-//            ),
-//        )
-//        dummyDangerDetection.map {
-//            when (it.type) {
-//                "Begal" -> dummyRobDangerDetection.add(it)
-//                else -> dummyAccDangerDetection.add(it)
+
+        dataStoreViewModel.getUser().observe(this){ user->
+            val firstName = user.name.toString().getFirstName()
+            Glide.with(this)
+                .load(user.photo)
+                .into(binding.ivProfile)
+            binding.tvName.text = getString(R.string.full_name, firstName)
+            dataStoreViewModel.getLatitude().observe(this){ lat->
+                dataStoreViewModel.getLongitude().observe(this){ lon ->
+                    dataStoreViewModel.getToken().observe(this){ token ->
+                        detectionViewModel.getAllDetections(token).observe(this){res->
+                            when(res){
+                                is Result.Loading -> setLoading(true)
+                                is Result.Success -> {
+                                    setLoading(false)
+                                    latestDetection.clear()
+                                    val nearestDetection = res.data.detections.filter{(getCity(lat,lon,this).contains(it.city, ignoreCase = true))}.take(5)
+                                    latestDetection.addAll(nearestDetection)
+                                    setLatestCase(latestDetection)
+                                }
+                                is Result.Error -> {
+                                    setLoading(false)
+                                    setToastShort(res.error, this)
+                                }
+                            }
+                        }
+                        detectionViewModel.getDetectionStat().observe(this){res->
+                            when(res){
+                                is Result.Loading -> setLoading(true)
+                                is Result.Success -> {
+                                    stat = res.data.stat
+                                    binding.tvStatCrimeNumber.text = stat.kejahatan.toString()
+                                    binding.tvStatAccNumber.text = stat.kecelakaan.toString()
+                                    binding.tvStatFireNumber.text = stat.kebakaran.toString()
+                                }
+                                is Result.Error -> setLoading(false)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        binding.btnEmergency.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+        binding.tvHoldTime.text = getString(R.string.button_hold_time, 1)
+        binding.btnEmergency.setOnLongClickListener{
+//            it.setOnVeryLongClickListener{
+//                binding.layoutEmergencyStart.visibility = View.VISIBLE
+//                binding.btnEmergency.visibility = View.INVISIBLE
 //            }
-//        }
-//        setLatestAcc(dummyAccDangerDetection)
-//        setLatestRob(dummyRobDangerDetection)
+            binding.layoutEmergencyStart.visibility = View.VISIBLE
+            binding.btnEmergency.visibility = View.INVISIBLE
+
+            return@setOnLongClickListener true
+        }
+        binding.btnCancelRecord.setOnClickListener {
+            binding.layoutEmergencyStart.visibility = View.INVISIBLE
+            binding.btnEmergency.visibility = View.VISIBLE
+        }
     }
-    private fun setLatestAcc(list: ArrayList<Detection>) {
+    private fun setLatestCase(list: ArrayList<Detection>) {
         latestDangerAdapter = LatestDangerAdapter(list, this)
-//        binding.rvLatestAcc.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-//        binding.rvLatestAcc.adapter = latestDangerAdapter
+        binding.rvLatestCase.layoutManager = LinearLayoutManager(this)
+        binding.rvLatestCase.adapter = latestDangerAdapter
     }
-    private fun setLatestRob(list: ArrayList<Detection>) {
-        latestDangerAdapter = LatestDangerAdapter(list, this)
-        binding.rvLatestRob.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        binding.rvLatestRob.adapter = latestDangerAdapter
+    private fun setLoading(state: Boolean){
+        binding.progressBar.visibility = if(state) View.VISIBLE else View.INVISIBLE
     }
 }

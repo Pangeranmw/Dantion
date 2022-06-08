@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentThirdOnboardingBinding
-import com.bangkit.dantion.ui.DataStoreViewModel
+import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +31,7 @@ class ThirdOnboardingFragment : Fragment() {
             requireActivity().overridePendingTransition(0, 0)
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
         }
+        binding.btnNext.setOnClickListener{ viewPager?.setCurrentItem(3,false) }
         binding.ivIndicator2.setOnClickListener{
             viewPager?.setCurrentItem(1,false)
         }

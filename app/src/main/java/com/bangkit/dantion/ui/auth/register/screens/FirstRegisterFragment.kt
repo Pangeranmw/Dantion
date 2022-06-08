@@ -12,16 +12,18 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.R
 import com.bangkit.dantion.checkNumber
-import com.bangkit.dantion.data.model.User
+import com.bangkit.dantion.data.remote.user.RegisterField
 import com.bangkit.dantion.databinding.FragmentFirstRegisterBinding
 import com.bangkit.dantion.emptyData
+import com.bangkit.dantion.getAddress
+import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FirstRegisterFragment : Fragment() {
     private lateinit var _binding: FragmentFirstRegisterBinding
     private val binding get() = _binding!!
-    private val authViewModel: AuthViewModel by viewModels()
+    private val dataStoreViewModel: DataStoreViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,12 @@ class FirstRegisterFragment : Fragment() {
         val view = binding.root
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager_register)
 
+        dataStoreViewModel.getLatitude().observe(viewLifecycleOwner){ lat->
+            dataStoreViewModel.getLongitude().observe(viewLifecycleOwner){lon->
+                val address = getAddress(lat,lon,requireContext())
+                binding.etAddress.setText(address)
+            }
+        }
         binding.btnNext.setOnClickListener {
             nextStepAction(viewPager)
         }
@@ -73,12 +81,14 @@ class FirstRegisterFragment : Fragment() {
         else Toast.makeText(requireContext(), getString(R.string.empty_personal_data), Toast.LENGTH_LONG).show()
     }
     private fun savePersonalData(){
-        authViewModel.saveUser(
-            User(
+        dataStoreViewModel.saveRegister(
+            RegisterField(
                 name = binding.etName.text.toString(),
                 address = binding.etAddress.text.toString(),
                 number = binding.etNumber.text.toString(),
-                parentNumber = binding.etParentNumber.text.toString()
+                parentNumber = binding.etParentNumber.text.toString(),
+                email = "",
+                password = ""
             )
         )
     }

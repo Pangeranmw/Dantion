@@ -11,11 +11,18 @@ import javax.inject.Singleton
 @Singleton
 class AuthDataSource @Inject constructor(private val userService: UserService) {
 
-    suspend fun registerUser(registerBody: RegisterBody): Flow<Result<ErrorMessageResponse>> {
+    suspend fun registerUser(registerField: RegisterField): Flow<Result<ErrorMessageResponse>> {
         return flow {
             try {
                 emit(Result.Loading)
-                val response = userService.registerUser(registerBody)
+                val response = userService.registerUser(
+                    name = registerField.name,
+                    address = registerField.address,
+                    password = registerField.password,
+                    email = registerField.email,
+                    parentNumber = registerField.parentNumber,
+                    number = registerField.number
+                )
                 if (!response.error) {
                     emit(Result.Success(response))
                 } else {
@@ -27,11 +34,14 @@ class AuthDataSource @Inject constructor(private val userService: UserService) {
         }
     }
 
-    suspend fun loginUser(loginBody: LoginBody): Flow<Result<LoginResponse>> {
+    suspend fun loginUser(loginField: LoginField): Flow<Result<LoginResponse>> {
         return flow {
             try {
                 emit(Result.Loading)
-                val response = userService.loginUser(loginBody)
+                val response = userService.loginUser(
+                    loginField.email,
+                    loginField.password
+                )
                 if (!response.error) {
                     emit(Result.Success(response))
                 } else {

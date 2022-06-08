@@ -31,7 +31,7 @@
     <string name="login">Masuk</string>
     <string name="register">Daftar</string>
     <string name="email">Email</string>
-    <string name="full_name">Nama Lengkap</string>
+    <string name="full_name">Hai, %1$s</string>
     <string name="password">Kata Sandi</string>
     <string name="address">Alamat</string>
     <string name="confirm_password">Konfirmasi Kata Sandi</string>
@@ -94,5 +94,6 @@
     <string name="see_all">Lihat Semua</string>
     <string name="time_record">00:00</string>
     <string name="stop_record">Batalkan</string>
+    <string name="button_hold_time">Tekan tombol selama %1$d detik</string>
 
 </resources>

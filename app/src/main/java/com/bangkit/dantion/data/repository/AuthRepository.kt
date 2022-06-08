@@ -14,10 +14,10 @@ import javax.inject.Singleton
 class AuthRepository @Inject constructor (
     private val authDataSource: AuthDataSource
 ) {
-    suspend fun registerUser(registerBody: RegisterBody): Flow<Result<ErrorMessageResponse>> {
-        return authDataSource.registerUser(registerBody).flowOn(Dispatchers.IO)
+    suspend fun registerUser(registerField: RegisterField): Flow<Result<ErrorMessageResponse>> {
+        return authDataSource.registerUser(registerField).flowOn(Dispatchers.IO)
     }
-    suspend fun loginUser(loginBody: LoginBody): Flow<Result<LoginResponse>> {
-        return authDataSource.loginUser(loginBody).flowOn(Dispatchers.IO)
+    suspend fun loginUser(loginField: LoginField): Flow<Result<LoginResponse>> {
+        return authDataSource.loginUser(loginField).flowOn(Dispatchers.IO)
     }
 }

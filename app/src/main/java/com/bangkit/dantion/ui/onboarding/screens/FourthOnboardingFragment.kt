@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentFourthOnboardingBinding
-import com.bangkit.dantion.ui.DataStoreViewModel
+import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

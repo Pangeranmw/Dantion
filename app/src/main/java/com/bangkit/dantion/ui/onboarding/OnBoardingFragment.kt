@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bangkit.dantion.databinding.FragmentOnBoardingBinding
 import com.bangkit.dantion.ui.ViewPagerAdapter
 import com.bangkit.dantion.ui.onboarding.screens.FirstOnboardingFragment
+import com.bangkit.dantion.ui.onboarding.screens.FourthOnboardingFragment
 import com.bangkit.dantion.ui.onboarding.screens.SecondOnboardingFragment
 import com.bangkit.dantion.ui.onboarding.screens.ThirdOnboardingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,7 @@ class OnBoardingFragment : Fragment() {
             FirstOnboardingFragment(),
             SecondOnboardingFragment(),
             ThirdOnboardingFragment(),
+            FourthOnboardingFragment(),
         )
         val adapter = ViewPagerAdapter(
             fragmentList,

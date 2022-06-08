@@ -1,6 +1,6 @@
 package com.bangkit.dantion.data.remote.user
 
-data class LoginBody(
+data class LoginField(
     val email: String,
     val password: String
 )

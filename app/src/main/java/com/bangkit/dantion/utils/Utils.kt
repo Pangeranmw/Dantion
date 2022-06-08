@@ -3,22 +3,24 @@ package com.bangkit.dantion
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
-import android.os.Environment
-import android.util.Patterns
+import android.os.*
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
+import com.bangkit.dantion.databinding.ActivityHomeBinding
 import com.bangkit.dantion.ui.custom.CustomTextInputLayout
-import com.google.android.gms.maps.model.LatLng
 import java.io.*
-import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 fun checkPassword(text: String, customTextInputLayout: CustomTextInputLayout, context: Context){
@@ -65,7 +67,7 @@ fun getAddress(latitude: Double, longitude: Double, context: Context): String? {
 fun getCity(latitude: Double, longitude: Double, context: Context): String {
     val geocoder = Geocoder(context, Locale.getDefault())
     val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
-    return addresses[0].locality
+    return addresses[0].subAdminArea
 }
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
@@ -168,24 +170,6 @@ fun cropImage(image: Bitmap): Bitmap {
     }
 }
 
-fun urlToBitmap(src: String): Bitmap? {
-    return try {
-        val url = URL(src)
-        val connection = url.openConnection()
-        connection.doInput = true
-        connection.connect()
-        val input = connection.getInputStream()
-        cropImage(BitmapFactory.decodeStream(input))
-    } catch (e: Exception) {
-        print(e)
-        null
-    }
-}
-
-fun isEmailValid(email: CharSequence): Boolean {
-    return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-}
-
 fun String.getDateFromTimeStamp(): String = substring(0, 10)
 
 fun String.getTimeFromTimeStamp(): String = substring(11, 16)
@@ -195,20 +179,20 @@ fun String.getFirstName(): String = if (contains(" ")) {
 } else replaceFirstChar { it.uppercase() }
 
 fun String.withDateFormat(): String {
-    return this.toDate("yyyy-MM-dd").formatTo("dd, MMM yyyy")
+    return this.toDate("yyyy-MM-dd").formatTo("EEEE, dd MMM yyyy")
 }
 fun String.withTimeFormat(): String {
-    return this.toDate("k:mm").formatTo("k:mm")
+    return this.toDate("k:mm").formatTo("kk:mm")
 }
 
 fun String.toDate(dateFormat: String, timeZone: TimeZone = TimeZone.getTimeZone("UTC")): Date {
-    val parser = SimpleDateFormat(dateFormat, Locale.getDefault())
+    val parser = SimpleDateFormat(dateFormat, Locale("id", "ID"))
     parser.timeZone = timeZone
     return parser.parse(this) as Date
 }
 
 fun Date.formatTo(dateFormat: String, timeZone: TimeZone = TimeZone.getDefault()): String {
-    val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
+    val formatter = SimpleDateFormat(dateFormat, Locale("id", "ID"))
     formatter.timeZone = timeZone
     return formatter.format(this)
 }
@@ -217,4 +201,26 @@ fun setToastLong(message: String, context: Context){
 }
 fun setToastShort(message: String, context: Context){
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+}
+fun View.setOnVeryLongClickListener(listener: () -> Unit) {
+    setOnTouchListener(object : View.OnTouchListener {
+        private val longClickDuration = 3000L
+        override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+            if (event?.action == MotionEvent.ACTION_DOWN) {
+                val timeClicked = System.currentTimeMillis()
+                Handler(Looper.getMainLooper()).postDelayed({
+//                    when(System.currentTimeMillis() - timeClicked){
+//                        1000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 3)
+//                        2000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 2)
+//                        3000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 1)
+//                        4000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 0)
+//                    }
+                    listener.invoke()
+                }, longClickDuration)
+            } else if (event?.action == MotionEvent.ACTION_UP) {
+                Handler(Looper.getMainLooper()).removeCallbacksAndMessages(null)
+            }
+            return true
+        }
+    })
 }

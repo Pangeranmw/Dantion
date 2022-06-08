@@ -11,9 +11,13 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp">
+        android:paddingVertical="10dp"
+        android:outlineAmbientShadowColor="@color/shadow_gray_smooth"
+        android:outlineSpotShadowColor="@color/shadow_gray_smooth"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/home_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -26,6 +30,7 @@
                 android:src="@drawable/img_profile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
@@ -76,56 +81,108 @@
                 android:id="@+id/btn_how_to_use"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_black"
-                android:backgroundTint="@color/white"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/how_to_use"
+                android:src="@drawable/ic_arrow_black"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_horn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_horn"
-                android:contentDescription="@string/how_to_use"/>
-            <Button
-                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="@+id/tv_horn" />
+
+            <RelativeLayout
                 android:id="@+id/btn_emergency"
                 style="@style/ButtonFullWidthIcon"
-                android:text="@string/emergency_button"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:padding="20dp"
+                android:visibility="visible"
+                android:hapticFeedbackEnabled="true"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@+id/tv_horn"
+                app:layout_constraintTop_toBottomOf="@+id/tv_horn">
+
+                <ImageView
+                    android:id="@+id/ic_megaphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:src="@drawable/img_megaphone"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/btn_emergency_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ic_megaphone"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:text="@string/emergency_button"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_hold_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_emergency_text"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="@string/button_hold_time"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_emergency_ttt"
+                style="@style/ButtonFullWidthIcon"
                 android:drawableTop="@drawable/img_megaphone"
+                android:gravity="center"
+                android:text="@string/emergency_button"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
                 app:layout_constraintStart_toStartOf="@+id/tv_horn"
                 app:layout_constraintTop_toBottomOf="@+id/tv_horn" />
+
             <RelativeLayout
-                android:visibility="gone"
                 android:id="@+id/layout_emergency_start"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 style="@style/RecordingLayout"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
                 android:padding="20dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
                 app:layout_constraintStart_toStartOf="@+id/tv_horn"
-                app:layout_constraintTop_toBottomOf="@+id/tv_horn"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/tv_horn">
+
                 <TextView
                     android:id="@+id/tv_time_record"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
-                    android:textColor="@color/black"
                     android:text="@string/time_record"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="40sp" />
 
                 <Button
+                    android:id="@+id/btn_cancel_record"
                     style="@style/ButtonFullWidth"
                     android:layout_below="@+id/tv_time_record"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/montserrat_semi"
                     android:text="@string/stop_record"
-                    android:textAllCaps="false"
-                    android:textSize="20sp" />
+                    android:textAllCaps="false" />
             </RelativeLayout>
+
             <TextView
-                android:id="@+id/tv_stat"
+                android:id="@+id/home_tv_stat"
                 style="@style/HomeHeading"
                 android:text="@string/danger_stat"
                 app:layout_constraintStart_toStartOf="@+id/btn_emergency"
@@ -136,13 +193,14 @@
                 style="@style/HomeSubHeading"
                 android:layout_marginTop="10dp"
                 android:text="@string/danger_stat_sub"
-                app:layout_constraintStart_toStartOf="@+id/tv_stat"
-                app:layout_constraintTop_toBottomOf="@+id/tv_stat" />
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@+id/home_tv_stat"
+                app:layout_constraintTop_toBottomOf="@+id/home_tv_stat" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_layout_crime"
                 style="@style/CardLayout"
-                app:layout_constraintEnd_toEndOf="@+id/btn_emergency"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
                 app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
                 app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
 
@@ -186,7 +244,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_layout_acc"
                 style="@style/CardLayout"
-                app:layout_constraintEnd_toEndOf="@+id/btn_emergency"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
                 app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
                 app:layout_constraintTop_toBottomOf="@+id/card_layout_crime">
 
@@ -230,7 +288,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_layout_fire"
                 style="@style/CardLayout"
-                app:layout_constraintEnd_toEndOf="@+id/btn_emergency"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
                 app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
                 app:layout_constraintTop_toBottomOf="@+id/card_layout_acc">
 
@@ -281,17 +339,19 @@
             <Button
                 android:id="@+id/btn_all_case"
                 style="@style/ButtonSeeAll"
-                app:layout_constraintEnd_toEndOf="@+id/card_layout_fire"
-                app:layout_constraintTop_toTopOf="@+id/tv_latest_rob"
+                android:outlineAmbientShadowColor="@color/white"
+                android:outlineSpotShadowColor="@color/white"
+                android:shadowColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_latest_rob"
-                />
+                app:layout_constraintEnd_toEndOf="@+id/card_layout_fire"
+                app:layout_constraintTop_toTopOf="@+id/tv_latest_rob" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_latest_rob"
+                android:id="@+id/rv_latest_case"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/btn_emergency"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
                 app:layout_constraintStart_toStartOf="@+id/card_layout_fire"
                 app:layout_constraintTop_toBottomOf="@+id/btn_all_case"
                 tools:itemCount="5"
@@ -303,4 +363,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         style="@style/BottomNavigationStyle"/>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_white"
+        />
 </RelativeLayout>

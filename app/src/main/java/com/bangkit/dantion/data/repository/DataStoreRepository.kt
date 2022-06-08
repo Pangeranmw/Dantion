@@ -6,7 +6,8 @@ import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.bangkit.dantion.data.DataStoreAbstract
 import com.bangkit.dantion.data.model.LoginResult
-import com.bangkit.dantion.data.model.User
+import com.bangkit.dantion.data.remote.user.RegisterField
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 const val DANTION_DATA_STORE = "dantionDataStore"
@@ -28,18 +29,37 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
             pref[LOGIN] = true
         }
     }
-    override suspend fun saveUser(user: LoginResult) {
-        context.datastore.edit { pref ->
-            pref[ID] = user.id?:""
-            pref[ID] = user.id?:""
-            pref[NAME] = user.name?:""
-            pref[EMAIL] = user.email?:""
-            pref[ADDRESS] = user.address?:""
-            pref[NUMBER] = user.number?:""
-            pref[PARENT_NUMBER] = user.parentNumber?:""
+    override suspend fun logout(){
+        context.datastore.edit {
+            it.clear()
+            it[ON_BOARDING] = true
         }
     }
-
+    override suspend fun saveUser(user: LoginResult) {
+        context.datastore.edit { pref ->
+            pref[ID] = user.id ?: ""
+            pref[NAME] = user.name ?: ""
+            pref[EMAIL] = user.email ?: ""
+            pref[ADDRESS] = user.address ?: ""
+            pref[NUMBER] = user.number ?: ""
+            pref[PARENT_NUMBER] = user.parentNumber ?: ""
+            pref[ROLE] = user.role ?: ""
+            pref[PHOTO] = user.photo ?: ""
+        }
+    }
+    override suspend fun saveToken(token: String) {
+        context.datastore.edit { pref ->
+            pref[TOKEN] = token
+        }
+    }
+    override suspend fun saveRegister(user: RegisterField) {
+        context.datastore.edit { pref ->
+            pref[NAME] = user.name
+            pref[ADDRESS] = user.address
+            pref[NUMBER] = user.number
+            pref[PARENT_NUMBER] = user.parentNumber
+        }
+    }
     override suspend fun saveLocation(latitude: Double, longitude: Double) {
         context.datastore.edit { pref->
             pref[LATITUDE] = latitude
@@ -48,6 +68,7 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
     }
 
     override fun getLogin() = context.datastore.data.map{ it[LOGIN] }
+    override fun getToken(): Flow<String> = context.datastore.data.map{ it[TOKEN]?:"" }
     override fun getUser() = context.datastore.data.map{ pref ->
         LoginResult(
             id = pref[ID]?:"",
@@ -57,13 +78,21 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
             number = pref[NUMBER]?:"",
             parentNumber = pref[PARENT_NUMBER]?:"",
             role = pref[ROLE]?:"",
-            photo = pref[PHOTO]?:"",
-            token = pref[PARENT_NUMBER]?:"",
+            photo = pref[PHOTO]?:""
         )
     }
-
-    override fun getLatitude() = context.datastore.data.map{ it[LATITUDE] }
-    override fun getLongitude() = context.datastore.data.map{ it[LONGITUDE] }
+    override fun getRegister() = context.datastore.data.map{ pref ->
+        RegisterField(
+            name = pref[NAME]?:"",
+            email = pref[EMAIL]?:"",
+            address = pref[ADDRESS]?:"",
+            number = pref[NUMBER]?:"",
+            parentNumber = pref[PARENT_NUMBER]?:"",
+            password = ""
+        )
+    }
+    override fun getLatitude(): Flow<Double> = context.datastore.data.map{ it[LATITUDE]?:0.0 }
+    override fun getLongitude(): Flow<Double> = context.datastore.data.map{ it[LONGITUDE]?:0.0 }
 
     companion object{
         val ON_BOARDING = booleanPreferencesKey("onBoarding")
@@ -77,6 +106,7 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
         val PARENT_NUMBER = stringPreferencesKey("parentNumber")
         val ROLE = stringPreferencesKey("role")
         val PHOTO = stringPreferencesKey("photo")
+        val TOKEN = stringPreferencesKey("token")
 
         val LATITUDE = doublePreferencesKey("latitude")
         val LONGITUDE = doublePreferencesKey("longitude")

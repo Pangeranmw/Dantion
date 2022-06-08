@@ -29,5 +29,4 @@ class NetworkModule {
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
-
 }

@@ -1,9 +1,6 @@
 package com.bangkit.dantion.data.remote.detection
 
 import com.bangkit.dantion.data.remote.ErrorMessageResponse
-import com.bangkit.dantion.data.remote.place.AddPlaceBody
-import com.bangkit.dantion.data.remote.place.PlaceDetailResponse
-import com.bangkit.dantion.data.remote.place.UpdatePlaceBody
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -15,10 +12,15 @@ interface DetectionService {
         @Header("Authorization") token: String
     ): GetAllDetectionResponse
 
+    @GET("detections/statistic")
+    suspend fun getDetectionStat(): GetDetectionStatResponse
+
     @PATCH("detections")
     suspend fun updateDetections(
         @Header("Authorization") token: String,
-        @Body updatePlaceBody: UpdatePlaceBody
+        @Field("id") id: String,
+        @Field("status") status: String,
+        @Field("idUserLogin") idUserLogin: String,
     ): ErrorMessageResponse
 
     @Multipart
@@ -37,7 +39,7 @@ interface DetectionService {
     fun getDetectionDetail(
         @Header("Authorization") token: String,
         @Path("id") id: String
-    ): PlaceDetailResponse
+    ): GetDetectionDetailResponse
 
     @DELETE("detections/{id}")
     fun deleteDetection(

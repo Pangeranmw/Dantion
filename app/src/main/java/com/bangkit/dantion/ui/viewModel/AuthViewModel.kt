@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.auth
+package com.bangkit.dantion.ui.viewModel
 
 import androidx.lifecycle.*
 import com.bangkit.dantion.data.remote.ErrorMessageResponse
@@ -6,29 +6,26 @@ import com.bangkit.dantion.data.remote.user.*
 import com.bangkit.dantion.data.repository.AuthRepository
 import com.bangkit.dantion.data.repository.DataStoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.bangkit.dantion.data.Result
-import com.bangkit.dantion.data.model.LoginResult
-import com.bangkit.dantion.data.model.User
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val dataStoreRepository: DataStoreRepository, private val authRepository: AuthRepository): ViewModel() {
-    fun registerUser(registerBody: RegisterBody): LiveData<Result<ErrorMessageResponse>>{
+    fun registerUser(registerField: RegisterField): LiveData<Result<ErrorMessageResponse>>{
         val registerResponse = MutableLiveData<Result<ErrorMessageResponse>>()
         viewModelScope.launch {
-            authRepository.registerUser(registerBody).collect {
+            authRepository.registerUser(registerField).collect {
                 registerResponse.postValue(it)
             }
         }
         return registerResponse
     }
-    fun loginUser(loginBody: LoginBody): LiveData<Result<LoginResponse>>{
+    fun loginUser(loginField: LoginField): LiveData<Result<LoginResponse>>{
         val loginResponse = MutableLiveData<Result<LoginResponse>>()
         viewModelScope.launch {
-            authRepository.loginUser(loginBody).collect {
+            authRepository.loginUser(loginField).collect {
                 loginResponse.postValue(it)
             }
         }
