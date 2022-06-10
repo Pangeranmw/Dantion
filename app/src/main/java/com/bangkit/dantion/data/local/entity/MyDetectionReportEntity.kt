@@ -6,13 +6,11 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "dangerPlace")
-data class DangerPlaceEntity(
-    @PrimaryKey val dangerPlaceId: String,
-    val radius: Double,
-    val latitude: Double,
-    val longitude: Double,
+@Entity(tableName = "my_detection_report")
+data class MyDetectionReportEntity(
+    @PrimaryKey val detectionId: String,
+    val address: String,
+    val city: String,
     val type: String,
     val createdAt: String,
-    val updatedAt: String,
 ): Parcelable

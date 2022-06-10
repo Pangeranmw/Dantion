@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DetectionDataSource @Inject constructor(private val detectionService: DetectionService) {
+class DetectionDataSource @Inject constructor(private val detectionService: DetectionService, ) {
 
     suspend fun getDetectionStat(): Flow<Result<GetDetectionStatResponse>> {
         return flow {

@@ -15,11 +15,14 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.getSystemService
 import com.bangkit.dantion.databinding.ActivityHomeBinding
 import com.bangkit.dantion.ui.custom.CustomTextInputLayout
 import java.io.*
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -196,6 +199,12 @@ fun Date.formatTo(dateFormat: String, timeZone: TimeZone = TimeZone.getDefault()
     formatter.timeZone = timeZone
     return formatter.format(this)
 }
+@RequiresApi(Build.VERSION_CODES.O)
+fun getCurrentDate(): String{
+    val current = LocalDateTime.now()
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    return current.format(formatter)
+}
 fun setToastLong(message: String, context: Context){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
@@ -207,7 +216,7 @@ fun View.setOnVeryLongClickListener(listener: () -> Unit) {
         private val longClickDuration = 3000L
         override fun onTouch(v: View?, event: MotionEvent?): Boolean {
             if (event?.action == MotionEvent.ACTION_DOWN) {
-                val timeClicked = System.currentTimeMillis()
+//                val timeClicked = System.currentTimeMillis()
                 Handler(Looper.getMainLooper()).postDelayed({
 //                    when(System.currentTimeMillis() - timeClicked){
 //                        1000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 3)

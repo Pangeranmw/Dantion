@@ -2,27 +2,20 @@ package com.bangkit.dantion.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.bangkit.dantion.data.local.entity.DangerDetectionEntity
-import com.bangkit.dantion.data.local.entity.DangerPlaceEntity
-import com.bangkit.dantion.data.local.entity.UserAndDangerDetectionEntity
-import com.bangkit.dantion.data.local.entity.UserEntity
+import com.bangkit.dantion.data.local.entity.DetectionReportEntity
+import com.bangkit.dantion.data.local.entity.MyDetectionReportEntity
 
 @Dao
 interface AppDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertUser(user: UserEntity)
+    suspend fun insertDetectionReport(detectionReport: DetectionReportEntity)
+
+    @Query("SELECT * from detection_report")
+    fun getAllDetectionReport(): LiveData<List<DetectionReportEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertDangerDetection(dangerDetection: DangerDetectionEntity)
+    suspend fun insertMyDetectionReport(myDetectionReport: MyDetectionReportEntity)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertDangerPlace(dangerPlace: DangerPlaceEntity)
-
-    @Query("SELECT * from user")
-    fun getAllUser(): LiveData<List<UserEntity>>
-
-    @Transaction
-    @Query("SELECT * from user")
-    fun getAllDangerDetection(): LiveData<List<UserAndDangerDetectionEntity>>
-
+    @Query("SELECT * from my_detection_report")
+    fun getAllMyDetectionReport(): LiveData<List<MyDetectionReportEntity>>
 }

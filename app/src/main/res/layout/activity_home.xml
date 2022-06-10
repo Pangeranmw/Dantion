@@ -138,24 +138,13 @@
 
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/btn_emergency_ttt"
-                style="@style/ButtonFullWidthIcon"
-                android:drawableTop="@drawable/img_megaphone"
-                android:gravity="center"
-                android:text="@string/emergency_button"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
-                app:layout_constraintStart_toStartOf="@+id/tv_horn"
-                app:layout_constraintTop_toBottomOf="@+id/tv_horn" />
-
             <RelativeLayout
                 android:id="@+id/layout_emergency_start"
                 style="@style/RecordingLayout"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:padding="20dp"
-                android:visibility="gone"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
                 app:layout_constraintStart_toStartOf="@+id/tv_horn"
                 app:layout_constraintTop_toBottomOf="@+id/tv_horn">
@@ -170,6 +159,18 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/tv_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_below="@+id/tv_time_record"
+                    android:gravity="center"
+                    android:text="@string/prediction_label"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btn_cancel_record"
