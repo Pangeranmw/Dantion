@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.allCase.detail.DetailPublicActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/danger_detail_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:isScrollContainer="false"
+                android:text="@string/danger_detail_title"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:drawableStartCompat="@drawable/ic_back" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/sv_detail_danger_public"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_maps_detail"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/tv_detail_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/accident"
+                android:textColor="@color/primary_light_full"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_maps_detail"
+                app:layout_constraintStart_toStartOf="@+id/iv_maps_detail"
+                app:layout_constraintTop_toBottomOf="@+id/iv_maps_detail" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_helper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="205dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/distance_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/rounded_outline_primary_light_full_thin"
+                android:hapticFeedbackEnabled="false"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_helper"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_type">
+
+                <TextView
+                    android:id="@+id/tv_distance_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/hello_blank_fragment"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_distance_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hello_blank_fragment"
+                    android:textColor="@color/primary_light_full"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_distance_title"
+                    app:layout_constraintStart_toStartOf="@+id/tv_distance_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_distance_title" />
+
+                <TextView
+                    android:id="@+id/tv_distance_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/hello_blank_fragment"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_distance_value"
+                    app:layout_constraintStart_toStartOf="@+id/tv_distance_value"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_distance_value" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/duration_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/rounded_outline_primary_light_full_thin"
+                app:layout_constraintEnd_toEndOf="@+id/tv_detail_type"
+                app:layout_constraintStart_toStartOf="@+id/guideline_helper"
+                app:layout_constraintTop_toTopOf="@+id/distance_layout">
+
+                <TextView
+                    android:id="@+id/tv_duration_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/hello_blank_fragment"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_duration_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hello_blank_fragment"
+                    android:textColor="@color/primary_light_full"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_duration_title"
+                    app:layout_constraintStart_toStartOf="@+id/tv_duration_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_duration_title" />
+
+                <TextView
+                    android:id="@+id/tv_duration_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/hello_blank_fragment"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_duration_value"
+                    app:layout_constraintStart_toStartOf="@+id/tv_duration_value"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_duration_value" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btn_navigate_location"
+                style="@style/ButtonFullWidth"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/navigate_to_location"
+                app:layout_constraintEnd_toEndOf="@+id/tv_detail_type"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_type"
+                app:layout_constraintTop_toBottomOf="@+id/duration_layout" />
+
+            <TextView
+                android:id="@+id/tv_location_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/accident_location"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/btn_navigate_location"
+                app:layout_constraintStart_toStartOf="@+id/btn_navigate_location"
+                app:layout_constraintTop_toBottomOf="@+id/btn_navigate_location" />
+
+            <TextView
+                android:id="@+id/tv_location_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/address"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_location_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_location_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location_title" />
+
+            <TextView
+                android:id="@+id/tv_location_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/accident_location"
+                app:layout_constraintEnd_toEndOf="@+id/tv_location_address"
+                app:layout_constraintStart_toStartOf="@+id/tv_location_address"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location_address" />
+
+            <TextView
+                android:id="@+id/tv_pelapor_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/reporter"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/btn_navigate_location"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_location_place"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location_place" />
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/cd_photo_profile"
+                android:src="@drawable/img_profile"
+                app:layout_constraintStart_toStartOf="@+id/tv_pelapor_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pelapor_title" />
+
+            <TextView
+                android:id="@+id/tv_pelapor_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/full_name"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pelapor_title"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+            <TextView
+                android:id="@+id/tv_time_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/date_time"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pelapor_name"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+            <TextView
+                android:id="@+id/tv_time_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/date"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_time_title"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_time_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time_title" />
+
+            <TextView
+                android:id="@+id/tv_time_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/accident_time"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_time_date"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_time_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time_date" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
