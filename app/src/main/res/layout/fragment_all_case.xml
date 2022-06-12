@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="ui.allCase.screens.AllCaseFragment"
     android:padding="20dp"
     >
@@ -14,8 +13,9 @@
         android:layout_centerInParent="true"
         />
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_all_case"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/latest_case_item"
+        tools:listitem="@layout/case_item"
         />
 </RelativeLayout>

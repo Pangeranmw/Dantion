@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.auth.register.screens
+package com.bangkit.dantion.ui.allCase.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +9,16 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.user.RegisterField
 import com.bangkit.dantion.databinding.FragmentAllCaseBinding
 import com.bangkit.dantion.databinding.FragmentFirstRegisterBinding
+import com.bangkit.dantion.ui.allCase.DangerCaseAdapter
+import com.bangkit.dantion.ui.home.LatestDangerAdapter
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import com.bangkit.dantion.ui.viewModel.DetectionViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +30,9 @@ class AllCaseFragment : Fragment() {
     private val dataStoreViewModel: DataStoreViewModel by viewModels()
     private val detectionViewModel: DetectionViewModel by viewModels()
 
+    private lateinit var allDangerAdapter: DangerCaseAdapter
+    private var allDetection = ArrayList<Detection>()
+
     private lateinit var token: String
     private lateinit var city: String
 
@@ -36,7 +43,6 @@ class AllCaseFragment : Fragment() {
         _binding = FragmentAllCaseBinding.inflate(inflater, container, false)
         val view = binding.root
         getToken()
-        getAllDetections()
         return view
     }
     private fun getAllDetections(){
@@ -44,10 +50,29 @@ class AllCaseFragment : Fragment() {
             when(res){
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {
-
+                    setLoading(false)
+                    allDetection.clear()
+                    val allDetectionRes = res.data.detections.filter{
+                        // get detection only with the same city
+                        city.contains(it.city, ignoreCase = true) &&
+                        // get detection that only have valid or complete status
+                        it.status == "valid" || it.status == "selesai"
+                    }
+                    allDetection.addAll(allDetectionRes)
+                    setAdapter(allDetection)
+                }
+                is Result.Error -> {
+                    setLoading(false)
+                    setToastLong(res.error, requireContext())
                 }
             }
         }
+    }
+    private fun setAdapter(detectionList: ArrayList<Detection>){
+        allDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
+        allDangerAdapter.updateData(detectionList)
+        binding.rvAllCase.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvAllCase.adapter = allDangerAdapter
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner){

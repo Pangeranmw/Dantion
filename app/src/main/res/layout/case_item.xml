@@ -14,7 +14,20 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         >
-
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/detection_status"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="12sp"
+            android:background="@drawable/rounded_green_light_half"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/green_dark_full"
+            />
         <TextView
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
@@ -22,28 +35,19 @@
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/date"
             android:textColor="@color/secondary_main"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@string/accident"
-            android:textColor="@color/secondary_main"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="12sp"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_status"
+            app:layout_constraintTop_toTopOf="@+id/tv_status"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_status"
+            />
 
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/location_unknown"
             android:textColor="@color/black"
@@ -53,6 +57,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/img_profile"
+            app:layout_constraintStart_toStartOf="@+id/tv_address"
+            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
@@ -61,9 +74,10 @@
             android:text="@string/victim_name"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile"/>
 
         <TextView
             android:id="@+id/tv_time"
@@ -72,9 +86,23 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/occurance_time"
             android:textColor="@color/secondary_main"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_address" />
+
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/accident"
+            android:textColor="@color/secondary_main"
+            android:textSize="14sp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            app:layout_constraintEnd_toStartOf="@+id/tv_time"
+            app:layout_constraintTop_toTopOf="@+id/tv_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

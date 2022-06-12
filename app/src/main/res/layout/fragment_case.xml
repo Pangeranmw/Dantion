@@ -8,24 +8,29 @@
     android:padding="20dp"
     >
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/case_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:tabTextAppearance="@style/TabLayoutFont"
-        app:tabBackground="@drawable/tab_layout_selector"
-        app:tabTextColor="@color/tab_layout_color"
-        app:tabPaddingEnd="10dp"/>
+    <ScrollView
+        android:id="@+id/sv_tabs"
+        android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/case_tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabTextAppearance="@style/TabLayoutFont"
+            app:tabBackground="@drawable/tab_layout_selector"
+            app:tabTextColor="@color/tab_layout_color"
+            app:tabPaddingEnd="10dp"/>
+    </ScrollView>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/case_tabs"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sv_tabs"
         android:layout_marginTop="20dp"
         >
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/case_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            />
     </ScrollView>
 </RelativeLayout>

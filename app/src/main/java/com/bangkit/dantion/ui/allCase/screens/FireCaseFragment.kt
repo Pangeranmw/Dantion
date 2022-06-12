@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.auth.register.screens
+package com.bangkit.dantion.ui.allCase.screens
 
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +10,17 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.user.RegisterField
 import com.bangkit.dantion.databinding.FragmentCrimeCaseBinding
 import com.bangkit.dantion.databinding.FragmentFireCaseBinding
 import com.bangkit.dantion.databinding.FragmentSecondRegisterBinding
+import com.bangkit.dantion.ui.allCase.DangerCaseAdapter
+import com.bangkit.dantion.ui.home.LatestDangerAdapter
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import com.bangkit.dantion.ui.viewModel.AuthViewModel
 import com.bangkit.dantion.ui.viewModel.DetectionViewModel
@@ -29,6 +33,9 @@ class FireCaseFragment : Fragment() {
     private val dataStoreViewModel: DataStoreViewModel by viewModels()
     private val detectionViewModel: DetectionViewModel by viewModels()
 
+    private lateinit var fireDangerAdapter: DangerCaseAdapter
+    private var fireDetections = ArrayList<Detection>()
+
     private lateinit var token: String
     private lateinit var city: String
 
@@ -39,7 +46,6 @@ class FireCaseFragment : Fragment() {
         _binding = FragmentFireCaseBinding.inflate(inflater, container, false)
         val view = binding.root
         getToken()
-        getAllDetections()
         return view
     }
     private fun getAllDetections(){
@@ -47,10 +53,31 @@ class FireCaseFragment : Fragment() {
             when(res){
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {
-
+                    setLoading(false)
+                    fireDetections.clear()
+                    val crimeDetectionRes = res.data.detections.filter{
+                        // get detection only with the same city
+                        city.contains(it.city, ignoreCase = true) &&
+                        // get detection that only have valid or complete status
+                        it.status == "valid" || it.status == "selesai" &&
+                        // get only fire type of danger
+                        it.type == "kebakaran"
+                    }
+                    fireDetections.addAll(crimeDetectionRes)
+                    setAdapter(fireDetections)
+                }
+                is Result.Error -> {
+                    setLoading(false)
+                    setToastLong(res.error, requireContext())
                 }
             }
         }
+    }
+    private fun setAdapter(detectionList: ArrayList<Detection>){
+        fireDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
+        fireDangerAdapter.updateData(detectionList)
+        binding.rvFireCase.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvFireCase.adapter = fireDangerAdapter
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner){

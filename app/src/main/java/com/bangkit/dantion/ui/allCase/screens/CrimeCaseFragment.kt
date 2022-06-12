@@ -1,4 +1,4 @@
-package com.bangkit.dantion.ui.auth.register.screens
+package com.bangkit.dantion.ui.allCase.screens
 
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +10,17 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.user.RegisterField
 import com.bangkit.dantion.databinding.FragmentCrashCaseBinding
 import com.bangkit.dantion.databinding.FragmentCrimeCaseBinding
 import com.bangkit.dantion.databinding.FragmentSecondRegisterBinding
+import com.bangkit.dantion.ui.allCase.DangerCaseAdapter
+import com.bangkit.dantion.ui.home.LatestDangerAdapter
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import com.bangkit.dantion.ui.viewModel.AuthViewModel
 import com.bangkit.dantion.ui.viewModel.DetectionViewModel
@@ -29,6 +33,9 @@ class CrimeCaseFragment : Fragment() {
     private val dataStoreViewModel: DataStoreViewModel by viewModels()
     private val detectionViewModel: DetectionViewModel by viewModels()
 
+    private lateinit var crimeDangerAdapter: DangerCaseAdapter
+    private var crimeDetections = ArrayList<Detection>()
+
     private lateinit var token: String
     private lateinit var city: String
 
@@ -39,7 +46,6 @@ class CrimeCaseFragment : Fragment() {
         _binding = FragmentCrimeCaseBinding.inflate(inflater, container, false)
         val view = binding.root
         getToken()
-        getAllDetections()
         return view
     }
     private fun getAllDetections(){
@@ -47,10 +53,31 @@ class CrimeCaseFragment : Fragment() {
             when(res){
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {
-
+                    setLoading(false)
+                    crimeDetections.clear()
+                    val crimeDetectionRes = res.data.detections.filter{
+                        // get detection only with the same city
+                        city.contains(it.city, ignoreCase = true) &&
+                        // get detection that only have valid or complete status
+                        it.status == "valid" || it.status == "selesai" &&
+                        // get only crime type of danger
+                        it.type == "kejahatan"
+                    }
+                    crimeDetections.addAll(crimeDetectionRes)
+                    setAdapter(crimeDetections)
+                }
+                is Result.Error -> {
+                    setLoading(false)
+                    setToastLong(res.error, requireContext())
                 }
             }
         }
+    }
+    private fun setAdapter(detectionList: ArrayList<Detection>){
+        crimeDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
+        crimeDangerAdapter.updateData(detectionList)
+        binding.rvCrimeCase.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvCrimeCase.adapter = crimeDangerAdapter
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner){

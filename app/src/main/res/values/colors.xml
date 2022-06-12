@@ -35,9 +35,11 @@
     <color name="secondary_dark_full">#6C203B</color>
     <color name="secondary_dark_half">#BE3164</color>
 
+    <color name="green_light_full">#4FE88C</color>
+    <color name="green_light_half">#B4F5CE</color>
+    <color name="green_dark_full">#0E5D2E</color>
+
     <color name="pink_light">#FFF5F8</color>
-
-
     <color name="pink_light_bg">#FFF4F4</color>
 
 

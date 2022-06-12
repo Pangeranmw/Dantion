@@ -71,7 +71,7 @@
     <string name="emergency_button">Tombol Darurat</string>
     <string name="latest_case">Kasus Terkini</string>
     <string name="date">28 Mei 2022</string>
-    <string name="location_address">Jl. jalan nomor gak tau gak tau gak taugak taugak taugak tau</string>
+    <string name="location_unknown">Lokasi Tidak Diketahui</string>
     <string name="victim_name">Nama Korban</string>
     <string name="victim">Korban</string>
     <string name="reporter">Pelapor</string>
@@ -127,5 +127,6 @@
 
     <string name="detection_type_3">Kata Kebakaran</string>
     <string name="detection_type_3_content"><li> Kebakaran</li></string>
+    <string name="detection_status">Tervalidasi</string>
 
 </resources>
