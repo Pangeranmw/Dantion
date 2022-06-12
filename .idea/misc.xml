@@ -57,18 +57,18 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23526763916015628" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_role_umum.xml" value="0.15945945945945947" />
-        <entry key="app/src/main/res/layout/case_item.xml" value="0.4359010842232893" />
+        <entry key="app/src/main/res/layout/case_item.xml" value="0.5037950661568833" />
         <entry key="app/src/main/res/layout/custom_info_window.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_all_case.xml" value="0.2505584716796875" />
-        <entry key="app/src/main/res/layout/fragment_case.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/fragment_case.xml" value="0.2956959195081051" />
         <entry key="app/src/main/res/layout/fragment_crash_case.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_crime_case.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_fire_case.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first_onboarding.xml" value="0.2439407348632812" />
         <entry key="app/src/main/res/layout/fragment_first_register.xml" value="0.18366444905598958" />
         <entry key="app/src/main/res/layout/fragment_fourth_onboarding.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.20627014160156248" />
-        <entry key="app/src/main/res/layout/fragment_how_to_use.xml" value="0.21927185058593746" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3451446533203125" />
+        <entry key="app/src/main/res/layout/fragment_how_to_use.xml" value="0.5880477905273438" />
         <entry key="app/src/main/res/layout/fragment_location.xml" value="0.14899752505190736" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.21614583333333334" />

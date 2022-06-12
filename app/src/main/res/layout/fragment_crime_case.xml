@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:elevation="100dp"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_crime_case"

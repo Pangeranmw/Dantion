@@ -70,7 +70,6 @@ class AllCaseFragment : Fragment() {
     }
     private fun setAdapter(detectionList: ArrayList<Detection>){
         allDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
-        allDangerAdapter.updateData(detectionList)
         binding.rvAllCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAllCase.adapter = allDangerAdapter
     }

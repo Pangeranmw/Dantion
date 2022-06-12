@@ -75,7 +75,6 @@ class CrimeCaseFragment : Fragment() {
     }
     private fun setAdapter(detectionList: ArrayList<Detection>){
         crimeDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
-        crimeDangerAdapter.updateData(detectionList)
         binding.rvCrimeCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCrimeCase.adapter = crimeDangerAdapter
     }

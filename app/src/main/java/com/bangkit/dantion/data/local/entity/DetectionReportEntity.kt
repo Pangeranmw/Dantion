@@ -8,9 +8,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "detection_report")
 data class DetectionReportEntity(
-    @PrimaryKey val detectionId: String,
-    val createdAt: String,
-    val address: String,
-    val city: String,
-    val type: String,
+    @PrimaryKey var detectionId: String,
+    var createdAt: String,
+    var address: String,
+    var city: String,
+    var type: String,
 ): Parcelable

@@ -24,11 +24,11 @@ class LatestDangerAdapter(private val list: ArrayList<Detection>, private val ac
     inner class ViewHolder(private val binding: LatestCaseItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Detection) {
-            binding.tvName.text = data.name
+            binding.tvName.text = data.name.replaceFirstChar { it.uppercase() }
             binding.tvAddress.text = getAddress(data.lat, data.lon, activity.applicationContext)?: activity.applicationContext.getString(R.string.location_unknown)
             binding.tvDate.text = data.updatedAt.getDateFromTimeStamp().withDateFormat()
             binding.tvTime.text = data.updatedAt.getTimeFromTimeStamp().withTimeFormat()
-            binding.tvType.text = data.type
+            binding.tvType.text = data.type.replaceFirstChar { it.uppercase() }
 //            itemView.setOnClickListener {
 //                val intent = Intent(itemView.context, DetailActivity::class.java)
 //                intent.putExtra(DetailActivity.EXTRA_DATA, data.username.toString())

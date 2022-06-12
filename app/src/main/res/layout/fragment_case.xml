@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="ui.allCase.CaseFragment"
-    android:padding="20dp"
     >
 
-    <ScrollView
-        android:id="@+id/sv_tabs"
-        android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/rl_tabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp">
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/case_tabs"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            app:tabTextAppearance="@style/TabLayoutFont"
             app:tabBackground="@drawable/tab_layout_selector"
-            app:tabTextColor="@color/tab_layout_color"
-            app:tabPaddingEnd="10dp"/>
-    </ScrollView>
-    <ScrollView
+            app:tabIndicator="@null"
+            app:tabMinWidth="110dp"
+            app:tabMode="scrollable"
+            app:tabPadding="5dp"
+            app:tabTextAppearance="@style/TabLayoutFont"
+            app:tabTextColor="@color/tab_layout_color" />
+    </RelativeLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_marginTop="20dp"
+        android:id="@+id/case_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/sv_tabs"
-        android:layout_marginTop="20dp"
-        >
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/case_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-    </ScrollView>
+        android:layout_below="@+id/rl_tabs"
+        />
 </RelativeLayout>
