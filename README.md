@@ -16,6 +16,7 @@ If you build this application an error will occur. Because this application requ
 >[Set up in Cloud Console](https://developers.google.com/maps/documentation/android-sdk/start#set_up_in_cloud_console) (Note: ignore the other steps from this link)
 
 Once you have the api key, follow these steps:
+<br>
 ![local-properties](https://raw.githubusercontent.com/Pangeranmw/Dantion/master/assets_readme/local-properties.png)
 
 * Open local.properties file
