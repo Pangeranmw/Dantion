@@ -22,9 +22,10 @@ import com.bangkit.dantion.setToastLong
 import com.bangkit.dantion.setToastShort
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.*
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class SplashFragment : Fragment() {

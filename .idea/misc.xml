@@ -4,6 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.284375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/drawable/ic_phone.xml" value="0.1095" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/drawable/rounded_outline_green_dark_full.xml" value="0.1095" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/activity_detail_private.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/activity_detail_public.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/activity_notification.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/activity_password.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/fragment_all_case.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/fragment_case.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/fragment_crash_case.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/fragment_crime_case.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/fragment_home.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/fragment_home_private.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/fragment_profile.xml" value="0.209375" />
+        <entry key="..\:/Project Bangkit/Capstone/Dantion/app/src/main/res/layout/notification_item.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/bg_card_stat.xml" value="0.233" />
         <entry key="app/src/main/res/drawable/bg_edittext.xml" value="0.1535" />

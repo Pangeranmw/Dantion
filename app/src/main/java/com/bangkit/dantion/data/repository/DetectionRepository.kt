@@ -5,6 +5,7 @@ import com.bangkit.dantion.data.remote.ErrorMessageResponse
 import com.bangkit.dantion.data.remote.detection.GetDetectionDetailResponse
 import com.bangkit.dantion.data.remote.detection.GetAllDetectionResponse
 import com.bangkit.dantion.data.remote.detection.GetDetectionStatResponse
+import com.bangkit.dantion.data.remote.detection.UpdateDetectionBody
 import com.bangkit.dantion.data.source.DetectionDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -30,8 +31,8 @@ class DetectionRepository @Inject constructor (
     suspend fun deleteDetection(token: String, id: String): Flow<Result<ErrorMessageResponse>> {
         return detectionDataSource.deleteDetection(token, id).flowOn(Dispatchers.IO)
     }
-    suspend fun updateDetections(token: String, id: String, status: String, idUserLogin: String): Flow<Result<ErrorMessageResponse>> {
-        return detectionDataSource.updateDetections(token, id, status, idUserLogin).flowOn(Dispatchers.IO)
+    suspend fun updateDetections(token: String, updateField: UpdateDetectionBody): Flow<Result<ErrorMessageResponse>> {
+        return detectionDataSource.updateDetections(token, updateField).flowOn(Dispatchers.IO)
     }
     suspend fun addNewDetection(
         token: String,

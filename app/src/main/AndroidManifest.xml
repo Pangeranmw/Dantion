@@ -18,11 +18,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Dantion"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.Dantion">
+        <activity
+            android:name=".ui.notification.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.password.PasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.allCase.detail.DetailPrivateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.allCase.detail.DetailPublicActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_KEY}" />
+            android:value="ini key terserah" />
+
         <activity
             android:name=".ui.RoleUmumActivity"
             android:exported="false" />

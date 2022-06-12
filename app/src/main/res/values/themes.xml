@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/secondary_light_full</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -42,8 +42,8 @@
         <item name="android:textColor">@color/secondary_main</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
-        <item name="android:paddingVertical">5dp</item>
-        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:paddingVertical" tools:ignore="NewApi">5dp</item>
+        <item name="android:paddingHorizontal" tools:ignore="NewApi">10dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:text">@string/see_all</item>
     </style>
@@ -180,5 +180,20 @@
     <style name="TabLayoutFont">
         <item name="android:fontFamily">@font/montserrat_semi</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ButtonBlank">
+        <item name="backgroundTint">@null</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/semi_rounded_primary_green_light_half</item>
+        <item name="android:fontFamily">@font/montserrat_semi</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">20dp</item>
     </style>
 </resources>

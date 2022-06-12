@@ -1,14 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".ui.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/cd_photo_profile"
+        android:src="@drawable/img_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/full_name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/btn_edit_profile"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile"
+        app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_user_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/email"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_user_name"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+
+    <TextView
+        android:id="@+id/tv_user_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/number"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+        app:layout_constraintEnd_toEndOf="@+id/tv_user_email"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_email"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/btn_edit_profile"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/ic_edit_profile"
+        android:contentDescription="@string/cd_notification"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+    <TextView
+        android:id="@+id/tv_edit_password"
+        style="@style/HomeHeading"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:isScrollContainer="false"
+        android:text="@string/change_password"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_edit_profile"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+        app:drawableEndCompat="@drawable/ic_arrow_black" />
+
+    <TextView
+        android:id="@+id/tv_about_app"
+        style="@style/HomeHeading"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:isScrollContainer="false"
+        android:text="@string/about_app"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_edit_password"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit_password"
+        app:drawableEndCompat="@drawable/ic_arrow_black" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        style="@style/ButtonFullWidth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/logout"
+        app:layout_constraintEnd_toEndOf="@+id/tv_about_app"
+        app:layout_constraintStart_toStartOf="@+id/tv_about_app"
+        app:layout_constraintTop_toBottomOf="@+id/tv_about_app" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import com.bangkit.dantion.data.Result
 import com.bangkit.dantion.data.remote.detection.GetDetectionDetailResponse
 import com.bangkit.dantion.data.remote.detection.GetAllDetectionResponse
 import com.bangkit.dantion.data.remote.detection.GetDetectionStatResponse
+import com.bangkit.dantion.data.remote.detection.UpdateDetectionBody
 import com.bangkit.dantion.data.repository.DetectionRepository
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -33,15 +34,10 @@ class DetectionViewModel @Inject constructor(private val detectionRepository: De
         }
         return addDetectionResponse
     }
-    fun updateDetections(
-        token: String,
-        id: String,
-        status: String,
-        idUserLogin: String
-    ): LiveData<Result<ErrorMessageResponse>>{
+    fun updateDetections(token: String, updateField: UpdateDetectionBody): LiveData<Result<ErrorMessageResponse>>{
         val updateDetectionResponse = MutableLiveData<Result<ErrorMessageResponse>>()
         viewModelScope.launch {
-            detectionRepository.updateDetections(token, id, status, idUserLogin).collect {
+            detectionRepository.updateDetections(token, updateField).collect {
                 updateDetectionResponse.postValue(it)
             }
         }

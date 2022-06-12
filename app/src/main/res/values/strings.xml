@@ -129,4 +129,40 @@
     <string name="detection_type_3_content"><li> Kebakaran</li></string>
     <string name="detection_status">Tervalidasi</string>
 
+    <string name="logout">Keluar</string>
+    <string name="change_password">Ubah Kata Sandi</string>
+    <string name="about_app">Tentang Aplikasi</string>
+    <string name="password_old">Kata Sandi Lama</string>
+    <string name="password_new">Kata Sandi Baru</string>
+    <string name="password_new_confirm">Konfirmasi Kata Sandi Baru</string>
+    <string name="placeholder_pass_old">Masukkan kata sandi lama</string>
+    <string name="placeholder_pass_new">Masukkan kata sandi baru</string>
+    <string name="placeholder_confirm_pass_new">Masukkan ulang kata sandi baru</string>
+    <string name="save">Simpan</string>
+
+    <string name="navigate_to_location">Arahkan ke lokasi</string>
+    <string name="accident_location">Lokasi Kejadian</string>
+    <string name="date_time">Tanggal dan Waktu</string>
+    <string name="accident_time">20:08</string>
+
+    <string name="danger_detail_title">Detail Bahaya</string>
+
+    <string name="heading_notif_report">Laporan Anda Hari Ini</string>
+    <string name="heading_notif_accident">Kejadian Hari Ini</string>
+
+    <string name="validation">Validasi</string>
+    <string name="rejection">Tolak</string>
+    <string name="complete">Selesai</string>
+    <string name="validator">Validator</string>
+
+    <string name="heading_tutorial">Penggunaan Tombol Darurat</string>
+    <string name="heading_report">Laporan Terkini</string>
+    <string name="heading_report_all">Lihat Semua</string>
+
+    <string name="status_invalid">Belum Valid</string>
+    <string name="status_reject">Ditolak</string>
+    <string name="status_valid">Tervalidasi</string>
+
+    <string name="read_already">Tandai sudah dibaca</string>
+    <string name="report_time">x menit yang lalu</string>
 </resources>

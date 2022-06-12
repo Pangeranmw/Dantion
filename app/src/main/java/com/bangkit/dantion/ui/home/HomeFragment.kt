@@ -1,13 +1,12 @@
 package com.bangkit.dantion.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isInvisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +24,6 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import org.tensorflow.lite.task.audio.classifier.AudioClassifier
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.concurrent.scheduleAtFixedRate
 
 @AndroidEntryPoint
@@ -69,7 +67,7 @@ class HomeFragment : Fragment() {
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner) { token ->
             this.token = token
-            getLocation()
+//            getLocation()
         }
     }
     private fun getUser(){
