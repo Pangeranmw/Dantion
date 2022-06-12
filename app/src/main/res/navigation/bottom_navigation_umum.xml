@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation_umum"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.bangkit.dantion.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_howToUseFragment"
+            app:destination="@id/howToUseFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.bangkit.dantion.ui.location.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location"/>
+    <fragment
+        android:id="@+id/caseFragment"
+        android:name="com.bangkit.dantion.ui.allCase.CaseFragment"
+        android:label="fragment_case"
+        tools:layout="@layout/fragment_case"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.bangkit.dantion.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/howToUseFragment"
+        android:name="com.bangkit.dantion.ui.home.HowToUseFragment"
+        android:label="fragment_how_to_use"
+        tools:layout="@layout/fragment_how_to_use" >
+        <action
+            android:id="@+id/action_howToUseFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/howToUseFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

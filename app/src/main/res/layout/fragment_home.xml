@@ -1,7 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
-</FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_white"
+        android:layout_centerInParent="true"
+        android:elevation="100dp"
+        />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:outlineAmbientShadowColor="@color/shadow_gray_smooth"
+        android:outlineSpotShadowColor="@color/shadow_gray_smooth"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/home_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/cd_photo_profile"
+                android:src="@drawable/img_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/full_name"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+            <ImageButton
+                android:id="@+id/btn_notification"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_notification"
+                android:contentDescription="@string/cd_notification"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_name"
+                tools:ignore="TouchTargetSizeCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar_layout"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_horn"
+                style="@style/HomeHeading"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/how_to_use"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <ImageButton
+                android:id="@+id/btn_how_to_use"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/how_to_use"
+                android:src="@drawable/ic_arrow_black"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_horn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_horn" />
+
+            <RelativeLayout
+                android:id="@+id/btn_emergency"
+                style="@style/ButtonFullWidthIcon"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:hapticFeedbackEnabled="true"
+                android:padding="20dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@+id/tv_horn"
+                app:layout_constraintTop_toBottomOf="@+id/tv_horn">
+
+                <ImageView
+                    android:id="@+id/ic_megaphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:src="@drawable/img_megaphone"
+                    android:textColor="@color/black"
+                    android:contentDescription="@string/sound_record"/>
+
+                <TextView
+                    android:id="@+id/btn_emergency_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ic_megaphone"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:text="@string/emergency_button"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_hold_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_emergency_text"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="@string/button_hold_time"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_emergency_start"
+                style="@style/RecordingLayout"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:padding="20dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@+id/tv_horn"
+                app:layout_constraintTop_toBottomOf="@+id/tv_horn">
+
+                <TextView
+                    android:id="@+id/tv_time_record"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="@string/time_record"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/tv_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_time_record"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="@string/prediction_label"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btn_cancel_record"
+                    style="@style/ButtonFullWidth"
+                    android:layout_below="@+id/tv_time_record"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semi"
+                    android:text="@string/stop_record"
+                    android:textAllCaps="false" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/home_tv_stat"
+                style="@style/HomeHeading"
+                android:text="@string/danger_stat"
+                app:layout_constraintStart_toStartOf="@+id/btn_emergency"
+                app:layout_constraintTop_toBottomOf="@+id/btn_emergency" />
+
+            <TextView
+                android:id="@+id/tv_sub_stat"
+                style="@style/HomeSubHeading"
+                android:layout_marginTop="10dp"
+                android:text="@string/danger_stat_sub"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@+id/home_tv_stat"
+                app:layout_constraintTop_toBottomOf="@+id/home_tv_stat" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_layout_crime"
+                style="@style/CardLayout"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
+
+                <LinearLayout
+                    android:id="@+id/stat_crime_card"
+                    style="@style/StatLinearLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
+
+                    <ImageView
+                        android:id="@+id/iv_ride"
+                        android:layout_width="72dp"
+                        android:layout_height="73.04dp"
+                        android:src="@drawable/img_crime_solo" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+
+                        <TextView
+                            android:id="@+id/tv_rob"
+                            style="@style/StatNameSmall"
+                            android:text="@string/crime" />
+
+                        <TextView
+                            android:id="@+id/tv_stat_crime_number"
+                            style="@style/StatNameBig"
+                            android:layout_below="@+id/tv_rob"
+                            android:text="@string/stat_number" />
+
+                        <TextView
+                            android:id="@+id/tv_case_rob"
+                            style="@style/StatNameSmall"
+                            android:layout_below="@+id/tv_stat_crime_number"
+                            android:text="@string/case_detected" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_layout_acc"
+                style="@style/CardLayout"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
+                app:layout_constraintTop_toBottomOf="@+id/card_layout_crime">
+
+                <LinearLayout
+                    android:id="@+id/stat_acc_card"
+                    style="@style/StatLinearLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
+
+                    <ImageView
+                        android:id="@+id/iv_acc"
+                        android:layout_width="72dp"
+                        android:layout_height="73.04dp"
+                        android:src="@drawable/img_fall" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+
+                        <TextView
+                            android:id="@+id/tv_acc"
+                            style="@style/StatNameSmall"
+                            android:text="@string/accident" />
+
+                        <TextView
+                            android:id="@+id/tv_stat_acc_number"
+                            style="@style/StatNameBig"
+                            android:layout_below="@+id/tv_acc"
+                            android:text="@string/stat_number" />
+
+                        <TextView
+                            android:id="@+id/tv_case_acc"
+                            style="@style/StatNameSmall"
+                            android:layout_below="@+id/tv_stat_acc_number"
+                            android:text="@string/case_detected" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_layout_fire"
+                style="@style/CardLayout"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@id/tv_sub_stat"
+                app:layout_constraintTop_toBottomOf="@+id/card_layout_acc">
+
+                <LinearLayout
+                    android:id="@+id/stat_fire_card"
+                    style="@style/StatLinearLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sub_stat">
+
+                    <ImageView
+                        android:id="@+id/iv_fire"
+                        android:layout_width="72dp"
+                        android:layout_height="73.04dp"
+                        android:src="@drawable/img_fire" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+
+                        <TextView
+                            android:id="@+id/tv_fire"
+                            style="@style/StatNameSmall"
+                            android:text="@string/accident" />
+
+                        <TextView
+                            android:id="@+id/tv_stat_fire_number"
+                            style="@style/StatNameBig"
+                            android:layout_below="@+id/tv_fire"
+                            android:text="@string/stat_number" />
+
+                        <TextView
+                            android:id="@+id/tv_case_fire"
+                            style="@style/StatNameSmall"
+                            android:layout_below="@+id/tv_stat_fire_number"
+                            android:text="@string/case_detected" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_latest_rob"
+                style="@style/HomeHeading"
+                android:text="@string/latest_case"
+                app:layout_constraintStart_toStartOf="@+id/card_layout_fire"
+                app:layout_constraintTop_toBottomOf="@+id/card_layout_fire" />
+
+            <Button
+                android:id="@+id/btn_all_case"
+                style="@style/ButtonSeeAll"
+                android:outlineAmbientShadowColor="@color/white"
+                android:outlineSpotShadowColor="@color/white"
+                android:shadowColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_latest_rob"
+                app:layout_constraintEnd_toEndOf="@+id/card_layout_fire"
+                app:layout_constraintTop_toTopOf="@+id/tv_latest_rob" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_latest_case"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_how_to_use"
+                app:layout_constraintStart_toStartOf="@+id/card_layout_fire"
+                app:layout_constraintTop_toBottomOf="@+id/btn_all_case"
+                tools:itemCount="5"
+                tools:listitem="@layout/latest_case_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>

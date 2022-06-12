@@ -3,7 +3,6 @@ package com.bangkit.dantion
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -11,20 +10,16 @@ import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.*
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getSystemService
-import com.bangkit.dantion.databinding.ActivityHomeBinding
 import com.bangkit.dantion.ui.custom.CustomTextInputLayout
 import java.io.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-
 
 fun checkPassword(text: String, customTextInputLayout: CustomTextInputLayout, context: Context){
     when{

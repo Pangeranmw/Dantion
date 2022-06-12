@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@+id/splashFragment"
 
+    >
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.bangkit.dantion.ui.SplashFragment"
@@ -13,16 +14,16 @@
         <action
             android:id="@+id/action_splashFragment_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment"
-            app:popUpTo="@id/splashFragment"
+            app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/splashFragment"
+            app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_homeActivity"
-            app:destination="@id/homeActivity"
+            android:id="@+id/action_splashFragment_to_roleUmumActivity"
+            app:destination="@id/roleUmumHostActivity"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -34,7 +35,7 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/viewPagerFragment"
+            app:popUpTo="@+id/viewPagerFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -46,11 +47,11 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
             app:launchSingleTop="false"
-            app:popUpTo="@id/loginFragment"
+            app:popUpTo="@+id/loginFragment"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_loginFragment_to_homeActivity"
-            app:destination="@id/homeActivity"
+            app:destination="@id/roleUmumHostActivity"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -63,12 +64,12 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@id/registerFragment"
+            app:popUpTo="@+id/registerFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <activity
-        android:id="@+id/homeActivity"
-        android:name="com.bangkit.dantion.ui.home.HomeActivity"
-        android:label="activity_home"
-        tools:layout="@layout/activity_home" />
+        android:id="@+id/roleUmumHostActivity"
+        android:name="com.bangkit.dantion.ui.RoleUmumActivity"
+        android:label="roleUmumHostActivity"
+        tools:layout="@layout/activity_role_umum" />
 </navigation>

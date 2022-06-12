@@ -176,4 +176,9 @@
         <item name="labelVisibilityMode">labeled</item>
         <item name="menu">@menu/bottom_nav</item>
     </style>
+
+    <style name="TabLayoutFont">
+        <item name="android:fontFamily">@font/montserrat_semi</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

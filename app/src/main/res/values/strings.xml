@@ -62,6 +62,7 @@
     <string name="danger_stat">Statistik Bahaya</string>
     <string name="danger_stat_sub">Jumlah kejahatan, kecelakaan &amp; kebakaran yang terdeteksi</string>
     <string name="rob">Begal</string>
+    <string name="all">Semua</string>
     <string name="crime">Kejahatan</string>
     <string name="accident">Kecelakaan</string>
     <string name="fire">Kebakaran</string>
@@ -96,5 +97,35 @@
     <string name="stop_record">Batalkan</string>
     <string name="button_hold_time">Tekan tombol selama 1 detik</string>
     <string name="prediction_label">Prediction Label</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detection_info_time">%1$s | %2$s | Jam %3$s</string>
+
+    <string name="how_to_report_danger_title">Cara Melaporkan Bahaya</string>
+    <string name="how_to_report_danger">
+<li> Tekan tombol rekam</li>\n
+<li> Ucapkan kalimat pertolongan yang mengandung salah satu kata pada bagian jenis bahaya</li>\n
+<li> Rekaman akan otomatis terkirim pada detik ke-5</li>
+    </string>
+    <string name="warning_content">
+        Menggunakan tombol darurat akan mengirim rekaman suara &amp; lokasi Anda ke pihak berwajib (Polisi/Pemadam Kebakaran/Tenaga Medis)
+    </string>
+    <string name="warning">PERHATIAN!</string>
+
+    <string name="detection_type">Jenis Bahaya</string>
+    <string name="detection_type_1">Kata Kejahatan</string>
+    <string name="detection_type_1_content">
+<li> Begal</li>\n
+<li> Maling</li>\n
+<li> Rampok</li>\n
+<li> Pencuri</li></string>
+
+    <string name="detection_type_2">Kata Kecelakaan</string>
+    <string name="detection_type_2_content">
+<li> Tabrakan</li>\n
+<li> Kecelakaan</li></string>
+
+    <string name="detection_type_3">Kata Kebakaran</string>
+    <string name="detection_type_3_content"><li> Kebakaran</li></string>
 
 </resources>

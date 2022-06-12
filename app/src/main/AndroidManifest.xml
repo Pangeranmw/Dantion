@@ -5,16 +5,11 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <!-- Permissions of internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Permissions of internet -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 
     <application
         android:name=".DantionApplication"
@@ -28,9 +23,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_KEY}" />
-
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.RoleUmumActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

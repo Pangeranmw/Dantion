@@ -8,13 +8,13 @@ import com.bangkit.dantion.data.local.entity.MyDetectionReportEntity
 @Dao
 interface AppDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertDetectionReport(detectionReport: DetectionReportEntity)
+    suspend fun insertDetectionReport(detectionReport: List<DetectionReportEntity>)
 
     @Query("SELECT * from detection_report")
     fun getAllDetectionReport(): LiveData<List<DetectionReportEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertMyDetectionReport(myDetectionReport: MyDetectionReportEntity)
+    suspend fun insertMyDetectionReport(myDetectionReport: List<MyDetectionReportEntity>)
 
     @Query("SELECT * from my_detection_report")
     fun getAllMyDetectionReport(): LiveData<List<MyDetectionReportEntity>>

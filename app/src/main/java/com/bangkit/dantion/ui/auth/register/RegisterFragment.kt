@@ -8,8 +8,8 @@ import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.bangkit.dantion.databinding.FragmentRegisterBinding
 import com.bangkit.dantion.ui.ViewPagerAdapter
-import com.bangkit.dantion.ui.auth.register.screens.FirstRegisterFragment
-import com.bangkit.dantion.ui.auth.register.screens.SecondRegisterFragment
+import com.bangkit.dantion.ui.auth.register.screens.AllCaseFragment
+import com.bangkit.dantion.ui.auth.register.screens.CrimeCaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,8 +30,8 @@ class RegisterFragment : Fragment() {
         val view = binding.root
 
         val fragmentList = arrayListOf(
-            FirstRegisterFragment(),
-            SecondRegisterFragment()
+            AllCaseFragment(),
+            CrimeCaseFragment()
         )
         val adapter = ViewPagerAdapter(
             fragmentList,

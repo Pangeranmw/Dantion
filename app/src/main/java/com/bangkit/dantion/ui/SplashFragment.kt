@@ -36,7 +36,6 @@ class SplashFragment : Fragment() {
         super.onCreate(savedInstanceState)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         getMyLastLocation()
-        createLocationRequest()
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +51,7 @@ class SplashFragment : Fragment() {
                         findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                         requireActivity().overridePendingTransition(0, 0)
                     } else {
-                        findNavController().navigate(R.id.action_splashFragment_to_homeActivity)
+                        findNavController().navigate(R.id.action_splashFragment_to_roleUmumActivity)
                         activity?.finish()
                         requireActivity().overridePendingTransition(0, 0)
                     }
@@ -94,6 +93,17 @@ class SplashFragment : Fragment() {
                 } else {
                     setToastLong(getString(R.string.location_not_found),requireContext())
                 }
+            fusedLocationClient.lastLocation.addOnFailureListener { exception ->
+                    if (exception is ResolvableApiException) {
+                        try {
+                            resolutionLauncher.launch(
+                                IntentSenderRequest.Builder(exception.resolution).build()
+                            )
+                        } catch (sendEx: IntentSender.SendIntentException) {
+                            sendEx.message?.let { setToastShort(it,requireContext()) }
+                        }
+                    }
+                }
             }
         } else {
             requestPermissionLauncher.launch(
@@ -104,40 +114,10 @@ class SplashFragment : Fragment() {
             )
         }
     }
-    private val resolutionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.StartIntentSenderForResult()
-        ) { result ->
-            when (result.resultCode) {
-                AppCompatActivity.RESULT_OK -> setToastLong("onActivityResult: All location settings are satisfied.",requireContext())
-                AppCompatActivity.RESULT_CANCELED -> setToastLong("Anda harus mengaktifkan GPS untuk menggunakan aplikasi ini!",requireContext())
-            }
+    private val resolutionLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
+        when (result.resultCode) {
+            AppCompatActivity.RESULT_OK -> setToastLong("onActivityResult: All location settings are satisfied.",requireContext())
+            AppCompatActivity.RESULT_CANCELED -> setToastLong("Anda harus mengaktifkan GPS untuk menggunakan aplikasi ini!",requireContext())
         }
-
-    private fun createLocationRequest() {
-        locationRequest = LocationRequest.create().apply {
-            interval = TimeUnit.SECONDS.toMillis(1)
-            maxWaitTime = TimeUnit.SECONDS.toMillis(1)
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
-
-        val builder = LocationSettingsRequest.Builder()
-            .addLocationRequest(locationRequest)
-        val client: SettingsClient = LocationServices.getSettingsClient(requireContext())
-        client.checkLocationSettings(builder.build())
-            .addOnSuccessListener {
-                getMyLastLocation()
-            }
-            .addOnFailureListener { exception ->
-                if (exception is ResolvableApiException) {
-                    try {
-                        resolutionLauncher.launch(
-                            IntentSenderRequest.Builder(exception.resolution).build()
-                        )
-                    } catch (sendEx: IntentSender.SendIntentException) {
-                        sendEx.message?.let { setToastShort(it,requireContext()) }
-                    }
-                }
-            }
     }
 }
