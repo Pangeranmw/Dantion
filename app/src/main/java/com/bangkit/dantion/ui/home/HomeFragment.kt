@@ -1,5 +1,6 @@
 package com.bangkit.dantion.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.bangkit.dantion.databinding.FragmentHomeBinding
 import com.bangkit.dantion.getCity
 import com.bangkit.dantion.getFirstName
 import com.bangkit.dantion.setToastShort
+import com.bangkit.dantion.ui.notification.NotificationActivity
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import com.bangkit.dantion.ui.viewModel.DetectionViewModel
 import com.bumptech.glide.Glide
@@ -62,6 +64,7 @@ class HomeFragment : Fragment() {
         startEmergency()
         cancelEmergency()
         startHowToUse()
+        setNotification()
         return view
     }
     private fun getToken(){
@@ -79,6 +82,12 @@ class HomeFragment : Fragment() {
                 .load(user.photo)
                 .into(binding.ivProfile)
             binding.tvName.text = getString(R.string.full_name, firstName)
+        }
+    }
+    private fun setNotification() {
+        binding.btnNotification.setOnClickListener {
+            val intent = Intent(requireActivity(), NotificationActivity::class.java)
+            startActivity(intent)
         }
     }
     private fun getLocation(){

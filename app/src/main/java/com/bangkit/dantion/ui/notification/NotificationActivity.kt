@@ -12,6 +12,6 @@ class NotificationActivity : AppCompatActivity() {
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        binding.dangerDetailTitle.setOnClickListener { finish() }
     }
 }

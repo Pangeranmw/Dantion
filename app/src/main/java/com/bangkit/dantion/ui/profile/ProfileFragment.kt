@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.bangkit.dantion.BuildConfig
-import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentProfileBinding
+import com.bangkit.dantion.ui.MainActivity
 import com.bangkit.dantion.ui.profile.password.PasswordActivity
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,9 +58,8 @@ class ProfileFragment : Fragment() {
 
     private fun logoutUser() {
         dataStoreViewModel.logout()
-        findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
-//        val intent = Intent(requireActivity(), MainActivity::class.java)
-//        startActivity(intent)
-//        requireActivity().finish()
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 }

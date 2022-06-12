@@ -12,6 +12,7 @@ import com.bangkit.dantion.data.Result
 import com.bangkit.dantion.data.remote.user.UpdatePasswordBody
 import com.bangkit.dantion.databinding.ActivityPasswordBinding
 import com.bangkit.dantion.setToastLong
+import com.bangkit.dantion.setToastShort
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import com.bangkit.dantion.ui.viewModel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,7 +73,7 @@ class PasswordActivity : AppCompatActivity() {
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {
                     setLoading(false)
-                    showToast(R.string.register_success)
+                    setToastShort(res.data.message, this)
                     finish()
                 }
                 is Result.Error -> {
