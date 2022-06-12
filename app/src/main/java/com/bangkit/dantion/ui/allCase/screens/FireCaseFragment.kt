@@ -75,7 +75,6 @@ class FireCaseFragment : Fragment() {
     }
     private fun setAdapter(detectionList: ArrayList<Detection>){
         fireDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
-        fireDangerAdapter.updateData(detectionList)
         binding.rvFireCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFireCase.adapter = fireDangerAdapter
     }

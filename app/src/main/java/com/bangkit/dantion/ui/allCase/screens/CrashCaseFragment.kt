@@ -69,7 +69,6 @@ class CrashCaseFragment : Fragment() {
     }
     private fun setAdapter(detectionList: ArrayList<Detection>){
         crashDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
-        crashDangerAdapter.updateData(detectionList)
         binding.rvCrashCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCrashCase.adapter = crashDangerAdapter
     }

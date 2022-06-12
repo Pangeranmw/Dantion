@@ -8,9 +8,19 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "danger_case")
 data class CaseEntity(
-    @PrimaryKey val detectionId: String,
-    val createdAt: String,
-    val address: String,
-    val city: String,
-    val type: String,
+    @PrimaryKey(autoGenerate = true) var caseId: Int=0,
+    var lat: Double,
+    var lon: Double,
+    var recordUrl: String,
+    var type: String,
+    var status: String,
+    var city: String,
+    var updatedAt: String,
+    var name: String,
+    var address: String,
+    var number: String,
+    var parentNumber: String,
+    var photo: String,
+    var validatorName: String,
+    var validatorPhoto: String,
 ): Parcelable

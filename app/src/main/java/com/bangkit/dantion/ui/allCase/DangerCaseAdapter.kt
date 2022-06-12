@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.databinding.CaseItemBinding
+import com.bangkit.dantion.ui.viewModel.DetectionViewModel
 import com.bangkit.dantion.utils.DangerDetectionDiffCallback
 import com.bumptech.glide.Glide
 

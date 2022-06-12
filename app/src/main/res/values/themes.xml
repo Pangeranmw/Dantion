@@ -179,6 +179,6 @@
 
     <style name="TabLayoutFont">
         <item name="android:fontFamily">@font/montserrat_semi</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 </resources>

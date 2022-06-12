@@ -128,5 +128,6 @@
     <string name="detection_type_3">Kata Kebakaran</string>
     <string name="detection_type_3_content"><li> Kebakaran</li></string>
     <string name="detection_status">Tervalidasi</string>
+    <string name="notification_unread">1</string>
 
 </resources>

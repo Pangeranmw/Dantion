@@ -25,7 +25,7 @@
             android:textSize="12sp"
             android:background="@drawable/rounded_green_light_half"
             android:padding="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:textColor="@color/green_dark_full"
             />
         <TextView
@@ -36,7 +36,7 @@
             android:text="@string/date"
             android:textColor="@color/secondary_main"
             android:textSize="12sp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@+id/tv_status"
             app:layout_constraintTop_toTopOf="@+id/tv_status"
             app:layout_constraintBottom_toBottomOf="@+id/tv_status"
@@ -46,25 +46,26 @@
             android:id="@+id/tv_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="@string/location_unknown"
-            android:textColor="@color/black"
             android:maxLines="2"
+            android:text="@string/location_unknown"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_time"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/img_profile"
             app:layout_constraintStart_toStartOf="@+id/tv_address"
-            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_type"
+            app:riv_corner_radius="100dp" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -74,7 +75,7 @@
             android:text="@string/victim_name"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintTop_toTopOf="@+id/iv_profile"/>
@@ -89,7 +90,7 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_address" />
+            app:layout_constraintTop_toTopOf="@+id/tv_status" />
 
 
         <TextView
@@ -98,11 +99,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/accident"
+            android:layout_marginTop="8dp"
             android:textColor="@color/secondary_main"
             android:textSize="14sp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-            app:layout_constraintEnd_toStartOf="@+id/tv_time"
-            app:layout_constraintTop_toTopOf="@+id/tv_name" />
+            app:layout_constraintStart_toStartOf="@+id/tv_address"
+            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
