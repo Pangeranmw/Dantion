@@ -1,8 +1,8 @@
-<img src="https://github.com/Pangeranmw/Dantion/tree/master/assets_readme/app-launcher.png" width="100" height="100" align="right" />
+<img src="https://raw.githubusercontent.com/Pangeranmw/Dantion/master/assets_readme/app-launcher.png" width="100" height="100" align="right" />
 
 # Dantion Android App
 Capstone project Bangkit 2022
-![Dantion App](https://github.com/Pangeranmw/Dantion/tree/master/assets_readme/bg-readme.png)
+![Dantion App](https://raw.githubusercontent.com/Pangeranmw/Dantion/master/assets_readme/bg-readme.png)
 
 ## About Our App
 
@@ -16,7 +16,7 @@ If you build this application an error will occur. Because this application requ
 >[Set up in Cloud Console](https://developers.google.com/maps/documentation/android-sdk/start#set_up_in_cloud_console) (Note: ignore the other steps from this link)
 
 Once you have the api key, follow these steps:
-![local-properties](https://github.com/Pangeranmw/Dantion/tree/master/assets_readme/local-properties.png)
+![local-properties](https://raw.githubusercontent.com/Pangeranmw/Dantion/master/assets_readme/local-properties.png)
 
 * Open local.properties file
 * Inside your local properties, set MAPS_KEY variable
