@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.local.AppDatabase
 import com.bangkit.dantion.data.local.entity.CaseEntity
+import com.bangkit.dantion.data.mapper.caseEntityToDetection
 import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.databinding.CaseItemBinding
 import com.bangkit.dantion.ui.allCase.detail.DetailPublicActivity
@@ -42,7 +43,7 @@ class DangerCaseAdapter(private val list: ArrayList<CaseEntity>, private val act
                 .into(binding.ivProfile)
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailPublicActivity::class.java)
-                intent.putExtra(DetailPublicActivity.EXTRA_DATA, data)
+                intent.putExtra(DetailPublicActivity.EXTRA_DATA, caseEntityToDetection(data))
                 activity.startActivity(intent)
             }
         }
