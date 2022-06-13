@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.allCase.detail.DetailPrivateActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/danger_detail_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:isScrollContainer="false"
+                android:text="@string/danger_detail_title"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:drawableStartCompat="@drawable/ic_back" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/sv_detail_danger_private"
+        android:layout_width="409dp"
+        android:layout_height="677dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic"
+                tools:ignore="ContentDescription" />
+
+            <Button
+                android:id="@+id/btn_navigate_location"
+                style="@style/ButtonFullWidth"
+                android:layout_width="wrap_content"
+                android:text="@string/navigate_to_location"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+            <ImageButton
+                android:id="@+id/btn_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_primary_second"
+                android:padding="20dp"
+                android:src="@drawable/ic_play"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                tools:ignore="ContentDescription" />
+
+            <Button
+                android:id="@+id/btn_validation"
+                style="@style/ButtonBlank"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/semi_rounded_primary_green_light_half"
+                android:text="@string/validation"
+                android:textColor="@color/green_dark_full"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_play"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/btn_play"
+                app:layout_constraintTop_toTopOf="@+id/btn_play"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/btn_rejection"
+                style="@style/ButtonBlank"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/rounded_outline_primary_light_full"
+                android:text="@string/rejection"
+                android:textColor="@color/secondary_light_full"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/btn_play"
+                app:layout_constraintTop_toBottomOf="@+id/btn_validation" />
+
+            <Button
+                android:id="@+id/btn_complete"
+                style="@style/ButtonBlank"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/rounded_outline_green_dark_full"
+                android:text="@string/complete"
+                android:textColor="@color/green_dark_full"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_rejection"
+                app:layout_constraintEnd_toEndOf="@+id/btn_validation"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="@+id/btn_rejection"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/tv_detail_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/accident"
+                android:textColor="@color/primary_light_full"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_complete"
+                app:layout_constraintStart_toStartOf="@+id/btn_rejection"
+                app:layout_constraintTop_toBottomOf="@+id/btn_complete" />
+
+            <TextView
+                android:id="@+id/tv_location_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/accident_location"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_detail_type"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_type" />
+
+            <TextView
+                android:id="@+id/tv_location_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/address"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_location_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_location_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location_title" />
+
+            <TextView
+                android:id="@+id/tv_location_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/accident_location"
+                app:layout_constraintEnd_toEndOf="@+id/tv_location_address"
+                app:layout_constraintStart_toStartOf="@+id/tv_location_address"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location_address" />
+
+            <TextView
+                android:id="@+id/tv_pelapor_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/reporter"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_location_place"
+                app:layout_constraintStart_toStartOf="@+id/tv_location_place"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location_place" />
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/cd_photo_profile"
+                android:src="@drawable/img_profile"
+                app:layout_constraintStart_toStartOf="@+id/tv_pelapor_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pelapor_title" />
+
+            <TextView
+                android:id="@+id/tv_pelapor_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/full_name"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pelapor_title"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+            <TextView
+                android:id="@+id/tv_time_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/date_time"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pelapor_name"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+            <TextView
+                android:id="@+id/tv_time_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/date"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_time_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_time_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time_title" />
+
+            <TextView
+                android:id="@+id/tv_time_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/accident_time"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_time_date"
+                app:layout_constraintStart_toStartOf="@+id/tv_time_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time_date" />
+
+            <TextView
+                android:id="@+id/tv_phone_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/number"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_time_time"
+                app:layout_constraintStart_toStartOf="@+id/tv_time_time"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time_time" />
+
+            <TextView
+                android:id="@+id/tv_phone_number_first"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:drawablePadding="5dp"
+                android:text="@string/placeholder_number"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_phone"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/tv_phone_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone_title" />
+
+            <TextView
+                android:id="@+id/tv_phone_number_second"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="@string/placeholder_number"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_phone"
+                app:layout_constraintEnd_toEndOf="@+id/tv_phone_title"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="@+id/tv_phone_number_first" />
+
+            <TextView
+                android:id="@+id/tv_pelapor_address_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/address"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_phone_number_second"
+                app:layout_constraintStart_toStartOf="@+id/tv_phone_number_first"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone_number_second" />
+
+            <TextView
+                android:id="@+id/tv_pelapor_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/address"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pelapor_address_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_pelapor_address_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pelapor_address_title" />
+
+            <TextView
+                android:id="@+id/tv_validator_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/validator"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pelapor_address"
+                app:layout_constraintStart_toStartOf="@+id/tv_pelapor_address"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pelapor_address" />
+
+            <ImageView
+                android:id="@+id/iv_profile_validator"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/cd_photo_profile"
+                android:src="@drawable/img_profile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_validator_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_validator_title" />
+
+            <TextView
+                android:id="@+id/tv_validator_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/full_name"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_validator"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pelapor_address_title"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile_validator"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_validator" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

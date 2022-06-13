@@ -51,7 +51,12 @@ class SplashFragment : Fragment() {
                         findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                         requireActivity().overridePendingTransition(0, 0)
                     } else {
-                        findNavController().navigate(R.id.action_splashFragment_to_roleUmumActivity)
+                        dataStoreViewModel.getUser().observe(viewLifecycleOwner){
+                            when(it.role){
+                                "umum" -> findNavController().navigate(R.id.action_splashFragment_to_roleUmumActivity)
+                                else -> findNavController().navigate(R.id.action_splashFragment_to_rolePrivateActivity)
+                            }
+                        }
                         activity?.finish()
                         requireActivity().overridePendingTransition(0, 0)
                     }

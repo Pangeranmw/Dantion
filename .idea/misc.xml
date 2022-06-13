@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.284375" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1595" />
+        <entry key="app/src/main/res/drawable-v24/rounded_green_light_full.xml" value="0.2635" />
         <entry key="app/src/main/res/drawable/bg_card_stat.xml" value="0.233" />
         <entry key="app/src/main/res/drawable/bg_edittext.xml" value="0.1535" />
         <entry key="app/src/main/res/drawable/bg_edittext_focused.xml" value="0.1535" />
@@ -19,6 +20,7 @@
         <entry key="app/src/main/res/drawable/ic_logo_dantion.xml" value="0.224" />
         <entry key="app/src/main/res/drawable/ic_logo_splash_screen.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/ic_pause_onboarding.xml" value="0.2165" />
+        <entry key="app/src/main/res/drawable/ic_phone.xml" value="0.2635" />
         <entry key="app/src/main/res/drawable/ic_play_onboarding.xml" value="0.2165" />
         <entry key="app/src/main/res/drawable/onboarding_active_indicator.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/onboarding_desc_bg.xml" value="0.249" />
@@ -26,6 +28,7 @@
         <entry key="app/src/main/res/drawable/rounded_green_light_full.xml" value="0.108" />
         <entry key="app/src/main/res/drawable/rounded_green_light_half.xml" value="0.108" />
         <entry key="app/src/main/res/drawable/rounded_light_pink.xml" value="0.159" />
+        <entry key="app/src/main/res/drawable/rounded_outline_green_dark_full.xml" value="0.2635" />
         <entry key="app/src/main/res/drawable/rounded_outline_green_thin.xml" value="0.388" />
         <entry key="app/src/main/res/drawable/rounded_outline_primary_light_full.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/rounded_outline_primary_light_full_thin.xml" value="0.388" />
@@ -38,22 +41,26 @@
         <entry key="app/src/main/res/drawable/tab_layout_selector.xml" value="0.29" />
         <entry key="app/src/main/res/drawable/tab_layout_text_selector.xml" value="0.29" />
         <entry key="app/src/main/res/layout-v28/latest_case_item.xml" value="0.39114583333333336" />
+        <entry key="app/src/main/res/layout/activity_detail_public.xml" value="0.32522522522522523" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3707627118644068" />
         <entry key="app/src/main/res/layout/activity_location.xml" value="0.32522522522522523" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23526763916015628" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/activity_notification.xml" value="0.15585585585585585" />
+        <entry key="app/src/main/res/layout/activity_role_private.xml" value="0.32522522522522523" />
         <entry key="app/src/main/res/layout/activity_role_umum.xml" value="0.15945945945945947" />
         <entry key="app/src/main/res/layout/case_item.xml" value="0.5037950661568833" />
         <entry key="app/src/main/res/layout/custom_info_window.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_all_case.xml" value="0.2505584716796875" />
         <entry key="app/src/main/res/layout/fragment_case.xml" value="0.2956959195081051" />
-        <entry key="app/src/main/res/layout/fragment_crash_case.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_crash_case.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_crime_case.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_fire_case.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first_onboarding.xml" value="0.2439407348632812" />
         <entry key="app/src/main/res/layout/fragment_first_register.xml" value="0.18366444905598958" />
         <entry key="app/src/main/res/layout/fragment_fourth_onboarding.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3451446533203125" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.26682281494140625" />
+        <entry key="app/src/main/res/layout/fragment_home_private.xml" value="0.32522522522522523" />
         <entry key="app/src/main/res/layout/fragment_how_to_use.xml" value="0.5880477905273438" />
         <entry key="app/src/main/res/layout/fragment_location.xml" value="0.14899752505190736" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.165" />

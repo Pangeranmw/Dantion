@@ -22,7 +22,7 @@ object DatabaseModule {
             appContext,
             AppDatabase::class.java,
             "dantion.db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     @Provides

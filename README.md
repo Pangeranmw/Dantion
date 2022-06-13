@@ -28,6 +28,10 @@ MAPS_KEY = your-api-key
 ```
 BASE_URL = https://dangerdetection.et.r.appspot.com/
 ```
+* Set WEB_URL variable
+```
+WEB_URL=https://dantion.herokuapp.com/
+```
 
 ### Libraries We Use
 

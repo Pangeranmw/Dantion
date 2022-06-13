@@ -21,6 +21,6 @@ data class CaseEntity(
     var number: String,
     var parentNumber: String,
     var photo: String,
-    var validatorName: String,
-    var validatorPhoto: String,
+    var validatorName: String ?= null,
+    var validatorPhoto: String  ?= null,
 ): Parcelable

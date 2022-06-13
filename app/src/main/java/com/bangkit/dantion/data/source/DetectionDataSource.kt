@@ -2,10 +2,7 @@ package com.bangkit.dantion.data.source
 
 import com.bangkit.dantion.data.Result
 import com.bangkit.dantion.data.remote.ErrorMessageResponse
-import com.bangkit.dantion.data.remote.detection.GetDetectionDetailResponse
-import com.bangkit.dantion.data.remote.detection.DetectionService
-import com.bangkit.dantion.data.remote.detection.GetAllDetectionResponse
-import com.bangkit.dantion.data.remote.detection.GetDetectionStatResponse
+import com.bangkit.dantion.data.remote.detection.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody
@@ -14,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DetectionDataSource @Inject constructor(private val detectionService: DetectionService, ) {
+class DetectionDataSource @Inject constructor(private val detectionService: DetectionService ) {
 
     suspend fun getDetectionStat(): Flow<Result<GetDetectionStatResponse>> {
         return flow {
@@ -96,11 +93,12 @@ class DetectionDataSource @Inject constructor(private val detectionService: Dete
         }
     }
 
-    suspend fun updateDetections(token: String, id: String, status: String, idUserLogin: String): Flow<Result<ErrorMessageResponse>> {
+    suspend fun updateDetections(token: String, updateField: UpdateDetectionBody): Flow<Result<ErrorMessageResponse>> {
         return flow {
             try {
                 emit(Result.Loading)
-                val response = detectionService.updateDetections("Bearer $token", id, status, idUserLogin)
+                val response = detectionService.updateDetections("Bearer $token",
+                    updateField.id, updateField.status, updateField.idUserLogin)
                 if (!response.error) {
                     emit(Result.Success(response))
                 } else {

@@ -7,15 +7,19 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.local.entity.CaseEntity
+import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.detection.GetDetectionDetailResponse
 import com.bangkit.dantion.data.remote.detection.GetAllDetectionResponse
 import com.bangkit.dantion.data.remote.detection.GetDetectionStatResponse
+import com.bangkit.dantion.data.remote.detection.UpdateDetectionBody
 import com.bangkit.dantion.data.repository.DetectionRepository
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 @HiltViewModel
 class DetectionViewModel @Inject constructor(private val detectionRepository: DetectionRepository): ViewModel() {
+
     fun addNewDetection(
         token: String,
         recordUrl: MultipartBody.Part,
@@ -33,15 +37,10 @@ class DetectionViewModel @Inject constructor(private val detectionRepository: De
         }
         return addDetectionResponse
     }
-    fun updateDetections(
-        token: String,
-        id: String,
-        status: String,
-        idUserLogin: String
-    ): LiveData<Result<ErrorMessageResponse>>{
+    fun updateDetections(token: String, updateField: UpdateDetectionBody): LiveData<Result<ErrorMessageResponse>>{
         val updateDetectionResponse = MutableLiveData<Result<ErrorMessageResponse>>()
         viewModelScope.launch {
-            detectionRepository.updateDetections(token, id, status, idUserLogin).collect {
+            detectionRepository.updateDetections(token, updateField).collect {
                 updateDetectionResponse.postValue(it)
             }
         }
@@ -82,5 +81,24 @@ class DetectionViewModel @Inject constructor(private val detectionRepository: De
             }
         }
         return allDetectionResponse
+    }
+    fun insertDangerCase(detection: List<Detection>){
+        viewModelScope.launch {
+            detectionRepository.insertDangerCase(detection)
+        }
+    }
+    fun deleteAllDangerCase(){
+        viewModelScope.launch {
+            detectionRepository.deleteAllDangerCase()
+        }
+    }
+    fun getAllDangerCase(): LiveData<ArrayList<CaseEntity>>{
+        val allDangerCase = MutableLiveData<ArrayList<CaseEntity>>()
+        viewModelScope.launch {
+            detectionRepository.getAllDangerCase().collect {
+                allDangerCase.postValue(it)
+            }
+        }
+        return allDangerCase
     }
 }

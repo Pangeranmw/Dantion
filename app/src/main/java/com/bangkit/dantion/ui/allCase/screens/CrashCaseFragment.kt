@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.local.entity.CaseEntity
+import com.bangkit.dantion.data.mapper.detectionToCaseEntity
 import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.databinding.FragmentCrashCaseBinding
 import com.bangkit.dantion.ui.allCase.DangerCaseAdapter
@@ -55,10 +57,13 @@ class CrashCaseFragment : Fragment() {
                         // get detection only with the same city
                         city.contains(it.city, ignoreCase = true) &&
                         // get detection that only have valid or complete status
-                        it.status == "valid" || it.status == "selesai"
-                    }.take(5)
+                        (it.status == "valid" || it.status == "selesai") &&
+                        it.type == "kecelakaan"
+                    }
                     crashDetections.addAll(crashDetectionsRes)
-                    setAdapter(crashDetections)
+                    detectionViewModel.getAllDangerCase().observe(viewLifecycleOwner){
+                        setAdapter(it, detectionToCaseEntity(crashDetections))
+                    }
                 }
                 is Result.Error -> {
                     setLoading(false)
@@ -67,10 +72,19 @@ class CrashCaseFragment : Fragment() {
             }
         }
     }
-    private fun setAdapter(detectionList: ArrayList<Detection>){
-        crashDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
+    private fun setAdapter(currentDetection: ArrayList<CaseEntity>, detectionList: List<CaseEntity>){
+        crashDangerAdapter = DangerCaseAdapter(currentDetection, requireActivity())
+        updateData(detectionList)
+        if(detectionList.isEmpty()) {
+            binding.tvNotFound.visibility = View.VISIBLE
+        }
         binding.rvCrashCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCrashCase.adapter = crashDangerAdapter
+    }
+    private fun updateData(detectionList: List<CaseEntity>){
+        crashDangerAdapter.updateData(detectionList as ArrayList<CaseEntity>)
+        detectionViewModel.deleteAllDangerCase()
+        detectionViewModel.insertDangerCase(crashDetections)
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner){

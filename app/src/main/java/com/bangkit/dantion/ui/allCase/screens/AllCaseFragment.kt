@@ -1,6 +1,7 @@
 package com.bangkit.dantion.ui.allCase.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.local.entity.CaseEntity
+import com.bangkit.dantion.data.mapper.detectionToCaseEntity
 import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.user.RegisterField
 import com.bangkit.dantion.databinding.FragmentAllCaseBinding
@@ -59,7 +62,10 @@ class AllCaseFragment : Fragment() {
                         it.status == "valid" || it.status == "selesai"
                     }
                     allDetection.addAll(allDetectionRes)
-                    setAdapter(allDetection)
+                    Log.d("tes luar", allDetection.toString())
+                    detectionViewModel.getAllDangerCase().observe(viewLifecycleOwner){
+                        setAdapter(it, detectionToCaseEntity(allDetection))
+                    }
                 }
                 is Result.Error -> {
                     setLoading(false)
@@ -68,10 +74,19 @@ class AllCaseFragment : Fragment() {
             }
         }
     }
-    private fun setAdapter(detectionList: ArrayList<Detection>){
-        allDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
+    private fun setAdapter(currentDetection: ArrayList<CaseEntity>, detectionList: List<CaseEntity>){
+        allDangerAdapter = DangerCaseAdapter(currentDetection, requireActivity())
+        updateData(detectionList)
+        if(detectionList.isEmpty()) {
+            binding.tvNotFound.visibility = View.VISIBLE
+        }
         binding.rvAllCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAllCase.adapter = allDangerAdapter
+    }
+    private fun updateData(detectionList: List<CaseEntity>){
+        allDangerAdapter.updateData(detectionList as ArrayList<CaseEntity>)
+        detectionViewModel.deleteAllDangerCase()
+        detectionViewModel.insertDangerCase(allDetection)
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner){

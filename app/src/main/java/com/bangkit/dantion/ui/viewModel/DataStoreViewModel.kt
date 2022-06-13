@@ -35,6 +35,9 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     fun getUser(): LiveData<LoginResult>{
         return dataStoreRepository.getUser().asLiveData()
     }
+    fun getIdUser(): LiveData<String> {
+        return dataStoreRepository.getIdUser().asLiveData()
+    }
     fun logout(){
         viewModelScope.launch(Dispatchers.IO){
             dataStoreRepository.logout()

@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isInvisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.dantion.R
 import com.bangkit.dantion.data.Result
@@ -64,7 +66,14 @@ class HomeFragment : Fragment() {
         startEmergency()
         cancelEmergency()
         startHowToUse()
+        seeAllCase()
+
         return view
+    }
+    private fun seeAllCase(){
+        binding.btnAllCase.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_caseFragment)
+        }
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner) { token ->

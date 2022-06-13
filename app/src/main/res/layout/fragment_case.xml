@@ -18,7 +18,7 @@
             android:id="@+id/case_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@null"
             app:tabBackground="@drawable/tab_layout_selector"
             app:tabIndicator="@null"
             app:tabMinWidth="110dp"

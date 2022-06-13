@@ -68,6 +68,7 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
     }
 
     override fun getLogin() = context.datastore.data.map{ it[LOGIN] }
+    fun getIdUser(): Flow<String> = context.datastore.data.map{ it[ID]?:"" }
     override fun getToken(): Flow<String> = context.datastore.data.map{ it[TOKEN]?:"" }
     override fun getUser() = context.datastore.data.map{ pref ->
         LoginResult(

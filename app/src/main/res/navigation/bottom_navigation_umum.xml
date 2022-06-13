@@ -14,6 +14,11 @@
             android:id="@+id/action_homeFragment_to_howToUseFragment"
             app:destination="@id/howToUseFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeFragment_to_caseFragment"
+            app:destination="@id/caseFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"

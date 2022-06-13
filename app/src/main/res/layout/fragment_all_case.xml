@@ -6,6 +6,18 @@
     tools:context="ui.allCase.screens.AllCaseFragment"
     android:paddingHorizontal="10dp"
     >
+    <TextView
+        android:id="@+id/tv_not_found"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/data_not_found"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:elevation="20dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/black" />
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"

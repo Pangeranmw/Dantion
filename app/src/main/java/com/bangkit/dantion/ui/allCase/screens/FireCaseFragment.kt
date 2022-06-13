@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.local.entity.CaseEntity
+import com.bangkit.dantion.data.mapper.detectionToCaseEntity
 import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.user.RegisterField
 import com.bangkit.dantion.databinding.FragmentCrimeCaseBinding
@@ -55,16 +57,18 @@ class FireCaseFragment : Fragment() {
                 is Result.Success -> {
                     setLoading(false)
                     fireDetections.clear()
-                    val crimeDetectionRes = res.data.detections.filter{
+                    val fireDetectionRes = res.data.detections.filter{
                         // get detection only with the same city
                         city.contains(it.city, ignoreCase = true) &&
                         // get detection that only have valid or complete status
-                        it.status == "valid" || it.status == "selesai" &&
+                        (it.status == "valid" || it.status == "selesai") &&
                         // get only fire type of danger
                         it.type == "kebakaran"
                     }
-                    fireDetections.addAll(crimeDetectionRes)
-                    setAdapter(fireDetections)
+                    fireDetections.addAll(fireDetectionRes)
+                    detectionViewModel.getAllDangerCase().observe(viewLifecycleOwner){
+                        setAdapter(it, detectionToCaseEntity(fireDetections))
+                    }
                 }
                 is Result.Error -> {
                     setLoading(false)
@@ -73,10 +77,19 @@ class FireCaseFragment : Fragment() {
             }
         }
     }
-    private fun setAdapter(detectionList: ArrayList<Detection>){
-        fireDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
+    private fun setAdapter(currentDetection: ArrayList<CaseEntity>, detectionList: List<CaseEntity>){
+        fireDangerAdapter = DangerCaseAdapter(currentDetection, requireActivity())
+        updateData(detectionList)
+        if(detectionList.isEmpty()) {
+            binding.tvNotFound.visibility = View.VISIBLE
+        }
         binding.rvFireCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFireCase.adapter = fireDangerAdapter
+    }
+    private fun updateData(detectionList: List<CaseEntity>){
+        fireDangerAdapter.updateData(detectionList as ArrayList<CaseEntity>)
+        detectionViewModel.deleteAllDangerCase()
+        detectionViewModel.insertDangerCase(fireDetections)
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner){

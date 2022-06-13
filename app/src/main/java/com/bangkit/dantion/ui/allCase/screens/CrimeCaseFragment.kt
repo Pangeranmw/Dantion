@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
+import com.bangkit.dantion.data.local.entity.CaseEntity
+import com.bangkit.dantion.data.mapper.detectionToCaseEntity
 import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.user.RegisterField
 import com.bangkit.dantion.databinding.FragmentCrashCaseBinding
@@ -59,12 +61,14 @@ class CrimeCaseFragment : Fragment() {
                         // get detection only with the same city
                         city.contains(it.city, ignoreCase = true) &&
                         // get detection that only have valid or complete status
-                        it.status == "valid" || it.status == "selesai" &&
+                        (it.status == "valid" || it.status == "selesai") &&
                         // get only crime type of danger
                         it.type == "kejahatan"
                     }
                     crimeDetections.addAll(crimeDetectionRes)
-                    setAdapter(crimeDetections)
+                    detectionViewModel.getAllDangerCase().observe(viewLifecycleOwner){
+                        setAdapter(it, detectionToCaseEntity(crimeDetections))
+                    }
                 }
                 is Result.Error -> {
                     setLoading(false)
@@ -73,10 +77,19 @@ class CrimeCaseFragment : Fragment() {
             }
         }
     }
-    private fun setAdapter(detectionList: ArrayList<Detection>){
-        crimeDangerAdapter = DangerCaseAdapter(detectionList, requireActivity())
+    private fun setAdapter(currentDetection: ArrayList<CaseEntity>, detectionList: List<CaseEntity>){
+        crimeDangerAdapter = DangerCaseAdapter(currentDetection, requireActivity())
+        updateData(detectionList)
+        if(detectionList.isEmpty()) {
+            binding.tvNotFound.visibility = View.VISIBLE
+        }
         binding.rvCrimeCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCrimeCase.adapter = crimeDangerAdapter
+    }
+    private fun updateData(detectionList: List<CaseEntity>){
+        crimeDangerAdapter.updateData(detectionList as ArrayList<CaseEntity>)
+        detectionViewModel.deleteAllDangerCase()
+        detectionViewModel.insertDangerCase(crimeDetections)
     }
     private fun getToken(){
         dataStoreViewModel.getToken().observe(viewLifecycleOwner){

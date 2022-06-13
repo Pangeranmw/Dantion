@@ -26,6 +26,10 @@
             app:destination="@id/roleUmumHostActivity"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_rolePrivateActivity"
+            app:destination="@id/rolePrivateActivity"
+            app:popUpTo="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -54,6 +58,10 @@
             app:destination="@id/roleUmumHostActivity"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_rolePrivateActivity"
+            app:destination="@id/rolePrivateActivity"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -72,4 +80,8 @@
         android:name="com.bangkit.dantion.ui.RoleUmumActivity"
         android:label="roleUmumHostActivity"
         tools:layout="@layout/activity_role_umum" />
+    <activity
+        android:id="@+id/rolePrivateActivity"
+        android:name="com.bangkit.dantion.ui.RolePrivateActivity"
+        android:label="RolePrivateActivity" />
 </navigation>
