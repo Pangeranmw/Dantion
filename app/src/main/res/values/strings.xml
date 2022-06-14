@@ -93,7 +93,7 @@
     <string name="empty_form">Data tidak boleh kosong</string>
     <string name="empty_information_account">Harap isi semua informasi akun</string>
     <string name="see_all">Lihat Semua</string>
-    <string name="time_record">00:0%1$d</string>
+    <string name="time_record">%1$d%2$d:%3$d%4$d</string>
     <string name="stop_record">Batalkan</string>
     <string name="button_hold_time">Tekan tombol selama 1 detik</string>
     <string name="prediction_label">Prediction Label</string>

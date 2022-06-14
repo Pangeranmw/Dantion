@@ -3,9 +3,13 @@ package com.bangkit.dantion.ui.home
 import android.media.AudioRecord
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.HandlerThread
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.HandlerCompat
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,6 +27,9 @@ import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
 import com.bangkit.dantion.ui.viewModel.DetectionViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.tensorflow.lite.support.audio.TensorAudio
 import org.tensorflow.lite.task.audio.classifier.AudioClassifier
 import org.tensorflow.lite.task.audio.classifier.AudioClassifier.AudioClassifierOptions
@@ -53,17 +60,24 @@ class HomeFragment : Fragment() {
     private var lat: Double = 0.0
     private var lon: Double = 0.0
 
+    private lateinit var timer: TimerTask
     private lateinit var countdown: CountDownTimer
 
-    // TODO 2.1: defines the model to be used
-//    private var modelPath = "model.tflite"
-    private var modelPath = "final-model-metadata.tflite"
-    // TODO 2.2: defining the minimum threshold
-    private var probabilityThreshold: Float = 0.1f
-    private lateinit var classifier: AudioClassifier
-    private lateinit var tensor: TensorAudio
-    private lateinit var record: AudioRecord
+    private lateinit var handler: Handler // background thread handler to run classification
+    private var audioClassifier: AudioClassifier? = null
+    private var audioRecord: AudioRecord? = null
+    private var classificationInterval = 1000L // how often should classification run in milli-secs
 
+    private var modelPath = "final-model-metadata.tflite"
+    private var probabilityThreshold: Float = 0.05f
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Create a handler to run classification in a background thread
+        val handlerThread = HandlerThread("backgroundThread")
+        handlerThread.start()
+        handler = HandlerCompat.createAsync(handlerThread.looper)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,21 +85,11 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         getToken()
-        setClassifier()
         startEmergency()
         cancelEmergency()
         startHowToUse()
         seeAllCase()
         return view
-    }
-    private fun setClassifier(){
-        val options = AudioClassifierOptions.builder()
-            .setBaseOptions(BaseOptions.builder().useGpu().build())
-            .setMaxResults(1)
-            .build()
-        classifier = AudioClassifier.createFromFileAndOptions(context, modelPath, options)
-        tensor = classifier.createInputTensorAudio()
-        record = classifier.createAudioRecord()
     }
     private fun seeAllCase(){
         binding.btnAllCase.setOnClickListener {
@@ -176,51 +180,98 @@ class HomeFragment : Fragment() {
     private fun setLoading(state: Boolean){
         binding.progressBar.visibility = if(state) View.VISIBLE else View.INVISIBLE
     }
+    private fun startAudioClassification() {
+        // If the audio classifier is initialized and running, do nothing.
+        if (audioClassifier != null) return;
+
+        // Initialize the audio classifier
+        val options = AudioClassifierOptions.builder()
+            .setBaseOptions(BaseOptions.builder().useGpu().build())
+            .setMaxResults(1)
+            .build()
+        val classifier = AudioClassifier.createFromFileAndOptions(context, modelPath, options)
+//        val classifier = AudioClassifier.createFromFile(context, modelPath)
+        val audioTensor = classifier.createInputTensorAudio()
+
+        // Initialize the audio recorder
+        val record = classifier.createAudioRecord()
+        record.startRecording()
+
+        // Define the classification runnable
+        val run = object : Runnable {
+            override fun run() {
+                // Load the latest audio sample
+                audioTensor.load(record)
+                val output = classifier.classify(audioTensor)
+                val filteredModelOutput = output[0].categories.filter {
+                    it.score > probabilityThreshold
+                }
+                val outputStr =
+                    filteredModelOutput.sortedBy { -it.score }
+                        .joinToString(separator = "\n") { "${it.label} -> ${it.score} " }
+                Log.d("label", filteredModelOutput.toString())
+                if (outputStr.isNotEmpty())
+                    requireActivity().runOnUiThread {
+                        if(!outputStr.contains("random", true)) {
+                            type = when{
+                                outputStr.contains("begal", true) ||
+                                        outputStr.contains("maling", true) ||
+                                        outputStr.contains("pencuri", true) ||
+                                        outputStr.contains("rampok", true)
+                                -> "kejahatan"
+                                outputStr.contains("kecelakaan", true) ||
+                                        outputStr.contains("tabrakan", true)
+                                -> "kecelakaan"
+                                outputStr.contains("kebakaran", true)
+                                -> "kebakaran"
+                                else -> "random"
+                            }
+//                            binding.tvLabel.text = type
+//                            stopAudioClassification()
+                        }
+                        binding.tvLabel.text = outputStr
+                    }
+                // Rerun the classification after a certain interval
+                handler.postDelayed(this, classificationInterval)
+            }
+        }
+
+        // Start the classification process
+        handler.post(run)
+
+        // Save the instances we just created for use later
+        audioClassifier = classifier
+        audioRecord = record
+    }
+
+    private fun stopAudioClassification() {
+        handler.removeCallbacksAndMessages(null)
+        audioRecord?.stop()
+        audioRecord = null
+        audioClassifier = null
+    }
     private fun startEmergency(){
         binding.btnEmergency.setOnLongClickListener{
             showRecordLayout(true)
-//            val options = AudioClassifierOptions.builder()
-//                .setBaseOptions(BaseOptions.builder().useGpu().build())
-//                .setMaxResults(1)
-//                .build()
-//            val classifier = AudioClassifier.createFromFileAndOptions(context, modelPath, options)
-//            val tensor = classifier.createInputTensorAudio()
-//            record = classifier.createAudioRecord()
-            record.startRecording()
-
             isCancel = false
-            val recordDuration = 100000L
+            val recordDuration = 90000L
+            startAudioClassification()
             countdown = object : CountDownTimer(recordDuration, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    Timer().scheduleAtFixedRate(1, 500) {
-                        val output = classifier.classify(tensor)
-
-                        // TODO 4.2: Filtering out classifications with low probability
-                        val filteredModelOutput = output[0].categories.filter {
-                            it.score > probabilityThreshold
-                        }
-
-                        // TODO 4.3: Creating a multiline string with the filtered results
-                        val outputStr =
-                            filteredModelOutput.sortedBy { -it.score }
-                                .joinToString(separator = "\n") { "${it.label} -> ${it.score} " }
-
-                        // TODO 4.4: Updating the UI
-                        if (outputStr.isNotEmpty())
-                            requireActivity().runOnUiThread {
-                                binding.tvLabel.text = outputStr
-                            }
-                    }
                     if(isCancel) {
+                        stopAudioClassification()
                         cancel()
-                        record.stop()
                     }
-                    binding.tvTimeRecord.text = getString(R.string.time_record, (millisUntilFinished / 1000))
+                    val seconds : Long = (millisUntilFinished / 1000) % 60
+                    val minutes = (millisUntilFinished / (1000 * 60)) % 60
+//                    getString(R.string.time_record, (millisUntilFinished / 1000), 0, 0, 0)
+                    binding.tvTimeRecord.text = "%02d:%02d".format(minutes, seconds)
                 }
                 override fun onFinish() {
                     isFinished = true
 //                    addNewDetection()
-                    record.stop()
+                    showRecordLayout(false)
+                    stopAudioClassification()
                 }
             }
             if(!isFinished) countdown.start()
@@ -235,6 +286,7 @@ class HomeFragment : Fragment() {
         }
     }
     private fun startHowToUse(){
+        stopAudioClassification()
         binding.btnHowToUse.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_howToUseFragment)
         }
