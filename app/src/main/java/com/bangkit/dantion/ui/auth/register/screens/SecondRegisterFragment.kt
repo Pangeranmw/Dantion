@@ -44,7 +44,6 @@ class SecondRegisterFragment : Fragment() {
                     saveData()
                 }
                 else Toast.makeText(requireContext(), getString(R.string.password_same), Toast.LENGTH_LONG).show()
-
             }
             else Toast.makeText(requireContext(), getString(R.string.empty_information_account), Toast.LENGTH_LONG).show()
         }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.auth.register.screens.AllCaseFragment"
+    tools:context=".ui.auth.register.screens.FirstRegisterFragment"
     android:windowSoftInputMode="adjustResize"
     >
 
@@ -36,7 +36,6 @@
             android:background="@drawable/rounded_primary_light_full"
             android:text="@string/individual_data"
             />
-
         <Button
             android:id="@+id/tab_account_info"
             android:layout_marginLeft="5dp"
@@ -54,7 +53,7 @@
         android:id="@+id/tv_name"
         style="@style/LabelEditText"
         android:layout_marginTop="20dp"
-        android:text="@string/full_name"
+        android:text="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tab_register"/>

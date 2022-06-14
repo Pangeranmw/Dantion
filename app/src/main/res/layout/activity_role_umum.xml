@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.RoleUmumActivity">
+
     <fragment
         android:id="@+id/fragment_bottom_nav_umum"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/bottom_navigation_umum"
         android:layout_marginBottom="70dp"
-        />
-
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/bottom_navigation_umum" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_umum"
         style="@style/BottomNavigationStyle"/>

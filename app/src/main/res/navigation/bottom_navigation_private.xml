@@ -6,32 +6,6 @@
     app:startDestination="@id/homePrivateFragment">
 
     <fragment
-        android:id="@+id/locationFragment"
-        android:name="com.bangkit.dantion.ui.location.LocationFragment"
-        android:label="fragment_location"
-        tools:layout="@layout/fragment_location"/>
-    <fragment
-        android:id="@+id/caseFragment"
-        android:name="com.bangkit.dantion.ui.allCase.CaseFragment"
-        android:label="fragment_case"
-        tools:layout="@layout/fragment_case"/>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.bangkit.dantion.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile"/>
-    <fragment
-        android:id="@+id/howToUseFragment"
-        android:name="com.bangkit.dantion.ui.home.HowToUseFragment"
-        android:label="fragment_how_to_use"
-        tools:layout="@layout/fragment_how_to_use" >
-        <action
-            android:id="@+id/action_howToUseFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/howToUseFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
         android:id="@+id/homePrivateFragment"
         android:name="com.bangkit.dantion.ui.home.HomePrivateFragment"
         android:label="fragment_home_private"
@@ -39,5 +13,31 @@
         <action
             android:id="@+id/action_homePrivateFragment_to_howToUseFragment"
             app:destination="@id/howToUseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationPrivateFragment"
+        android:name="com.bangkit.dantion.ui.location.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location"/>
+    <fragment
+        android:id="@+id/casePrivateFragment"
+        android:name="com.bangkit.dantion.ui.allCase.CaseFragment"
+        android:label="fragment_case"
+        tools:layout="@layout/fragment_case"/>
+    <fragment
+        android:id="@+id/profilePrivateFragment"
+        android:name="com.bangkit.dantion.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/howToUsePrivateFragment"
+        android:name="com.bangkit.dantion.ui.home.HowToUseFragment"
+        android:label="fragment_how_to_use"
+        tools:layout="@layout/fragment_how_to_use" >
+        <action
+            android:id="@+id/action_howToUseFragment_to_homePrivateFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/howToUseFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

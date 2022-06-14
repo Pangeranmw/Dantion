@@ -30,13 +30,7 @@ import java.util.concurrent.TimeUnit
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
     private val dataStoreViewModel: DataStoreViewModel by viewModels()
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        getMyLastLocation()
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,64 +59,5 @@ class SplashFragment : Fragment() {
         }, 3000)
 
         return inflater.inflate(R.layout.fragment_splash, container, false)
-    }
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
-        ) { permissions ->
-            when {
-                permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
-                    getMyLastLocation()
-                }
-                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
-                    getMyLastLocation()
-                }
-                else -> { }
-            }
-        }
-
-    private fun checkPermission(permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(
-            requireContext(),
-            permission
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun getMyLastLocation() {
-        if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
-            checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-        ) {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-                if (location != null) {
-                    dataStoreViewModel.saveLocation(location.latitude, location.longitude)
-                } else {
-                    setToastLong(getString(R.string.location_not_found),requireContext())
-                }
-            fusedLocationClient.lastLocation.addOnFailureListener { exception ->
-                    if (exception is ResolvableApiException) {
-                        try {
-                            resolutionLauncher.launch(
-                                IntentSenderRequest.Builder(exception.resolution).build()
-                            )
-                        } catch (sendEx: IntentSender.SendIntentException) {
-                            sendEx.message?.let { setToastShort(it,requireContext()) }
-                        }
-                    }
-                }
-            }
-        } else {
-            requestPermissionLauncher.launch(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                )
-            )
-        }
-    }
-    private val resolutionLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
-        when (result.resultCode) {
-            AppCompatActivity.RESULT_OK -> setToastLong("onActivityResult: All location settings are satisfied.",requireContext())
-            AppCompatActivity.RESULT_CANCELED -> setToastLong("Anda harus mengaktifkan GPS untuk menggunakan aplikasi ini!",requireContext())
-        }
     }
 }

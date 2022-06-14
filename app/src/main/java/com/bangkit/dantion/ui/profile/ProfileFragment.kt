@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.bangkit.dantion.BuildConfig
+import com.bangkit.dantion.R
 import com.bangkit.dantion.databinding.FragmentProfileBinding
+import com.bangkit.dantion.getFirstName
 import com.bangkit.dantion.ui.MainActivity
 import com.bangkit.dantion.ui.profile.password.PasswordActivity
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
@@ -26,6 +30,12 @@ class ProfileFragment : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         val view = binding.root
+
+        dataStoreViewModel.getUser().observe(viewLifecycleOwner){
+            binding.tvUserName.text = it.name?.getFirstName()
+            binding.tvUserEmail.text = it.email
+            binding.tvUserNumber.text = it.number
+        }
 
         binding.btnEditProfile.setOnClickListener { startEditActivity() }
         binding.ivProfile.setOnClickListener{ startUpdateUserActivity() }
@@ -58,8 +68,12 @@ class ProfileFragment : Fragment() {
 
     private fun logoutUser() {
         dataStoreViewModel.logout()
-        val intent = Intent(requireActivity(), MainActivity::class.java)
-        startActivity(intent)
+//        val navHostFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+//        navHostFragment.findNavController().navigate(R.id.action_profileFragment2_to_loginFragment)
+        findNavController().navigate(R.id.action_profileFragment_to_mainActivity)
+        requireActivity().overridePendingTransition(0, 0)
+//        val intent = Intent(requireActivity(), MainActivity::class.java)
+//        startActivity(intent)
         requireActivity().finish()
     }
 }

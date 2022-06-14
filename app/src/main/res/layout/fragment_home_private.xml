@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
@@ -13,10 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingVertical="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -78,11 +75,8 @@
     <ScrollView
         android:id="@+id/sv_home"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_home"
@@ -106,15 +100,63 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <RelativeLayout
+                android:id="@+id/btn_emergency"
+                style="@style/ButtonFullWidthIcon"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:hapticFeedbackEnabled="true"
+                android:padding="20dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/tv_tutorial_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_tutorial_btn"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tutorial_btn">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/rounded_outline_primary_black"
+                <ImageView
+                    android:id="@+id/ic_megaphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/sound_record"
+                    android:gravity="center"
+                    android:src="@drawable/img_megaphone"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/btn_emergency_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ic_megaphone"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:text="@string/emergency_button"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_hold_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_emergency_text"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="@string/button_hold_time"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_emergency_start"
+                style="@style/RecordingLayout"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:padding="20dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/tv_tutorial_btn"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tv_tutorial_btn"
@@ -122,42 +164,36 @@
 
                 <TextView
                     android:id="@+id/tv_time_record"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
                     android:text="@string/time_record"
-                    android:textSize="40sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/tv_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_time_record"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="@string/prediction_label"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btn_cancel_record"
-                    style="@style/ButtonFullWidthIcon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@android:string/cancel"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_time_record" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Button
-                android:id="@+id/btn_emergency"
-                style="@style/ButtonFullWidthIcon"
-                android:layout_height="151dp"
-                android:layout_marginTop="20dp"
-                android:drawableTop="@drawable/ic_megaphone"
-                android:text="@string/emergency_button"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="@+id/tv_tutorial_btn"
-                app:layout_constraintStart_toStartOf="@+id/tv_tutorial_btn"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tutorial_btn" />
+                    style="@style/ButtonFullWidth"
+                    android:layout_below="@+id/tv_time_record"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semi"
+                    android:text="@string/stop_record"
+                    android:textAllCaps="false" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_heading_report"
@@ -169,7 +205,7 @@
                 android:text="@string/heading_report"
                 app:layout_constraintEnd_toStartOf="@+id/tv_heading_report_all"
                 app:layout_constraintStart_toStartOf="@+id/tv_tutorial_btn"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_emergency" />
 
             <TextView
                 android:id="@+id/tv_heading_report_all"
@@ -462,4 +498,4 @@
 
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

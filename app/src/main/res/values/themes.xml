@@ -174,6 +174,20 @@
         <item name="labelVisibilityMode">labeled</item>
         <item name="menu">@menu/bottom_nav</item>
     </style>
+    <style name="BottomNavigationPrivateStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="itemIconTint">@color/bottom_nav_color</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavigationViewTextStyle</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavigationViewInactiveTextStyle</item>
+        <item name="itemTextColor">@color/bottom_nav_color</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="menu">@menu/bottom_nav_private</item>
+    </style>
 
     <style name="TabLayoutFont">
         <item name="android:fontFamily">@font/montserrat_semi</item>

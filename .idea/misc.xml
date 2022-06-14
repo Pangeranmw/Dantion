@@ -41,13 +41,14 @@
         <entry key="app/src/main/res/drawable/tab_layout_selector.xml" value="0.29" />
         <entry key="app/src/main/res/drawable/tab_layout_text_selector.xml" value="0.29" />
         <entry key="app/src/main/res/layout-v28/latest_case_item.xml" value="0.39114583333333336" />
-        <entry key="app/src/main/res/layout/activity_detail_public.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/activity_detail_private.xml" value="0.1990990990990991" />
+        <entry key="app/src/main/res/layout/activity_detail_public.xml" value="0.5938552856445313" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3707627118644068" />
         <entry key="app/src/main/res/layout/activity_location.xml" value="0.32522522522522523" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23526763916015628" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14175724637681159" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.15585585585585585" />
-        <entry key="app/src/main/res/layout/activity_role_private.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/activity_role_private.xml" value="0.199289861455694" />
         <entry key="app/src/main/res/layout/activity_role_umum.xml" value="0.15945945945945947" />
         <entry key="app/src/main/res/layout/case_item.xml" value="0.5037950661568833" />
         <entry key="app/src/main/res/layout/custom_info_window.xml" value="0.67" />
@@ -73,6 +74,7 @@
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/latest_case_item.xml" value="0.28162587483723966" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_private.xml" value="0.1990990990990991" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1595" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.109" />
       </map>

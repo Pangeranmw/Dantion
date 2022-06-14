@@ -166,5 +166,15 @@
     <string name="read_already">Tandai sudah dibaca</string>
     <string name="report_time">x menit yang lalu</string>
     <string name="data_not_found">Data Tidak Ditemukan</string>
+    <string name="name">Nama</string>
+    <string name="distance_value">2 km</string>
+    <string name="time_prediction">10 Menit</string>
+    <string name="time_prediction_duration">Perkiraan durasi</string>
+    <string name="distance">Jarak</string>
+    <string name="from_your_location">dari lokasimu ke TKP</string>
+    <string name="authority_status">Tenaga medis dalam perjalanan</string>
+
+    <string name="MAPS_ID">c35b3d2d9f3549d5</string>
+
 
 </resources>
