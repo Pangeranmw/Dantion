@@ -1,5 +1,6 @@
 package com.bangkit.dantion.ui.viewModel
 
+import android.content.Context
 import androidx.lifecycle.*
 import com.bangkit.dantion.data.remote.ErrorMessageResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,6 +9,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.bangkit.dantion.data.Result
 import com.bangkit.dantion.data.local.entity.CaseEntity
+import com.bangkit.dantion.data.local.entity.DetectionReportEntity
+import com.bangkit.dantion.data.local.entity.MyDetectionReportEntity
 import com.bangkit.dantion.data.model.Detection
 import com.bangkit.dantion.data.remote.detection.GetDetectionDetailResponse
 import com.bangkit.dantion.data.remote.detection.GetAllDetectionResponse
@@ -55,23 +58,44 @@ class DetectionViewModel @Inject constructor(private val detectionRepository: De
         }
         return detectionStatResponse
     }
-    fun getAllDetections(token: String): LiveData<Result<GetAllDetectionResponse>>{
-        val allDetectionResponse = MutableLiveData<Result<GetAllDetectionResponse>>()
+    private val _allDetectionResponse = MutableLiveData<Result<GetAllDetectionResponse>>()
+    val allDetectionResponse: LiveData<Result<GetAllDetectionResponse>>
+        get() = _allDetectionResponse
+    fun getAllDetections(token: String){
         viewModelScope.launch {
             detectionRepository.getAllDetections(token).collect {
-                allDetectionResponse.postValue(it)
+                _allDetectionResponse.value = it
             }
         }
-        return allDetectionResponse
+    }
+    private val _myDetectionResponse = MutableLiveData<Result<GetAllDetectionResponse>>()
+    val myDetectionResponse: LiveData<Result<GetAllDetectionResponse>>
+        get() = _myDetectionResponse
+    fun getMyDetections(token: String, id: String){
+        viewModelScope.launch {
+            detectionRepository.getMyDetections(token,id).collect {
+                _myDetectionResponse.value = it
+            }
+        }
+    }
+    private val _todayDetectionResponse = MutableLiveData<Result<GetAllDetectionResponse>>()
+    val todayDetectionResponse: LiveData<Result<GetAllDetectionResponse>>
+        get() = _todayDetectionResponse
+    fun getTodayDetections(token: String, id: String, city: String){
+        viewModelScope.launch {
+            detectionRepository.getTodayDetections(token,id,city).collect {
+                _todayDetectionResponse.value = it
+            }
+        }
     }
     fun getDetectionDetail(token: String, id: String): LiveData<Result<GetDetectionDetailResponse>>{
-        val allDetectionResponse = MutableLiveData<Result<GetDetectionDetailResponse>>()
+        val detectionDetailResponse = MutableLiveData<Result<GetDetectionDetailResponse>>()
         viewModelScope.launch {
             detectionRepository.getDetectionDetail(token, id).collect {
-                allDetectionResponse.postValue(it)
+                detectionDetailResponse.postValue(it)
             }
         }
-        return allDetectionResponse
+        return detectionDetailResponse
     }
     fun deleteDetection(token: String, id: String): LiveData<Result<ErrorMessageResponse>>{
         val allDetectionResponse = MutableLiveData<Result<ErrorMessageResponse>>()
@@ -100,5 +124,86 @@ class DetectionViewModel @Inject constructor(private val detectionRepository: De
             }
         }
         return allDangerCase
+    }
+
+    fun insertDetectionReport(detection: List<Detection>, context: Context){
+        viewModelScope.launch {
+            detectionRepository.insertDetectionReport(detection, context)
+        }
+    }
+    fun deleteAllDetectionReport(){
+        viewModelScope.launch {
+            detectionRepository.deleteAllDetectionReport()
+        }
+    }
+    fun updateReadDetectionReport(id: String, isRead: Boolean){
+        viewModelScope.launch {
+            detectionRepository.updateReadDetectionReport(id, isRead)
+        }
+    }
+    fun readAllReport(){
+        viewModelScope.launch {
+            detectionRepository.readAllReport()
+        }
+    }
+    private val _allDetectionReport = MutableLiveData<ArrayList<DetectionReportEntity>>()
+    val allDetectionReport: LiveData<ArrayList<DetectionReportEntity>>
+        get() = _allDetectionReport
+    fun getAllDetectionReport(){
+        viewModelScope.launch {
+            detectionRepository.getAllDetectionReport().collect {
+                _allDetectionReport.value = it
+            }
+        }
+    }
+//    fun getAllDetectionReport(): LiveData<ArrayList<DetectionReportEntity>>{
+//        viewModelScope.launch {
+//            detectionRepository.getAllDetectionReport().collect {
+//                allDangerCase.postValue(it)
+//            }
+//        }
+//        return allDangerCase
+//    }
+
+    fun insertMyDetectionReport(detection: List<Detection>, context: Context){
+        viewModelScope.launch {
+            detectionRepository.insertMyDetectionReport(detection, context)
+        }
+    }
+    fun deleteAllMyDetectionReport(){
+        viewModelScope.launch {
+            detectionRepository.deleteAllMyDetectionReport()
+        }
+    }
+    fun updateReadMyDetectionReport(id: String, isRead: Boolean){
+        viewModelScope.launch {
+            detectionRepository.updateReadMyDetectionReport(id, isRead)
+        }
+    }
+    fun readAllMyReport(){
+        viewModelScope.launch {
+            detectionRepository.readAllMyReport()
+        }
+    }
+
+    private val _allMyDetectionReport = MutableLiveData<ArrayList<MyDetectionReportEntity>>()
+    val allMyDetectionReport: LiveData<ArrayList<MyDetectionReportEntity>>
+        get() = _allMyDetectionReport
+    fun getAllMyDetectionReport(){
+        viewModelScope.launch {
+            detectionRepository.getAllMyDetectionReport().collect {
+                _allMyDetectionReport.value = it
+            }
+        }
+    }
+
+    fun getUnreadNotification(): LiveData<Int>{
+        val unreadNotif = MutableLiveData<Int>()
+        viewModelScope.launch {
+            detectionRepository.getUnreadNotification().collect {
+                unreadNotif.postValue(it)
+            }
+        }
+        return unreadNotif
     }
 }

@@ -50,7 +50,10 @@ class DangerCaseAdapter(private val list: ArrayList<CaseEntity>, private val act
     }
     private fun setStatus(binding: CaseItemBinding, data: CaseEntity){
         when(data.status){
-            "selesai" -> binding.tvStatus.background = AppCompatResources.getDrawable(activity,R.drawable.rounded_green_light_full)
+            "selesai" -> {
+                binding.tvStatus.text = activity.applicationContext.getString(R.string.detection_status_done)
+                binding.tvStatus.background = AppCompatResources.getDrawable(activity,R.drawable.rounded_green_light_full)
+            }
             else -> binding.tvStatus.background = AppCompatResources.getDrawable(activity,R.drawable.rounded_green_light_half)
         }
     }

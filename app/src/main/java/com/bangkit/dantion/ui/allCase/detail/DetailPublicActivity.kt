@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import com.bangkit.dantion.*
 import com.bangkit.dantion.data.Result
 import com.bangkit.dantion.data.model.Detection
@@ -49,9 +50,36 @@ class DetailPublicActivity : AppCompatActivity() {
         binding.tvLocationPlace.text = getCity(detection.lat,detection.lon,this)
         binding.tvTimeDate.text = detection.updatedAt.getDateFromTimeStamp().withDateFormat()
         binding.tvTimeTime.text = detection.updatedAt.getTimeFromTimeStamp().withTimeFormat()
-
         binding.dangerDetailTitle.setOnClickListener { finish() }
         binding.btnNavigateLocation.setOnClickListener { goNavigate(detection.lat, detection.lon) }
+
+        val role = when(detection.type) {
+            "kejahatan" -> "Polisi"
+            "kecelakaan" -> "Tenaga Medis"
+            else -> "Damkar"
+        }
+        when(detection.status){
+            "invalid" -> {
+                binding.tvAuthorityStatus.text = getString(R.string.notification_status_invalid, role)
+                binding.tvAuthorityStatus.setTextColor(getColor(R.color.yellow_dark_full))
+                binding.tvAuthorityStatus.background = AppCompatResources.getDrawable(this,R.drawable.rounded_yellow_light_half)
+            }
+            "valid" -> {
+                binding.tvAuthorityStatus.text = getString(R.string.notification_status_valid,role)
+                binding.tvAuthorityStatus.setTextColor(getColor(R.color.green_dark_full))
+                binding.tvAuthorityStatus.background = AppCompatResources.getDrawable(this,R.drawable.rounded_green_light_half)
+            }
+            "selesai" -> {
+                binding.tvAuthorityStatus.text = getString(R.string.notification_status_selesai)
+                binding.tvAuthorityStatus.setTextColor(getColor(R.color.green_dark_full))
+                binding.tvAuthorityStatus.background = AppCompatResources.getDrawable(this,R.drawable.rounded_green_light_full)
+            }
+            else -> {
+                binding.tvAuthorityStatus.text = getString(R.string.notification_status_ditolak, role)
+                binding.tvAuthorityStatus.setTextColor(getColor(R.color.primary_dark_full))
+                binding.tvAuthorityStatus.background = AppCompatResources.getDrawable(this,R.drawable.rounded_primary_light_half)
+            }
+        }
     }
 
     private fun goNavigate(lat: Double, lon: Double) {

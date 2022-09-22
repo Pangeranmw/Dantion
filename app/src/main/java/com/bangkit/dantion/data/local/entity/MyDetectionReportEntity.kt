@@ -12,5 +12,7 @@ data class MyDetectionReportEntity(
     var address: String,
     var city: String,
     var type: String,
+    var status: String,
     var createdAt: String,
+    var isRead: Boolean = false
 ): Parcelable

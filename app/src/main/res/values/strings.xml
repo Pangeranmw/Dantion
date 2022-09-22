@@ -31,6 +31,7 @@
     <string name="login">Masuk</string>
     <string name="register">Daftar</string>
     <string name="email">Email</string>
+    <string name="failed_upload_message">Upload Gagal, Mohon Ulangi</string>
     <string name="full_name">Hai, %1$s</string>
     <string name="password">Kata Sandi</string>
     <string name="address">Alamat</string>
@@ -93,6 +94,7 @@
     <string name="empty_form">Data tidak boleh kosong</string>
     <string name="empty_information_account">Harap isi semua informasi akun</string>
     <string name="see_all">Lihat Semua</string>
+    <string name="see_record_file">Dengar Rekaman</string>
     <string name="time_record">%1$d%2$d:%3$d%4$d</string>
     <string name="stop_record">Batalkan</string>
     <string name="button_hold_time">Tekan tombol selama 1 detik</string>
@@ -128,6 +130,12 @@
     <string name="detection_type_3">Kata Kebakaran</string>
     <string name="detection_type_3_content"><li> Kebakaran</li></string>
     <string name="detection_status">Tervalidasi</string>
+    <string name="detection_status_done">Selesai</string>
+
+    <string name="notification_status_invalid">Menunggu Validasi %1$s</string>
+    <string name="notification_status_valid">%1$s dalam perjalanan</string>
+    <string name="notification_status_selesai">Kasus telah diselesaikan</string>
+    <string name="notification_status_ditolak">>%1$s menolak laporan anda</string>
     <string name="notification_unread">1</string>
 
     <string name="navigate_to_location">Arahkan ke lokasi</string>
@@ -175,6 +183,13 @@
     <string name="authority_status">Tenaga medis dalam perjalanan</string>
 
     <string name="MAPS_ID">c35b3d2d9f3549d5</string>
+    <string name="success_record">Laporan %1$s Berhasil Terkirim</string>
+    <string name="success_record_subtitle">Rekaman yang baru anda buat berhasil dikirimkan ke pihak berwajib, Harap menunggu proses validasi</string>
+    <string name="see_report">Lihat Laporan</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="loading_reduce_message">Sedang memperkecil ukuran gambar, Tunggu sebentar…</string>
+    <string name="success_reduce_message">Berhasil memperkecil ukuran gambar</string>
+    <string name="report_not_found">Tidak Ada Laporan</string>
 
 
 </resources>

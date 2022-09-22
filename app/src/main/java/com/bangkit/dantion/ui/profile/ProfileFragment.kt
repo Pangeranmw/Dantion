@@ -12,17 +12,22 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bangkit.dantion.BuildConfig
 import com.bangkit.dantion.R
+import com.bangkit.dantion.data.Result
 import com.bangkit.dantion.databinding.FragmentProfileBinding
 import com.bangkit.dantion.getFirstName
+import com.bangkit.dantion.setToastShort
 import com.bangkit.dantion.ui.MainActivity
 import com.bangkit.dantion.ui.profile.password.PasswordActivity
 import com.bangkit.dantion.ui.viewModel.DataStoreViewModel
+import com.bangkit.dantion.ui.viewModel.ProfileViewModel
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val dataStoreViewModel: DataStoreViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +36,9 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         val view = binding.root
 
-        dataStoreViewModel.getUser().observe(viewLifecycleOwner){
-            binding.tvUserName.text = it.name?.getFirstName()
-            binding.tvUserEmail.text = it.email
-            binding.tvUserNumber.text = it.number
-        }
+        initData()
 
-        binding.btnEditProfile.setOnClickListener { startEditActivity() }
+        binding.btnEditProfile.setOnClickListener { startUpdateUserActivity() }
         binding.ivProfile.setOnClickListener{ startUpdateUserActivity() }
         binding.tvEditPassword.setOnClickListener { startPasswordActivity() }
         binding.tvAboutApp.setOnClickListener { openWeb() }
@@ -46,12 +47,41 @@ class ProfileFragment : Fragment() {
         return view
     }
 
-    private fun startEditActivity() {
-//        val intent = Intent(requireActivity(), ini activity)
-//        startActivity(intent)
+    override fun onResume() {
+        super.onResume()
+        initData()
+    }
+    private fun initData(){
+        dataStoreViewModel.getToken().observe(viewLifecycleOwner){token->
+            dataStoreViewModel.getIdUser().observe(viewLifecycleOwner){ idUser ->
+                profileViewModel.getUserDetail(token, idUser).observe(viewLifecycleOwner){
+                    when(it){
+                        is Result.Loading -> setLoading(true)
+                        is Result.Success ->{
+                            setLoading(false)
+                            val user = it.data.user
+                            Glide.with(requireActivity())
+                                .load(user.photo)
+                                .placeholder(R.drawable.img_profile)
+                                .dontAnimate()
+                                .into(binding.ivProfile)
+                            binding.apply {
+                                tvUserNumber.text = user.number.toString()
+                                tvUserName.text = user.name.toString()
+                                tvUserEmail.text = user.email.toString()
+                            }
+                        }
+                        is Result.Error->{
+                            setLoading(false)
+                            setToastShort(it.error, requireContext())
+                        }
+                    }
+                }
+            }
+        }
     }
     private fun startUpdateUserActivity() {
-        val intent = Intent(requireActivity(), PasswordActivity::class.java)
+        val intent = Intent(requireActivity(), UpdateUserActivity::class.java)
         startActivity(intent)
     }
 
@@ -75,5 +105,8 @@ class ProfileFragment : Fragment() {
 //        val intent = Intent(requireActivity(), MainActivity::class.java)
 //        startActivity(intent)
         requireActivity().finish()
+    }
+    private fun setLoading(state: Boolean){
+        binding.progressBar.visibility = if(state) View.VISIBLE else View.INVISIBLE
     }
 }

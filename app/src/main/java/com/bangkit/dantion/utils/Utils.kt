@@ -168,9 +168,28 @@ fun cropImage(image: Bitmap): Bitmap {
     }
 }
 
+fun getTimeDifference(fromDate: String): String{
+    val oldDate = if (fromDate.contains("Z")) fromDate.toDate("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").formatTo("yyyy-MM-dd HH:mm:ss").toDate("yyyy-MM-dd HH:mm:ss")
+                    else fromDate.toDate("yyyy-MM-dd HH:mm:ss.SSSX").formatTo("yyyy-MM-dd HH:mm:ss").toDate("yyyy-MM-dd HH:mm:ss")
+    val currentDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date()).toDate("yyyy-MM-dd HH:mm:ss")
+    val diff = (currentDate.time + 50000) - oldDate.time
+    val seconds = diff / 1000
+    val minutes = seconds / 60
+    val hours = minutes / 60
+    val days = hours / 24
+    return when{
+        days>0 -> "${days.toInt()} hari yang lalu"
+        hours>0 -> "${hours.toInt()} jam yang lalu"
+        minutes>0 -> "${minutes.toInt()} menit yang lalu"
+        seconds>0 -> "${seconds.toInt()} detik yang lalu"
+        else -> "$seconds detik yang lalu"
+    }
+}
+
 fun String.getDateFromTimeStamp(): String = substring(0, 10)
 
 fun String.getTimeFromTimeStamp(): String = substring(11, 16)
+fun String.getTimeWithSecondFromTimeStamp(): String = substring(11, 19)
 
 fun String.getFirstName(): String = if (contains(" ")) {
     split(" ")[0].replaceFirstChar { it.uppercase() }
@@ -182,7 +201,6 @@ fun String.withDateFormat(): String {
 fun String.withTimeFormat(): String {
     return this.toDate("k:mm").formatTo("kk:mm")
 }
-
 fun String.toDate(dateFormat: String, timeZone: TimeZone = TimeZone.getTimeZone("UTC")): Date {
     val parser = SimpleDateFormat(dateFormat, Locale("id", "ID"))
     parser.timeZone = timeZone
@@ -194,37 +212,9 @@ fun Date.formatTo(dateFormat: String, timeZone: TimeZone = TimeZone.getDefault()
     formatter.timeZone = timeZone
     return formatter.format(this)
 }
-@RequiresApi(Build.VERSION_CODES.O)
-fun getCurrentDate(): String{
-    val current = LocalDateTime.now()
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    return current.format(formatter)
-}
 fun setToastLong(message: String, context: Context){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
 fun setToastShort(message: String, context: Context){
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-}
-fun View.setOnVeryLongClickListener(listener: () -> Unit) {
-    setOnTouchListener(object : View.OnTouchListener {
-        private val longClickDuration = 3000L
-        override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-            if (event?.action == MotionEvent.ACTION_DOWN) {
-//                val timeClicked = System.currentTimeMillis()
-                Handler(Looper.getMainLooper()).postDelayed({
-//                    when(System.currentTimeMillis() - timeClicked){
-//                        1000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 3)
-//                        2000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 2)
-//                        3000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 1)
-//                        4000L -> binding.tvHoldTime.text = Resources.getSystem().getString(R.string.button_hold_time, 0)
-//                    }
-                    listener.invoke()
-                }, longClickDuration)
-            } else if (event?.action == MotionEvent.ACTION_UP) {
-                Handler(Looper.getMainLooper()).removeCallbacksAndMessages(null)
-            }
-            return true
-        }
-    })
 }

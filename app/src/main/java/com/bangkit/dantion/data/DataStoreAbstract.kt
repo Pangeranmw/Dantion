@@ -11,8 +11,10 @@ interface DataStoreAbstract {
     suspend fun logout()
     fun getLogin(): Flow<Boolean?>
     fun getToken(): Flow<String>
+    fun getIdUser(): Flow<String>
     suspend fun saveToken(token: String)
     suspend fun saveUser(user: LoginResult)
+    suspend fun saveIdUser(idUser: String)
     fun getUser(): Flow<LoginResult>
     suspend fun saveRegister(user: RegisterField)
     fun getRegister(): Flow<RegisterField>

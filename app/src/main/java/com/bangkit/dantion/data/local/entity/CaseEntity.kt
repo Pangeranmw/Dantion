@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "danger_case")
 data class CaseEntity(
-    @PrimaryKey(autoGenerate = true) var caseId: Int=0,
+    @PrimaryKey var caseId: String,
     var lat: Double,
     var lon: Double,
     var recordUrl: String,
@@ -16,6 +16,7 @@ data class CaseEntity(
     var status: String,
     var city: String,
     var updatedAt: String,
+    var userId: String,
     var name: String,
     var address: String,
     var number: String,

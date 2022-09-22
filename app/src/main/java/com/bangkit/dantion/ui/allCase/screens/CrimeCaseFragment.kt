@@ -51,7 +51,8 @@ class CrimeCaseFragment : Fragment() {
         return view
     }
     private fun getAllDetections(){
-        detectionViewModel.getAllDetections(token).observe(viewLifecycleOwner){res->
+        detectionViewModel.getAllDetections(token)
+        detectionViewModel.allDetectionResponse.observe(viewLifecycleOwner){res->
             when(res){
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {
@@ -78,11 +79,9 @@ class CrimeCaseFragment : Fragment() {
         }
     }
     private fun setAdapter(currentDetection: ArrayList<CaseEntity>, detectionList: List<CaseEntity>){
+        if(detectionList.isEmpty()) binding.tvNotFound.visibility = View.VISIBLE
         crimeDangerAdapter = DangerCaseAdapter(currentDetection, requireActivity())
         updateData(detectionList)
-        if(detectionList.isEmpty()) {
-            binding.tvNotFound.visibility = View.VISIBLE
-        }
         binding.rvCrimeCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCrimeCase.adapter = crimeDangerAdapter
     }

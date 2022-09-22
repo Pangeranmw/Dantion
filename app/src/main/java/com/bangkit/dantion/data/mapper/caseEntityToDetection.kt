@@ -5,10 +5,12 @@ import com.bangkit.dantion.data.model.Detection
 
 fun caseEntityToDetection(caseEntity: CaseEntity): Detection {
     return Detection(
+            userId = caseEntity.userId,
             lat = caseEntity.lat,
             lon = caseEntity.lon,
             address = caseEntity.address,
             city = caseEntity.city,
+            id = caseEntity.caseId,
             name = caseEntity.name,
             number = caseEntity.number,
             photo = caseEntity.photo,

@@ -4,6 +4,7 @@ import com.bangkit.dantion.R
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
@@ -36,7 +38,6 @@ import java.time.LocalDateTime
 class LocationFragment : Fragment() {
     private var _binding: FragmentLocationBinding? = null
     private val binding get() = _binding!!
-    private lateinit var latestDangerAdapter: LatestDangerAdapter
 
     private val detectionViewModel: DetectionViewModel by viewModels()
     private val dataStoreViewModel: DataStoreViewModel by viewModels()
@@ -45,7 +46,6 @@ class LocationFragment : Fragment() {
 
     private lateinit var token: String
     private lateinit var userId: String
-    private lateinit var type: String
     private lateinit var city: String
 
     private val callback = OnMapReadyCallback { googleMap ->
@@ -55,6 +55,7 @@ class LocationFragment : Fragment() {
             uiSettings.isMapToolbarEnabled = true
             uiSettings.isMyLocationButtonEnabled = true
         }
+        googleMap.isMyLocationEnabled = true
         getLocation(googleMap)
         getLatestDetection(googleMap)
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.map_style))
@@ -151,8 +152,10 @@ class LocationFragment : Fragment() {
             }
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getLatestDetection(googleMap: GoogleMap){
-        detectionViewModel.getAllDetections(token).observe(viewLifecycleOwner){res->
+        detectionViewModel.getAllDetections(token)
+        detectionViewModel.allDetectionResponse.observe(viewLifecycleOwner){res->
             when(res){
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {

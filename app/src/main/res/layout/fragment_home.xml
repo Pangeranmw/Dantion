@@ -37,6 +37,7 @@
                 app:riv_corner_radius="100dp"
                 android:contentDescription="@string/cd_photo_profile"
                 android:src="@drawable/img_profile"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

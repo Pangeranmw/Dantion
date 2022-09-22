@@ -76,8 +76,9 @@ class LoginFragment : Fragment() {
                     is Result.Success -> {
                         setLoading(false)
                         userLogin = res.data.loginResult
-                        dataStoreViewModel.saveLogin()
-                        dataStoreViewModel.saveToken(userLogin.token.toString())
+//                        dataStoreViewModel.saveLogin()
+//                        dataStoreViewModel.saveToken(userLogin.token)
+//                        dataStoreViewModel.saveIdUser(userLogin.id)
                         dataStoreViewModel.saveUser(userLogin)
                         Log.d("tes login",userLogin.toString())
                         when(userLogin.role){

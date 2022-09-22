@@ -36,7 +36,7 @@ interface DetectionService {
     ): ErrorMessageResponse
 
     @GET("detections/{id}")
-    fun getDetectionDetail(
+    suspend fun getDetectionDetail(
         @Header("Authorization") token: String,
         @Path("id") id: String
     ): GetDetectionDetailResponse

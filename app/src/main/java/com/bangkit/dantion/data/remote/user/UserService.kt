@@ -1,6 +1,7 @@
 package com.bangkit.dantion.data.remote.user
 
 import com.bangkit.dantion.data.remote.ErrorMessageResponse
+import com.bangkit.dantion.data.remote.detection.GetDetectionDetailResponse
 import okhttp3.MultipartBody
 import retrofit2.http.*
 
@@ -23,6 +24,12 @@ interface UserService {
         @Field("password") password: String,
     ): LoginResponse
 
+    @GET("users/{id}")
+    suspend fun getUserDetail(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): GetDetailUserResponse
+
     @GET("users")
     suspend fun getAllUsers(
         @Header("Authorization") token: String,
@@ -31,7 +38,7 @@ interface UserService {
 
     @FormUrlEncoded
     @PATCH("users")
-    suspend fun updateDetections(
+    suspend fun updateUser(
         @Header("Authorization") token: String,
         @Field("id") id: String,
         @Field("name") name: String,
@@ -56,11 +63,5 @@ interface UserService {
         @Header("Authorization") token: String,
         @Query("id") id: String, // id user
         @Part photo: MultipartBody.Part,
-    ): ErrorMessageResponse
-
-    @GET("users/{id}")
-    fun getUserDetail(
-        @Header("Authorization") token: String,
-        @Path("id") id: String
-    ): GetDetailUserResponse
+    ): UpdatePhotoUserResponse
 }

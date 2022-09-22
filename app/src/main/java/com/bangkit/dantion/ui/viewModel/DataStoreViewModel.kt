@@ -27,9 +27,17 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
             dataStoreRepository.saveToken(token)
         }
     }
+    fun saveIdUser(id: String){
+        viewModelScope.launch(Dispatchers.IO){
+            dataStoreRepository.saveIdUser(id)
+        }
+    }
     fun saveUser(user: LoginResult){
         viewModelScope.launch(Dispatchers.IO){
             dataStoreRepository.saveUser(user)
+            dataStoreRepository.saveLogin()
+            dataStoreRepository.saveToken(user.token)
+            dataStoreRepository.saveIdUser(user.id)
         }
     }
     fun getUser(): LiveData<LoginResult>{

@@ -51,7 +51,8 @@ class FireCaseFragment : Fragment() {
         return view
     }
     private fun getAllDetections(){
-        detectionViewModel.getAllDetections(token).observe(viewLifecycleOwner){res->
+        detectionViewModel.getAllDetections(token)
+        detectionViewModel.allDetectionResponse.observe(viewLifecycleOwner){res->
             when(res){
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {
@@ -79,10 +80,8 @@ class FireCaseFragment : Fragment() {
     }
     private fun setAdapter(currentDetection: ArrayList<CaseEntity>, detectionList: List<CaseEntity>){
         fireDangerAdapter = DangerCaseAdapter(currentDetection, requireActivity())
+        if(detectionList.isEmpty()) binding.tvNotFound.visibility = View.VISIBLE
         updateData(detectionList)
-        if(detectionList.isEmpty()) {
-            binding.tvNotFound.visibility = View.VISIBLE
-        }
         binding.rvFireCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFireCase.adapter = fireDangerAdapter
     }

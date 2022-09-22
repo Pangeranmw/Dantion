@@ -49,7 +49,8 @@ class AllCaseFragment : Fragment() {
         return view
     }
     private fun getAllDetections(){
-        detectionViewModel.getAllDetections(token).observe(viewLifecycleOwner){res->
+        detectionViewModel.getAllDetections(token)
+        detectionViewModel.allDetectionResponse.observe(viewLifecycleOwner){res->
             when(res){
                 is Result.Loading -> setLoading(true)
                 is Result.Success -> {
@@ -75,11 +76,9 @@ class AllCaseFragment : Fragment() {
         }
     }
     private fun setAdapter(currentDetection: ArrayList<CaseEntity>, detectionList: List<CaseEntity>){
+        if(detectionList.isEmpty()) binding.tvNotFound.visibility = View.VISIBLE
         allDangerAdapter = DangerCaseAdapter(currentDetection, requireActivity())
         updateData(detectionList)
-        if(detectionList.isEmpty()) {
-            binding.tvNotFound.visibility = View.VISIBLE
-        }
         binding.rvAllCase.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAllCase.adapter = allDangerAdapter
     }

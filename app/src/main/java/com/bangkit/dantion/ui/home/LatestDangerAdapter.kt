@@ -13,29 +13,29 @@ import com.bangkit.dantion.ui.allCase.detail.DetailPrivateActivity.Companion.EXT
 import com.bangkit.dantion.ui.allCase.detail.DetailPublicActivity
 import com.bangkit.dantion.utils.DangerDetectionDiffCallback
 
-class LatestDangerAdapter(private val list: ArrayList<Detection>, private val activity: Activity) :
+class LatestDangerAdapter(private val list: ArrayList<Detection>) :
     RecyclerView.Adapter<LatestDangerAdapter.ViewHolder>() {
 
-    fun updateData(items: ArrayList<Detection>) {
-        val diffCallback = DangerDetectionDiffCallback(list, items)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        list.clear()
-        list.addAll(items)
-        diffResult.dispatchUpdatesTo(this)
-    }
+//    fun updateData(items: ArrayList<Detection>) {
+//        val diffCallback = DangerDetectionDiffCallback(list, items)
+//        val diffResult = DiffUtil.calculateDiff(diffCallback)
+//        list.clear()
+//        list.addAll(items)
+//        diffResult.dispatchUpdatesTo(this)
+//    }
 
     inner class ViewHolder(private val binding: LatestCaseItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Detection) {
             binding.tvName.text = data.name.replaceFirstChar { it.uppercase() }
-            binding.tvAddress.text = getAddress(data.lat, data.lon, activity.applicationContext)?: activity.applicationContext.getString(R.string.location_unknown)
+            binding.tvAddress.text = getAddress(data.lat, data.lon, itemView.context)?: itemView.context.getString(R.string.location_unknown)
             binding.tvDate.text = data.updatedAt.getDateFromTimeStamp().withDateFormat()
             binding.tvTime.text = data.updatedAt.getTimeFromTimeStamp().withTimeFormat()
             binding.tvType.text = data.type.replaceFirstChar { it.uppercase() }
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailPublicActivity::class.java)
                 intent.putExtra(DetailPublicActivity.EXTRA_DATA, data)
-                activity.startActivity(intent)
+                itemView.context.startActivity(intent)
             }
         }
     }

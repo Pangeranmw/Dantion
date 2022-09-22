@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.notification.NotificationActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_white"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -28,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:drawablePadding="10dp"
+                android:fontFamily="@font/montserrat_semi"
                 android:isScrollContainer="false"
                 android:text="@string/cd_notification"
                 android:textSize="18sp"
@@ -41,6 +54,7 @@
                 android:id="@+id/tv_read_already"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="@string/read_already"
                 android:textColor="@color/secondary_main"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -71,9 +85,26 @@
                 android:layout_marginTop="20dp"
                 android:isScrollContainer="false"
                 android:text="@string/heading_notif_report"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_not_found_my_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/report_not_found"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_heading_notif_report"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heading_notif_report"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_my_report"
@@ -87,25 +118,41 @@
                 tools:listitem="@layout/notification_item" />
 
             <TextView
-                android:id="@+id/tv_heading_notif_accident"
+                android:id="@+id/tv_heading_today_report"
                 style="@style/HomeHeading"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:isScrollContainer="false"
                 android:text="@string/heading_notif_accident"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tv_heading_notif_report"
                 app:layout_constraintTop_toBottomOf="@+id/rv_my_report" />
 
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_not_found_today_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/report_not_found"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintEnd_toEndOf="@+id/tv_heading_today_report"
+                app:layout_constraintStart_toStartOf="@+id/tv_heading_today_report"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heading_today_report"
+                />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_latest_acc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="@+id/tv_heading_notif_accident"
-                app:layout_constraintStart_toStartOf="@+id/tv_heading_notif_accident"
-                app:layout_constraintTop_toBottomOf="@+id/tv_heading_notif_accident"
+                app:layout_constraintEnd_toEndOf="@+id/tv_heading_today_report"
+                app:layout_constraintStart_toStartOf="@+id/tv_heading_today_report"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heading_today_report"
                 tools:itemCount="4"
                 tools:listitem="@layout/notification_item" />
         </androidx.constraintlayout.widget.ConstraintLayout>

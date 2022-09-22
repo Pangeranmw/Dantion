@@ -29,6 +29,11 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
             pref[LOGIN] = true
         }
     }
+    override suspend fun saveIdUser(id: String) {
+        context.datastore.edit { pref->
+            pref[ID] = id
+        }
+    }
     override suspend fun logout(){
         context.datastore.edit {
             it.clear()
@@ -36,15 +41,17 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
         }
     }
     override suspend fun saveUser(user: LoginResult) {
-        context.datastore.edit { pref ->
-            pref[ID] = user.id ?: ""
-            pref[NAME] = user.name ?: ""
-            pref[EMAIL] = user.email ?: ""
-            pref[ADDRESS] = user.address ?: ""
-            pref[NUMBER] = user.number ?: ""
-            pref[PARENT_NUMBER] = user.parentNumber ?: ""
-            pref[ROLE] = user.role ?: ""
-            pref[PHOTO] = user.photo ?: ""
+        context.datastore.data.map{
+            context.datastore.edit { pref ->
+                pref[ID] = user.id
+                pref[NAME] = user.name
+                pref[EMAIL] = user.email
+                pref[ADDRESS] = user.address
+                pref[NUMBER] = user.number
+                pref[PARENT_NUMBER] = user.parentNumber
+                pref[ROLE] = user.role
+                pref[PHOTO] = user.photo
+            }
         }
     }
     override suspend fun saveToken(token: String) {
@@ -68,7 +75,7 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
     }
 
     override fun getLogin() = context.datastore.data.map{ it[LOGIN] }
-    fun getIdUser(): Flow<String> = context.datastore.data.map{ it[ID]?:"" }
+    override fun getIdUser(): Flow<String> = context.datastore.data.map{ it[ID]?:"" }
     override fun getToken(): Flow<String> = context.datastore.data.map{ it[TOKEN]?:"" }
     override fun getUser() = context.datastore.data.map{ pref ->
         LoginResult(
@@ -79,7 +86,8 @@ class DataStoreRepository(private val context: Context): DataStoreAbstract {
             number = pref[NUMBER]?:"",
             parentNumber = pref[PARENT_NUMBER]?:"",
             role = pref[ROLE]?:"",
-            photo = pref[PHOTO]?:""
+            photo = pref[PHOTO]?:"",
+            token = pref[TOKEN]?:""
         )
     }
     override fun getRegister() = context.datastore.data.map{ pref ->

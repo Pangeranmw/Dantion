@@ -13,4 +13,6 @@ data class DetectionReportEntity(
     var address: String,
     var city: String,
     var type: String,
+    var isRead: Boolean = false,
+    var status: String
 ): Parcelable
